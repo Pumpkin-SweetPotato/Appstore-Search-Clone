@@ -9,7 +9,8 @@
 import UIKit
 
 class SearchDetailViewController: UIViewController {
-
+    @IBOutlet var rootView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

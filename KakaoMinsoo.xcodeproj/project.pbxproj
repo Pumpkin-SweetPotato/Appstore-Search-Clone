@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		167A07E385866EFA7C9A12F9 /* Pods_KakaoMinsooTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCDF4AEA5CBC7EA822E78CAD /* Pods_KakaoMinsooTests.framework */; };
 		CFBDD0B22512347F007E167F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBDD0B12512347F007E167F /* AppDelegate.swift */; };
 		CFBDD0B42512347F007E167F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBDD0B32512347F007E167F /* SceneDelegate.swift */; };
 		CFBDD0B62512347F007E167F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBDD0B52512347F007E167F /* SearchViewController.swift */; };
@@ -24,6 +25,7 @@
 		CFBDD0EA25126D14007E167F /* SearchDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBDD0E825126D14007E167F /* SearchDetailViewController.swift */; };
 		CFBDD0EF25126D6C007E167F /* SearchViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFBDD0EE25126D6C007E167F /* SearchViewController.storyboard */; };
 		CFBDD0F125126D78007E167F /* SearchDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFBDD0F025126D78007E167F /* SearchDetailViewController.storyboard */; };
+		E1441E72B9A1609873F64F84 /* Pods_KakaoMinsoo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66DF841A7FD009C9E82D82DB /* Pods_KakaoMinsoo.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +39,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		11AAC797F3781DAF5AA69E23 /* Pods-KakaoMinsooTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KakaoMinsooTests.release.xcconfig"; path = "Target Support Files/Pods-KakaoMinsooTests/Pods-KakaoMinsooTests.release.xcconfig"; sourceTree = "<group>"; };
+		45F3E8F8F1389471BDE92025 /* Pods-KakaoMinsooTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KakaoMinsooTests.debug.xcconfig"; path = "Target Support Files/Pods-KakaoMinsooTests/Pods-KakaoMinsooTests.debug.xcconfig"; sourceTree = "<group>"; };
+		5CB171B0D1BE0280560049BE /* Pods-KakaoMinsoo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KakaoMinsoo.debug.xcconfig"; path = "Target Support Files/Pods-KakaoMinsoo/Pods-KakaoMinsoo.debug.xcconfig"; sourceTree = "<group>"; };
+		66DF841A7FD009C9E82D82DB /* Pods_KakaoMinsoo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KakaoMinsoo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6BF01F6C1EBEF1F48CED303B /* Pods-KakaoMinsoo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KakaoMinsoo.release.xcconfig"; path = "Target Support Files/Pods-KakaoMinsoo/Pods-KakaoMinsoo.release.xcconfig"; sourceTree = "<group>"; };
+		BCDF4AEA5CBC7EA822E78CAD /* Pods_KakaoMinsooTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KakaoMinsooTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFBDD0AE2512347F007E167F /* KakaoMinsoo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KakaoMinsoo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFBDD0B12512347F007E167F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CFBDD0B32512347F007E167F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -65,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1441E72B9A1609873F64F84 /* Pods_KakaoMinsoo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,18 +81,42 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				167A07E385866EFA7C9A12F9 /* Pods_KakaoMinsooTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		940A5EEEB08F59EDFE4EA99A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				66DF841A7FD009C9E82D82DB /* Pods_KakaoMinsoo.framework */,
+				BCDF4AEA5CBC7EA822E78CAD /* Pods_KakaoMinsooTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BDCD582380E6543BC41ABA41 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5CB171B0D1BE0280560049BE /* Pods-KakaoMinsoo.debug.xcconfig */,
+				6BF01F6C1EBEF1F48CED303B /* Pods-KakaoMinsoo.release.xcconfig */,
+				45F3E8F8F1389471BDE92025 /* Pods-KakaoMinsooTests.debug.xcconfig */,
+				11AAC797F3781DAF5AA69E23 /* Pods-KakaoMinsooTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		CFBDD0A52512347F007E167F = {
 			isa = PBXGroup;
 			children = (
 				CFBDD0B02512347F007E167F /* KakaoMinsoo */,
 				CFBDD0C725123481007E167F /* KakaoMinsooTests */,
 				CFBDD0AF2512347F007E167F /* Products */,
+				BDCD582380E6543BC41ABA41 /* Pods */,
+				940A5EEEB08F59EDFE4EA99A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -160,6 +193,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CFBDD0CD25123481007E167F /* Build configuration list for PBXNativeTarget "KakaoMinsoo" */;
 			buildPhases = (
+				156EEB5213BE526F5A6F86AD /* [CP] Check Pods Manifest.lock */,
 				CFBDD0AA2512347F007E167F /* Sources */,
 				CFBDD0AB2512347F007E167F /* Frameworks */,
 				CFBDD0AC2512347F007E167F /* Resources */,
@@ -177,6 +211,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CFBDD0D025123481007E167F /* Build configuration list for PBXNativeTarget "KakaoMinsooTests" */;
 			buildPhases = (
+				AA62225B36713E50678D3FAB /* [CP] Check Pods Manifest.lock */,
 				CFBDD0C025123481007E167F /* Sources */,
 				CFBDD0C125123481007E167F /* Frameworks */,
 				CFBDD0C225123481007E167F /* Resources */,
@@ -249,6 +284,53 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		156EEB5213BE526F5A6F86AD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-KakaoMinsoo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AA62225B36713E50678D3FAB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-KakaoMinsooTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		CFBDD0AA2512347F007E167F /* Sources */ = {
@@ -416,6 +498,7 @@
 		};
 		CFBDD0CE25123481007E167F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5CB171B0D1BE0280560049BE /* Pods-KakaoMinsoo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -434,6 +517,7 @@
 		};
 		CFBDD0CF25123481007E167F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6BF01F6C1EBEF1F48CED303B /* Pods-KakaoMinsoo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -452,6 +536,7 @@
 		};
 		CFBDD0D125123481007E167F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 45F3E8F8F1389471BDE92025 /* Pods-KakaoMinsooTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -474,6 +559,7 @@
 		};
 		CFBDD0D225123481007E167F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 11AAC797F3781DAF5AA69E23 /* Pods-KakaoMinsooTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";

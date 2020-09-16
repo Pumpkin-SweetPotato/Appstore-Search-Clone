@@ -7,41 +7,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Root View Controller-->
-        <scene sceneID="uVT-kF-r2B">
-            <objects>
-                <tableViewController id="FzE-I0-Koe" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="DLl-UC-uFl">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="hSO-qt-4jh">
-                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hSO-qt-4jh" id="9Sd-Df-1oi">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="FzE-I0-Koe" id="htb-qH-S3G"/>
-                            <outlet property="delegate" destination="FzE-I0-Koe" id="S83-sW-GcC"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="fy1-dx-KnH"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dcm-6b-cIZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <view contentMode="scaleToFill" id="bKt-mR-Kbb">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                    <viewLayoutGuide key="safeArea" id="Cx0-6u-8eB"/>
-                </view>
-            </objects>
-            <point key="canvasLocation" x="1043" y="-597"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="uL4-Fx-VhW">
             <objects>
@@ -51,12 +16,31 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="FzE-I0-Koe" kind="relationship" relationship="rootViewController" id="6Gy-1u-tvO"/>
+                        <segue destination="iBq-Ms-nqF" kind="relationship" relationship="rootViewController" id="ro1-OZ-x2u"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ng6-ZB-Jxe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="136" y="-597"/>
+        </scene>
+        <!--Search View Controller-->
+        <scene sceneID="O4j-Lk-Bui">
+            <objects>
+                <viewController id="iBq-Ms-nqF" customClass="SearchViewController" customModule="KakaoMinsoo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cPw-b5-IZI" userLabel="Root view">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="CUv-Uu-i5a"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="vK5-pK-zHn"/>
+                    <connections>
+                        <outlet property="rootView" destination="cPw-b5-IZI" id="ajU-cM-8Lh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pwo-cj-vxf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1025" y="-597"/>
         </scene>
     </scenes>
 </document>
