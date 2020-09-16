@@ -102,7 +102,7 @@ class KakaoMinsooTests: XCTestCase {
             
             do {
                 print("--- response ---")
-                let searchResponse = try JSONDecoder().decode(SearchReponse.self, from: data)
+                let searchResponse = try JSONDecoder().decode(SearchResponse.self, from: data)
                 
                 XCTAssertEqual(searchResponse.resultCount, limit)
                 print(searchResponse)

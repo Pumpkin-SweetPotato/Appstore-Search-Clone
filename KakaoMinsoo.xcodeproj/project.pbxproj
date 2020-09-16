@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -23,8 +23,16 @@
 		CFBDD0E1251255CA007E167F /* SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBDD0E0251255CA007E167F /* SearchResponse.swift */; };
 		CFBDD0E325125892007E167F /* SearchResultStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBDD0E225125892007E167F /* SearchResultStub.swift */; };
 		CFBDD0EA25126D14007E167F /* SearchDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBDD0E825126D14007E167F /* SearchDetailViewController.swift */; };
-		CFBDD0EF25126D6C007E167F /* SearchViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFBDD0EE25126D6C007E167F /* SearchViewController.storyboard */; };
+		CFBDD0EF25126D6C007E167F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFBDD0EE25126D6C007E167F /* Main.storyboard */; };
 		CFBDD0F125126D78007E167F /* SearchDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFBDD0F025126D78007E167F /* SearchDetailViewController.storyboard */; };
+		CFBDD0F325127C2B007E167F /* SearchViewController+SearchBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBDD0F225127C2B007E167F /* SearchViewController+SearchBarDelegate.swift */; };
+		CFBDD0F525127C5D007E167F /* SearchViewController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBDD0F425127C5D007E167F /* SearchViewController+UITableViewDelegate.swift */; };
+		CFBDD0F725127CA4007E167F /* SearchViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBDD0F625127CA4007E167F /* SearchViewReactor.swift */; };
+		CFBDD0F925128393007E167F /* SearchUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBDD0F825128393007E167F /* SearchUserDefaults.swift */; };
+		CFBDD0FB251284D8007E167F /* PropertyWrapperTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBDD0FA251284D8007E167F /* PropertyWrapperTest.swift */; };
+		CFBDD0FD2512861A007E167F /* SearchUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBDD0F825128393007E167F /* SearchUserDefaults.swift */; };
+		CFBDD102251291B0007E167F /* SearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBDD101251291B0007E167F /* SearchResultTableViewCell.swift */; };
+		CFBDD104251291ED007E167F /* SearchResultTableCellReator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBDD103251291ED007E167F /* SearchResultTableCellReator.swift */; };
 		E1441E72B9A1609873F64F84 /* Pods_KakaoMinsoo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66DF841A7FD009C9E82D82DB /* Pods_KakaoMinsoo.framework */; };
 /* End PBXBuildFile section */
 
@@ -64,8 +72,15 @@
 		CFBDD0E0251255CA007E167F /* SearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResponse.swift; sourceTree = "<group>"; };
 		CFBDD0E225125892007E167F /* SearchResultStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultStub.swift; sourceTree = "<group>"; };
 		CFBDD0E825126D14007E167F /* SearchDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDetailViewController.swift; sourceTree = "<group>"; };
-		CFBDD0EE25126D6C007E167F /* SearchViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SearchViewController.storyboard; sourceTree = "<group>"; };
+		CFBDD0EE25126D6C007E167F /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		CFBDD0F025126D78007E167F /* SearchDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SearchDetailViewController.storyboard; sourceTree = "<group>"; };
+		CFBDD0F225127C2B007E167F /* SearchViewController+SearchBarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchViewController+SearchBarDelegate.swift"; sourceTree = "<group>"; };
+		CFBDD0F425127C5D007E167F /* SearchViewController+UITableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchViewController+UITableViewDelegate.swift"; sourceTree = "<group>"; };
+		CFBDD0F625127CA4007E167F /* SearchViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewReactor.swift; sourceTree = "<group>"; };
+		CFBDD0F825128393007E167F /* SearchUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUserDefaults.swift; sourceTree = "<group>"; };
+		CFBDD0FA251284D8007E167F /* PropertyWrapperTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyWrapperTest.swift; sourceTree = "<group>"; };
+		CFBDD101251291B0007E167F /* SearchResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewCell.swift; sourceTree = "<group>"; };
+		CFBDD103251291ED007E167F /* SearchResultTableCellReator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableCellReator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,7 +120,6 @@
 				45F3E8F8F1389471BDE92025 /* Pods-KakaoMinsooTests.debug.xcconfig */,
 				11AAC797F3781DAF5AA69E23 /* Pods-KakaoMinsooTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -136,6 +150,7 @@
 				CFBDD0B32512347F007E167F /* SceneDelegate.swift */,
 				CFBDD0E4251264D8007E167F /* Model */,
 				CFBDD0E525126C8A007E167F /* ViewControllers */,
+				CFBDD0FE2512917F007E167F /* Cells */,
 				CFBDD0D725123F62007E167F /* API */,
 				CFBDD0BA25123481007E167F /* Assets.xcassets */,
 				CFBDD0BC25123481007E167F /* LaunchScreen.storyboard */,
@@ -148,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				CFBDD0C825123481007E167F /* KakaoMinsooTests.swift */,
+				CFBDD0FA251284D8007E167F /* PropertyWrapperTest.swift */,
 				CFBDD0E225125892007E167F /* SearchResultStub.swift */,
 				CFBDD0CA25123481007E167F /* Info.plist */,
 			);
@@ -163,6 +179,7 @@
 				CFBDD0DC2512415E007E167F /* SearchLanguagge.swift */,
 				CFBDD0DE25124210007E167F /* ExplitType.swift */,
 				CFBDD0D52512372B007E167F /* APIConstants.swift */,
+				CFBDD0F825128393007E167F /* SearchUserDefaults.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -179,11 +196,23 @@
 			isa = PBXGroup;
 			children = (
 				CFBDD0B52512347F007E167F /* SearchViewController.swift */,
+				CFBDD0F625127CA4007E167F /* SearchViewReactor.swift */,
+				CFBDD0F225127C2B007E167F /* SearchViewController+SearchBarDelegate.swift */,
+				CFBDD0F425127C5D007E167F /* SearchViewController+UITableViewDelegate.swift */,
 				CFBDD0E825126D14007E167F /* SearchDetailViewController.swift */,
-				CFBDD0EE25126D6C007E167F /* SearchViewController.storyboard */,
+				CFBDD0EE25126D6C007E167F /* Main.storyboard */,
 				CFBDD0F025126D78007E167F /* SearchDetailViewController.storyboard */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		CFBDD0FE2512917F007E167F /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				CFBDD101251291B0007E167F /* SearchResultTableViewCell.swift */,
+				CFBDD103251291ED007E167F /* SearchResultTableCellReator.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -197,6 +226,7 @@
 				CFBDD0AA2512347F007E167F /* Sources */,
 				CFBDD0AB2512347F007E167F /* Frameworks */,
 				CFBDD0AC2512347F007E167F /* Resources */,
+				5EC05AD4BAFDE2F81FF78954 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -272,7 +302,7 @@
 				CFBDD0F125126D78007E167F /* SearchDetailViewController.storyboard in Resources */,
 				CFBDD0BE25123481007E167F /* LaunchScreen.storyboard in Resources */,
 				CFBDD0BB25123481007E167F /* Assets.xcassets in Resources */,
-				CFBDD0EF25126D6C007E167F /* SearchViewController.storyboard in Resources */,
+				CFBDD0EF25126D6C007E167F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,6 +338,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		5EC05AD4BAFDE2F81FF78954 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KakaoMinsoo/Pods-KakaoMinsoo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KakaoMinsoo/Pods-KakaoMinsoo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KakaoMinsoo/Pods-KakaoMinsoo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		AA62225B36713E50678D3FAB /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -338,14 +385,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				CFBDD0DB25123F92007E167F /* AttributeType.swift in Sources */,
+				CFBDD0F525127C5D007E167F /* SearchViewController+UITableViewDelegate.swift in Sources */,
+				CFBDD102251291B0007E167F /* SearchResultTableViewCell.swift in Sources */,
 				CFBDD0DD2512415E007E167F /* SearchLanguagge.swift in Sources */,
 				CFBDD0E1251255CA007E167F /* SearchResponse.swift in Sources */,
 				CFBDD0EA25126D14007E167F /* SearchDetailViewController.swift in Sources */,
 				CFBDD0D925123F81007E167F /* EntityType.swift in Sources */,
 				CFBDD0DF25124210007E167F /* ExplitType.swift in Sources */,
+				CFBDD0F925128393007E167F /* SearchUserDefaults.swift in Sources */,
 				CFBDD0B62512347F007E167F /* SearchViewController.swift in Sources */,
+				CFBDD104251291ED007E167F /* SearchResultTableCellReator.swift in Sources */,
 				CFBDD0D62512372B007E167F /* APIConstants.swift in Sources */,
+				CFBDD0F725127CA4007E167F /* SearchViewReactor.swift in Sources */,
 				CFBDD0B22512347F007E167F /* AppDelegate.swift in Sources */,
+				CFBDD0F325127C2B007E167F /* SearchViewController+SearchBarDelegate.swift in Sources */,
 				CFBDD0B42512347F007E167F /* SceneDelegate.swift in Sources */,
 				CFBDD0D4251234BE007E167F /* APIClient.swift in Sources */,
 			);
@@ -355,6 +408,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CFBDD0FD2512861A007E167F /* SearchUserDefaults.swift in Sources */,
+				CFBDD0FB251284D8007E167F /* PropertyWrapperTest.swift in Sources */,
 				CFBDD0E325125892007E167F /* SearchResultStub.swift in Sources */,
 				CFBDD0C925123481007E167F /* KakaoMinsooTests.swift in Sources */,
 			);

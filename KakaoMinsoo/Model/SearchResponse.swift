@@ -8,13 +8,13 @@
 
 import Foundation
 
-struct SearchReponse: Codable {
+struct SearchResponse: Codable {
     let resultCount: Int
-    let results: [SearchResults]
+    let results: [SearchResult]
 }
 
 // MARK: - Result
-struct SearchResults: Codable {
+struct SearchResult: Codable {
     let advisories, appletvScreenshotUrls: [String]
     let artistID: Int
     let artistName: String

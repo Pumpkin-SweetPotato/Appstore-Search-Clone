@@ -21,11 +21,11 @@ struct SearchRequestParameter {
     let explicit: ExplitType?
     
     init(term: String,
-         country: String,
+         country: String = "KR",
          media: MediaType = .software([.software]),
-         attribute: AttributeType?,
+         attribute: AttributeType? = nil,
          callback: String = "",
-         limit: Int?,
+         limit: Int? = 50,
          lang: SearchLanguage? = .korea,
          version: Int = 2,
          explicit: ExplitType? = .no) {
@@ -119,6 +119,7 @@ enum APIRouter {
 
 class APIClient {
     let session: URLSession = URLSession.shared
+    typealias APISearchResult = (Data?, URLResponse?, Error?)
     typealias APICompletionHandler = ((Data?, URLResponse?, Error?) -> Void)
     
     func makeRequest(apiRouter: APIRouter, completionHandler: @escaping APICompletionHandler) -> URLSessionDataTask? {
@@ -133,5 +134,43 @@ class APIClient {
         
         request?.resume()
     }
+    
+    
 
+}
+
+import RxSwift
+
+extension APIClient {
+    func reqeust<T: Codable> (_ t: T.Type, _ apiRouter: APIRouter) -> Observable<T> {
+        return Observable.create { observer in
+            let request = self.makeRequest(apiRouter: apiRouter) { (data, response, error) in
+                guard let data = data else {
+                    if let error = error {
+                        observer.onError(error)
+                    } else {
+                        observer.onError(NSError(domain: "unknown", code: 999, userInfo: nil))
+                    }
+                    return
+                }
+                           
+                do {
+                   let jsonObject = try JSONDecoder().decode(T.self, from: data)
+                    observer.onNext(jsonObject)
+                } catch {
+                   print("json decode failed")
+                }
+            }
+            
+            if request == nil {
+                observer.onError(NSError(domain: "couldn't make a request", code: 998, userInfo: nil))
+            }
+            
+            request?.resume()
+            
+            return Disposables.create {
+                request?.cancel()
+            }
+        }
+    }
 }
