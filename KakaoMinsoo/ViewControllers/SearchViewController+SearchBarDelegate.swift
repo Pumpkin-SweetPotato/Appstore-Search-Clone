@@ -9,6 +9,7 @@
 import UIKit
 
 extension SearchViewController: UISearchBarDelegate {
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         self.reactor?.action.onNext(.searchBegin)
     }

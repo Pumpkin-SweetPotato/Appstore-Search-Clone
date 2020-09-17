@@ -157,6 +157,7 @@ extension APIClient {
                 do {
                    let jsonObject = try JSONDecoder().decode(T.self, from: data)
                     observer.onNext(jsonObject)
+                    observer.onCompleted()
                 } catch {
                    print("json decode failed")
                 }

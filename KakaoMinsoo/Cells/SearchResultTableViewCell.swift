@@ -58,21 +58,34 @@ class ThumbnailImageView: UIView {
     }
     
     func setContraints() {
+        horizonStackView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
         horizonStackView.arrangedSubviews.forEach {
             $0.snp.makeConstraints { make in
                 make.width.equalToSuperview().multipliedBy(0.317)
                 make.bottom.equalToSuperview()
             }
         }
-    }
-    
-    func setImages(_ images: [UIImage]) {
-        for index in 0 ..< horizonStackView.arrangedSubviews.count {
-            guard let imageView = horizonStackView.arrangedSubviews[index] as? UIImageView else { continue }
-            
-            imageView.image = images.count > index ? images[index] : nil
+        
+        horizonStackView.arrangedSubviews.forEach {
+            $0.layer.cornerRadius = 5
+            $0.layer.masksToBounds = true
+            $0.layer.borderColor = UIColor.lightGray.cgColor
+            $0.layer.borderWidth = 0.5
         }
     }
+    
+//    func setImages(_ images: [UIImage?]) {
+//        DispatchQueue.main.async {
+//            for index in 0 ..< self.horizonStackView.arrangedSubviews.count {
+//                guard let imageView = self.horizonStackView.arrangedSubviews[index] as? UIImageView else { continue }
+//
+//                imageView.image = images.count > index ? images[index] : nil
+//            }
+//        }
+//    }
 }
 
 class SearchResultTableViewCell: UITableViewCell, ReactorKit.View {
@@ -87,7 +100,7 @@ class SearchResultTableViewCell: UITableViewCell, ReactorKit.View {
     let resultInfoVerticalStackView: UIStackView = {
         let resultInfoVerticalStackView = UIStackView()
         resultInfoVerticalStackView.axis = .vertical
-        resultInfoVerticalStackView.distribution = .equalSpacing
+        resultInfoVerticalStackView.distribution = .fill
         resultInfoVerticalStackView.alignment = .leading
         
         return resultInfoVerticalStackView
@@ -95,13 +108,16 @@ class SearchResultTableViewCell: UITableViewCell, ReactorKit.View {
     
     let titleLabel: UILabel = {
         let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 17)
+        label.lineBreakMode = .byTruncatingTail
         
         return label
     }()
     
     let genreLabel: UILabel = {
         let label = UILabel()
-            
+        label.font = UIFont.systemFont(ofSize: 12, weight: .light)
+        
         return label
     }()
     
@@ -112,19 +128,19 @@ class SearchResultTableViewCell: UITableViewCell, ReactorKit.View {
         cosmosView.settings.fillMode = .precise
         cosmosView.settings.disablePanGestures = true
         cosmosView.settings.updateOnTouch = false
-        cosmosView.settings.starSize = 10
-        cosmosView.settings.starMargin = 2
-        cosmosView.settings.filledColor = UIColor(red: 142, green: 142, blue: 142, alpha: 1.0)
-        cosmosView.settings.emptyBorderColor = UIColor(red: 142, green: 142, blue: 142, alpha: 1.0)
-        cosmosView.settings.filledBorderColor = UIColor(red: 142, green: 142, blue: 142, alpha: 1.0)
+        cosmosView.settings.starSize = 14
+        cosmosView.settings.starMargin = 0
+        cosmosView.settings.filledColor = UIColor.searchGray
+        cosmosView.settings.emptyBorderColor = UIColor.searchGray
+        cosmosView.settings.filledBorderColor = UIColor.searchGray
     
         return cosmosView
     }()
     
     let ratingLabel: UILabel = {
         let ratingLabel = UILabel()
-        
-        ratingLabel.textColor = UIColor.lightGray
+        ratingLabel.font = UIFont.systemFont(ofSize: 12)
+        ratingLabel.textColor = UIColor.searchGray
         
         return ratingLabel
     }()
@@ -133,7 +149,7 @@ class SearchResultTableViewCell: UITableViewCell, ReactorKit.View {
         let getButton = UIButton(type: .system)
         
         getButton.setTitle("GET", for: .normal)
-        getButton.backgroundColor = UIColor.lightGray
+        getButton.backgroundColor = UIColor.searchGray(alpha: 0.1)
         
         return getButton
     }()
@@ -159,15 +175,21 @@ class SearchResultTableViewCell: UITableViewCell, ReactorKit.View {
     
     func setConstraints() {
         iconImageView.snp.makeConstraints { make in
-            make.left.top.equalToSuperview()
-            make.width.height.equalTo(50)
+            make.top.equalToSuperview().offset(20)
+            make.left.equalToSuperview()
+            make.width.height.equalTo(60)
         }
         
+        iconImageView.layer.masksToBounds = true
+        iconImageView.layer.cornerRadius = 10
+        
         resultInfoVerticalStackView.snp.makeConstraints { make in
-            make.top.equalToSuperview()
+            make.top.equalTo(iconImageView)
             make.leading.equalTo(iconImageView.snp.trailing).offset(6)
-            make.bottom.equalTo(iconImageView)
         }
+        
+        resultInfoVerticalStackView.setCustomSpacing(4, after: titleLabel)
+        resultInfoVerticalStackView.setCustomSpacing(4, after: genreLabel)
         
         ratingContainerView.snp.makeConstraints { make in
             make.trailing.equalToSuperview()
@@ -180,25 +202,32 @@ class SearchResultTableViewCell: UITableViewCell, ReactorKit.View {
         ratingLabel.snp.makeConstraints { make in
             make.leading.equalTo(cosmosView.snp.trailing).offset(5)
             make.trailing.lessThanOrEqualToSuperview()
-            make.bottom.equalTo(cosmosView)
+            make.top.equalTo(cosmosView)
         }
+        
+        let getButtonHeight: CGFloat = 25
         
         getButton.snp.makeConstraints { make in
             make.centerY.equalTo(iconImageView)
-            make.leading.equalTo(resultInfoVerticalStackView.snp.trailing).offset(6)
-            make.trailing.lessThanOrEqualToSuperview()
+            make.leading.equalTo(resultInfoVerticalStackView.snp.trailing).offset(35)
+            make.width.equalTo(60)
+            make.height.equalTo(getButtonHeight)
+            make.trailing.equalToSuperview()
         }
+        
+        getButton.layer.cornerRadius = getButtonHeight / 2
         
         thumbnailImageView.snp.makeConstraints { make in
             make.top.equalTo(iconImageView.snp.bottom).offset(25)
             make.height.equalTo(190)
             make.leading.trailing.equalToSuperview()
-            make.bottom.equalToSuperview()
+            make.bottom.lessThanOrEqualToSuperview().offset(-15)
         }
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        selectionStyle = .none
         
         addViews()
         setConstraints()
@@ -216,7 +245,7 @@ class SearchResultTableViewCell: UITableViewCell, ReactorKit.View {
 
     func bind(reactor: SearchResultTableCellReator) {
         reactor.state.map { $0.appIconImage }
-            .bind(to: iconImageView.rx.image)
+            .bind(to: iconImageView.rx.fadeImage())
             .disposed(by: disposeBag)
         
         reactor.state.map { $0.appNameString }
@@ -227,14 +256,25 @@ class SearchResultTableViewCell: UITableViewCell, ReactorKit.View {
             .bind(to: genreLabel.rx.text)
             .disposed(by: disposeBag)
         
-        reactor.state.map { $0.recommendsNumber }
-            .map { "\($0)" }
+        reactor.state.map { $0.ratingFloat }
+            .subscribe(onNext: { [weak self] in
+                self?.cosmosView.rating = Double($0)
+            }).disposed(by: disposeBag)
+        
+        reactor.state.map { $0.ratingCountString }
             .bind(to: ratingLabel.rx.text)
             .disposed(by: disposeBag)
         
-        reactor.state.map { $0.thumbnailImages }
-            .subscribe(onNext: { [weak self] images in
-                self?.thumbnailImageView.setImages(images)
-            }).disposed(by: disposeBag)
+        reactor.state.map { $0.leftThumbnailImage }
+            .bind(to: thumbnailImageView.leftThumbnailImageView.rx.fadeImage())
+            .disposed(by: disposeBag)
+
+        reactor.state.map { $0.middleThumbnailImage }
+            .bind(to: thumbnailImageView.middleThumbnailImageView.rx.fadeImage())
+            .disposed(by: disposeBag)
+        
+        reactor.state.map { $0.rightThumbnailImage }
+            .bind(to: thumbnailImageView.rightThumbnailImageView.rx.fadeImage())
+            .disposed(by: disposeBag)
     }
 }

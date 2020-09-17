@@ -7,14 +7,28 @@
 //
 
 import UIKit
+import ReactorKit
 
-class SearchDetailViewController: UIViewController {
+class SearchDetailViewController: UIViewController, ReactorKit.StoryboardView {
     @IBOutlet var rootView: UIView!
+    
+    var disposeBag: DisposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        navigationController?.isNavigationBarHidden = false
         // Do any additional setup after loading the view.
+    }
+    
+    override func willMove(toParent parent: UIViewController?) {
+        super.willMove(toParent: parent)
+        
+        if parent == nil {
+            navigationController?.isNavigationBarHidden = true
+        }
+    }
+    
+    func bind(reactor: SearchDetailViewReactor) {
     }
 
 

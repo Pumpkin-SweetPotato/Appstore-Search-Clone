@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		167A07E385866EFA7C9A12F9 /* Pods_KakaoMinsooTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCDF4AEA5CBC7EA822E78CAD /* Pods_KakaoMinsooTests.framework */; };
+		CF3A99EE2513992800D9CFAB /* SearchDetailViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A99ED2513992800D9CFAB /* SearchDetailViewReactor.swift */; };
+		CF3A99F125139FD500D9CFAB /* PGOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A99F025139FD500D9CFAB /* PGOperation.swift */; };
+		CF3A99F325139FEF00D9CFAB /* ImageDownloadHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A99F225139FEF00D9CFAB /* ImageDownloadHandler.swift */; };
+		CF3A99F62513B78500D9CFAB /* ImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A99F52513B78500D9CFAB /* ImageViewExtension.swift */; };
+		CF3A99F82513C19500D9CFAB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A99F72513C19500D9CFAB /* Constants.swift */; };
+		CF3A99FA2513C79000D9CFAB /* LatestSearchedKeywordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A99F92513C79000D9CFAB /* LatestSearchedKeywordCell.swift */; };
 		CFBDD0B22512347F007E167F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBDD0B12512347F007E167F /* AppDelegate.swift */; };
 		CFBDD0B42512347F007E167F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBDD0B32512347F007E167F /* SceneDelegate.swift */; };
 		CFBDD0B62512347F007E167F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBDD0B52512347F007E167F /* SearchViewController.swift */; };
@@ -53,6 +59,12 @@
 		66DF841A7FD009C9E82D82DB /* Pods_KakaoMinsoo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KakaoMinsoo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BF01F6C1EBEF1F48CED303B /* Pods-KakaoMinsoo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KakaoMinsoo.release.xcconfig"; path = "Target Support Files/Pods-KakaoMinsoo/Pods-KakaoMinsoo.release.xcconfig"; sourceTree = "<group>"; };
 		BCDF4AEA5CBC7EA822E78CAD /* Pods_KakaoMinsooTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KakaoMinsooTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF3A99ED2513992800D9CFAB /* SearchDetailViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDetailViewReactor.swift; sourceTree = "<group>"; };
+		CF3A99F025139FD500D9CFAB /* PGOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PGOperation.swift; sourceTree = "<group>"; };
+		CF3A99F225139FEF00D9CFAB /* ImageDownloadHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadHandler.swift; sourceTree = "<group>"; };
+		CF3A99F52513B78500D9CFAB /* ImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewExtension.swift; sourceTree = "<group>"; };
+		CF3A99F72513C19500D9CFAB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		CF3A99F92513C79000D9CFAB /* LatestSearchedKeywordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestSearchedKeywordCell.swift; sourceTree = "<group>"; };
 		CFBDD0AE2512347F007E167F /* KakaoMinsoo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KakaoMinsoo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFBDD0B12512347F007E167F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CFBDD0B32512347F007E167F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -123,6 +135,23 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		CF3A99EF25139FC600D9CFAB /* ImageRequest */ = {
+			isa = PBXGroup;
+			children = (
+				CF3A99F025139FD500D9CFAB /* PGOperation.swift */,
+				CF3A99F225139FEF00D9CFAB /* ImageDownloadHandler.swift */,
+			);
+			path = ImageRequest;
+			sourceTree = "<group>";
+		};
+		CF3A99F42513B77500D9CFAB /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CF3A99F52513B78500D9CFAB /* ImageViewExtension.swift */,
+			);
+			path = extensions;
+			sourceTree = "<group>";
+		};
 		CFBDD0A52512347F007E167F = {
 			isa = PBXGroup;
 			children = (
@@ -154,7 +183,10 @@
 				CFBDD0D725123F62007E167F /* API */,
 				CFBDD0BA25123481007E167F /* Assets.xcassets */,
 				CFBDD0BC25123481007E167F /* LaunchScreen.storyboard */,
+				CF3A99F72513C19500D9CFAB /* Constants.swift */,
 				CFBDD0BF25123481007E167F /* Info.plist */,
+				CF3A99F42513B77500D9CFAB /* extensions */,
+				CF3A99EF25139FC600D9CFAB /* ImageRequest */,
 			);
 			path = KakaoMinsoo;
 			sourceTree = "<group>";
@@ -200,6 +232,7 @@
 				CFBDD0F225127C2B007E167F /* SearchViewController+SearchBarDelegate.swift */,
 				CFBDD0F425127C5D007E167F /* SearchViewController+UITableViewDelegate.swift */,
 				CFBDD0E825126D14007E167F /* SearchDetailViewController.swift */,
+				CF3A99ED2513992800D9CFAB /* SearchDetailViewReactor.swift */,
 				CFBDD0EE25126D6C007E167F /* Main.storyboard */,
 				CFBDD0F025126D78007E167F /* SearchDetailViewController.storyboard */,
 			);
@@ -210,6 +243,7 @@
 			isa = PBXGroup;
 			children = (
 				CFBDD101251291B0007E167F /* SearchResultTableViewCell.swift */,
+				CF3A99F92513C79000D9CFAB /* LatestSearchedKeywordCell.swift */,
 				CFBDD103251291ED007E167F /* SearchResultTableCellReator.swift */,
 			);
 			path = Cells;
@@ -384,11 +418,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF3A99FA2513C79000D9CFAB /* LatestSearchedKeywordCell.swift in Sources */,
+				CF3A99F125139FD500D9CFAB /* PGOperation.swift in Sources */,
+				CF3A99F82513C19500D9CFAB /* Constants.swift in Sources */,
+				CF3A99F62513B78500D9CFAB /* ImageViewExtension.swift in Sources */,
 				CFBDD0DB25123F92007E167F /* AttributeType.swift in Sources */,
 				CFBDD0F525127C5D007E167F /* SearchViewController+UITableViewDelegate.swift in Sources */,
 				CFBDD102251291B0007E167F /* SearchResultTableViewCell.swift in Sources */,
 				CFBDD0DD2512415E007E167F /* SearchLanguagge.swift in Sources */,
 				CFBDD0E1251255CA007E167F /* SearchResponse.swift in Sources */,
+				CF3A99F325139FEF00D9CFAB /* ImageDownloadHandler.swift in Sources */,
 				CFBDD0EA25126D14007E167F /* SearchDetailViewController.swift in Sources */,
 				CFBDD0D925123F81007E167F /* EntityType.swift in Sources */,
 				CFBDD0DF25124210007E167F /* ExplitType.swift in Sources */,
@@ -396,6 +435,7 @@
 				CFBDD0B62512347F007E167F /* SearchViewController.swift in Sources */,
 				CFBDD104251291ED007E167F /* SearchResultTableCellReator.swift in Sources */,
 				CFBDD0D62512372B007E167F /* APIConstants.swift in Sources */,
+				CF3A99EE2513992800D9CFAB /* SearchDetailViewReactor.swift in Sources */,
 				CFBDD0F725127CA4007E167F /* SearchViewReactor.swift in Sources */,
 				CFBDD0B22512347F007E167F /* AppDelegate.swift in Sources */,
 				CFBDD0F325127C2B007E167F /* SearchViewController+SearchBarDelegate.swift in Sources */,

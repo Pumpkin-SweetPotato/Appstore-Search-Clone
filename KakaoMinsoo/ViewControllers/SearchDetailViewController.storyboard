@@ -10,7 +10,7 @@
         <!--Search Detail View Controller-->
         <scene sceneID="cTC-Cu-yPz">
             <objects>
-                <viewController id="eST-fF-rm0" customClass="SearchDetailViewController" customModule="KakaoMinsoo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchDetailViewController" id="eST-fF-rm0" customClass="SearchDetailViewController" customModule="KakaoMinsoo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="epA-0m-gmq" userLabel="Root View">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
