@@ -1,4 +1,5 @@
 PODS:
+  - Cosmos (22.1.0)
   - ReactorKit (2.1.0):
     - RxSwift (~> 5.0)
     - WeakMapTable (~> 1.1)
@@ -12,6 +13,7 @@ PODS:
   - WeakMapTable (1.1.0)
 
 DEPENDENCIES:
+  - Cosmos (~> 22.1)
   - ReactorKit
   - RxCocoa (~> 5)
   - RxSwift (~> 5)
@@ -19,6 +21,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - Cosmos
     - ReactorKit
     - RxCocoa
     - RxRelay
@@ -27,6 +30,7 @@ SPEC REPOS:
     - WeakMapTable
 
 SPEC CHECKSUMS:
+  Cosmos: 2795b36ad4bbea1af3050d6d65576ed63875f86a
   ReactorKit: 12a93358c554bb3f167b16b14c40374fa9cd5acd
   RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
@@ -34,6 +38,6 @@ SPEC CHECKSUMS:
   SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
   WeakMapTable: d0327eda092be6a8f7c532942ae98dc7948f5d32
 
-PODFILE CHECKSUM: 8cf0413c77b4453ebe78c44f56d7d4d976aff254
+PODFILE CHECKSUM: 6b2da76b3b46e6b1314f16b37b3f52f5bab7300f
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.9.1

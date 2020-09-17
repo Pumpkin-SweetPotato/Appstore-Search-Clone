@@ -79,7 +79,7 @@ class SearchViewController: UIViewController, ReactorKit.StoryboardView {
         stackView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(40)
             make.bottom.equalToSuperview()
-            make.center.equalToSuperview()
+            make.centerX.equalToSuperview()
             make.width.equalToSuperview().offset(-30)
         }
         
@@ -117,16 +117,24 @@ class SearchViewController: UIViewController, ReactorKit.StoryboardView {
         
         setConstraints()
         setReactor()
+        setDelegates()
     }
     
     func setReactor() {
         self.reactor = Reactor(apiClient: APIClient())
     }
-
     
+    func setDelegates() {
+//        searchBar.delegate = self
+        latestSearchTableView.delegate = self
+        latestSearchTableView.dataSource = self
+        searchResultTableView.delegate = self
+        searchResultTableView.dataSource = self
+    }
+
     func bind(reactor: SearchViewReactor) {
         searchBar.rx.text.orEmpty
-            .filter { !$0.isEmpty }
+            .distinctUntilChanged()
             .debounce(.milliseconds(500), scheduler: MainScheduler.instance)
             .map { Reactor.Action.searchBarTextDidChanged($0) }
             .bind(to: reactor.action)
@@ -143,7 +151,9 @@ class SearchViewController: UIViewController, ReactorKit.StoryboardView {
             .disposed(by: disposeBag)
         
         reactor.state.map { $0.searchViewMode }
+            .distinctUntilChanged()
             .subscribe(onNext: { [weak self] mode in
+                print("searchViewMode", mode)
                 self?.changeViewMode(mode)
             }).disposed(by: disposeBag)
         
@@ -151,15 +161,15 @@ class SearchViewController: UIViewController, ReactorKit.StoryboardView {
     
     func changeViewMode(_ mode: SearchViewMode) {
         switch mode {
-            
         case .watingInput:
             searchLabel.isHidden = false
             latestSearchLabel.isHidden = false
             latestSearchTableView.isHidden = false
             searchResultTableView.isHidden = true
         case .inputContinuing:
-            searchLabel.isHidden = true
-            latestSearchLabel.isHidden = true
+            print("inputContinuing")
+//            searchLabel.isHidden = true
+//            latestSearchLabel.isHidden = true
         case .showingResult:
             searchLabel.isHidden = true
             latestSearchLabel.isHidden = true

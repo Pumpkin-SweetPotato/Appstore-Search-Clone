@@ -12,4 +12,8 @@ extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         self.reactor?.action.onNext(.searchBegin)
     }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        self.reactor?.action.onNext(.searchCancel)
+    }
 }

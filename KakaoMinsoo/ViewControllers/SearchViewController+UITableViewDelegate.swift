@@ -26,7 +26,23 @@ extension SearchViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        switch tableView {
+        case latestSearchTableView:
+            return UITableViewCell()
+        case searchResultTableView:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchResultTableViewCell.reuseIdentifier, for: indexPath) as? SearchResultTableViewCell else { fatalError("couldnt instantiate result table view cell") }
+            
+            guard let results = reactor?.currentState.searchResults,
+                results.count > indexPath.row,
+                let result = reactor?.currentState.searchResults[indexPath.row] else { fatalError("couldnt retrieve search result \(indexPath.row)") }
+            
+            cell.reactor = SearchResultTableCellReator(searchResult: result)
+            
+            return cell
+        default:
+            return UITableViewCell()
+        }
+        
     }
     
     

@@ -53,9 +53,12 @@ final class SearchViewReactor: Reactor {
         case .searchBarSelected:
             return .empty()
             
-        case .searchBarTextDidChanged:
-            
-            return .just(.setSearchViewMode(.inputContinuing))
+        case .searchBarTextDidChanged(let keyword):
+            if keyword.isEmpty {
+                return .just(.setSearchViewMode(.watingInput))
+            } else {
+                return .just(.setSearchViewMode(.inputContinuing))
+            }
         case .searchBegin:
             let currentKeyword = currentState.searchKeyword
             SearchUserDefaults.latestSearchKeywords.append(currentKeyword)
