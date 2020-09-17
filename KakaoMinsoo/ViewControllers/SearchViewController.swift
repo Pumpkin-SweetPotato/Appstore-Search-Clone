@@ -141,12 +141,21 @@ class SearchViewController: UIViewController, ReactorKit.StoryboardView {
             .disposed(by: disposeBag)
         
         searchBar.rx.text
-            .map { $0 == nil || $0?.count == 0 }
+            .map { ($0 == nil || $0?.isEmpty == true) }
             .map { !$0 }
-            .subscribe(onNext: { [weak self] in self?.searchBar.showsCancelButton = $0 })
+            .distinctUntilChanged()
+            .subscribe(onNext: { [weak self] isEmpty in
+                self?.setIsHiddenCancelButton(isEmpty)
+            }).disposed(by: disposeBag)
+        
+        searchBar.rx.cancelButtonClicked
+            .do(onNext: { [weak self] in self?.searchBar.text = "" })
+            .map { Reactor.Action.searchCancel }
+            .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
         reactor.state.map { $0.selectedSearchKeyword }
+            .distinctUntilChanged()
             .bind(to: searchBar.rx.text)
             .disposed(by: disposeBag)
         
@@ -159,6 +168,12 @@ class SearchViewController: UIViewController, ReactorKit.StoryboardView {
         
     }
     
+    func setIsHiddenCancelButton(_ isHidden: Bool) {
+        UIView.animate(withDuration: 0.2) {
+            self.searchBar.showsCancelButton = isHidden
+        }
+    }
+    
     func changeViewMode(_ mode: SearchViewMode) {
         switch mode {
         case .watingInput:
@@ -167,9 +182,8 @@ class SearchViewController: UIViewController, ReactorKit.StoryboardView {
             latestSearchTableView.isHidden = false
             searchResultTableView.isHidden = true
         case .inputContinuing:
-            print("inputContinuing")
-//            searchLabel.isHidden = true
-//            latestSearchLabel.isHidden = true
+            searchLabel.isHidden = true
+            latestSearchLabel.isHidden = true
         case .showingResult:
             searchLabel.isHidden = true
             latestSearchLabel.isHidden = true
