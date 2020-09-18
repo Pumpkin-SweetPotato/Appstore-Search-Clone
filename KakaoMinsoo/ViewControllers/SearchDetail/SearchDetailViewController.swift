@@ -136,6 +136,12 @@ class SearchDetailViewController: UIViewController, ReactorKit.StoryboardView {
         
         return descriptionLabel
     }()
+    
+    let moreButton: UIButton = {
+       let moreButton = UIButton()
+        
+        return moreButton
+    }()
 
     let developerLabel: UILabel = {
         let developerLabel = UILabel()
@@ -207,8 +213,131 @@ class SearchDetailViewController: UIViewController, ReactorKit.StoryboardView {
         return ratingsOf1Stars
     }()
 
-
-
+    let reviewContainer: UIView = {
+        let reviewContainer = UIView()
+        
+        let reviewCollectionView: UICollectionView = {
+            let flowLayout = UICollectionViewLayout()
+            let reviewCollectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+            
+            return reviewCollectionView
+        }()
+        // cell
+        let conclusionLabel: UILabel = {
+            let conclusionLabel = UILabel()
+            
+            return conclusionLabel
+        }()
+        
+        let reviewRatingCosmos: CosmosView = {
+            let reviewRatingCosmos = CosmosView()
+            reviewRatingCosmos.settings.fillMode = .precise
+            reviewRatingCosmos.settings.disablePanGestures = true
+            reviewRatingCosmos.settings.updateOnTouch = false
+            reviewRatingCosmos.settings.starSize = 30
+            reviewRatingCosmos.settings.starMargin = 0
+            reviewRatingCosmos.settings.filledColor = UIColor.yellow
+            reviewRatingCosmos.settings.emptyBorderColor = UIColor.yellow
+            reviewRatingCosmos.settings.filledBorderColor = UIColor.yellow
+        
+            return reviewRatingCosmos
+        }()
+        
+        let reviewedDateLabel: UILabel = {
+            let reviewedDateLabel = UILabel()
+            
+            return reviewedDateLabel
+        }()
+        
+        let reviewerNameLabel: UILabel = {
+            let reviewerNanemLabel = UILabel()
+            
+            return reviewerNanemLabel
+        }()
+        
+        let moreButton: UIButton = {
+           let moreButton = UIButton()
+            
+            return moreButton
+        }()
+        //
+        return reviewContainer
+    }()
+    
+    let separator: UIView = UIView()
+    
+    let whatsNewLabel: UILabel = {
+        let whatsNewLabel = UILabel()
+        
+        return whatsNewLabel
+    }()
+    
+    let versionHistoryButton: UIButton = {
+       let versionHistoryButton = UIButton()
+        
+        return versionHistoryButton
+    }()
+    
+    let versionLabel: UILabel = {
+       let versionLabel = UILabel()
+        
+        return versionLabel
+    }()
+    
+    let versionUpdatedAgoLabel: UILabel = {
+        let versionUpdatedAgoLabel = UILabel()
+        
+        return versionUpdatedAgoLabel
+    }()
+    
+    let versionUpdateDescriptionLabel: UILabel = {
+       let versionUpadteDescriptionLabel = UILabel()
+        
+        return versionUpadteDescriptionLabel
+    }()
+    
+    let separator = UIView()
+    
+    let informationContainer: UIView = {
+        let informationContainer = UIView()
+        
+        let informationView = InformationView()
+        
+        addInformation(isHasDetail)
+        
+        let developerWebsiteInformation
+        let privacyPolicyInformation
+        
+        return informationContainer
+    }()
+    
+    let informationLabel: UILabel = {
+        let informationLabel = UILabel()
+        
+        return informationLabel
+    }()
+    
+    let separator = UIView()
+    
+    let supportsContainer: UIView = {
+        let supportsContainer = UIView()
+        
+        let suppertView = SupportView()
+        
+        addSupportView
+        
+        
+        return supportsContainer
+    }()
+    
+    let appSuggestionContainer: UIView = {
+       let appSugestionContainer = UIView()
+        
+        
+        
+        return appSugestionContainer
+    }()
+    
     
     var disposeBag: DisposeBag = DisposeBag()
     
