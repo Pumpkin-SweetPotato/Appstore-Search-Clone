@@ -15,6 +15,8 @@ class SearchViewController: UIViewController, ReactorKit.StoryboardView {
     typealias SearchViewMode = SearchViewReactor.SearchViewMode
     @IBOutlet weak var rootView: UIView!
     
+    let searchLabelContainer = UIView()
+    
     let searchLabel: UILabel = {
         let searchLabel = UILabel()
         searchLabel.text = "검색"
@@ -43,6 +45,8 @@ class SearchViewController: UIViewController, ReactorKit.StoryboardView {
         return searchBar
     }()
     
+    let latestSearchLabelContainer = UIView()
+    
     let latestSearchLabel: UILabel = {
         let latestSearchLabel = UILabel()
         latestSearchLabel.text = "최근 검색어"
@@ -59,9 +63,11 @@ class SearchViewController: UIViewController, ReactorKit.StoryboardView {
         return latestSearchTableView
     }()
     
+    let searchResultTableContainer = UIView()
+    
     let searchResultTableView: UITableView = {
         let searchResultTableView: UITableView = UITableView()
-        searchResultTableView.separatorStyle = .none
+        searchResultTableView.separatorColor = .white
         searchResultTableView.register(SearchResultTableViewCell.self,
                                        forCellReuseIdentifier: SearchResultTableViewCell.reuseIdentifier)
         
@@ -74,25 +80,30 @@ class SearchViewController: UIViewController, ReactorKit.StoryboardView {
 
     fileprivate func addViews() {
         rootView.addSubview(stackView)
-        stackView.addArrangedSubview(searchLabel)
+        stackView.addArrangedSubview(searchLabelContainer)
+        searchLabelContainer.addSubview(searchLabel)
         stackView.addArrangedSubview(searchBarContainer)
         searchBarContainer.addSubview(searchBar)
-//        stackView.addArrangedSubview(searchBar)
-        stackView.addArrangedSubview(latestSearchLabel)
+        stackView.addArrangedSubview(latestSearchLabelContainer)
+        latestSearchLabelContainer.addSubview(latestSearchLabel)
         stackView.addArrangedSubview(latestSearchTableView)
-        stackView.addArrangedSubview(searchResultTableView)
+        stackView.addArrangedSubview(searchResultTableContainer)
+        searchResultTableContainer.addSubview(searchResultTableView)
     }
     
     fileprivate func setConstraints() {
         stackView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(initialStackViewTopOffset)
-            make.bottom.equalToSuperview()
-            make.left.equalToSuperview().offset(15)
-            make.right.equalToSuperview()
+            make.leading.trailing.bottom.equalToSuperview()
+        }
+        
+        searchLabelContainer.snp.makeConstraints { make in
+            make.trailing.equalToSuperview()
         }
         
         searchLabel.snp.makeConstraints { make in
-            make.trailing.equalToSuperview()
+            make.trailing.top.bottom.equalToSuperview()
+            make.leading.equalToSuperview().offset(15)
         }
         
         stackView.setCustomSpacing(5, after: searchLabel)
@@ -103,14 +114,19 @@ class SearchViewController: UIViewController, ReactorKit.StoryboardView {
         
         searchBar.snp.makeConstraints { make in
             make.top.bottom.equalToSuperview()
-            make.leading.equalToSuperview().offset(-10)
+            make.leading.equalToSuperview().offset(5)
             make.trailing.equalToSuperview().offset(-15)
         }
         
-        stackView.setCustomSpacing(30, after: searchBar)
+        stackView.setCustomSpacing(50, after: searchBarContainer)
+        
+        latestSearchLabelContainer.snp.makeConstraints { make in
+            make.trailing.equalToSuperview()
+        }
         
         latestSearchLabel.snp.makeConstraints { make in
-            make.trailing.equalToSuperview()
+            make.trailing.top.bottom.equalToSuperview()
+            make.leading.equalToSuperview().offset(15)
         }
         
         stackView.setCustomSpacing(3, after: latestSearchLabel)
@@ -119,9 +135,15 @@ class SearchViewController: UIViewController, ReactorKit.StoryboardView {
             make.trailing.equalToSuperview()
         }
         
-        searchResultTableView.snp.makeConstraints { make in
-            make.trailing.equalToSuperview().offset(-15)
+        searchResultTableContainer.snp.makeConstraints { make in
+            make.trailing.equalToSuperview()
             make.height.greaterThanOrEqualTo(1)
+        }
+        
+        searchResultTableView.snp.makeConstraints { make in
+            make.top.bottom.equalToSuperview()
+            make.trailing.equalToSuperview().offset(-15)
+            make.leading.equalToSuperview().offset(15)
         }
         
         latestSearchTableView.setContentHuggingPriority(.defaultLow, for: .vertical)
@@ -197,6 +219,7 @@ class SearchViewController: UIViewController, ReactorKit.StoryboardView {
         reactor.state.map { $0.selectedSearchKeyword }
             .distinctUntilChanged()
             .compactMap { $0 }
+            .do(onNext: { [weak self] _ in self?.searchBar.endEditing(false) })
             .bind(to: searchBar.rx.text.orEmpty)
             .disposed(by: disposeBag)
     }
@@ -216,6 +239,7 @@ class SearchViewController: UIViewController, ReactorKit.StoryboardView {
             }).disposed(by: disposeBag)
         
         searchResultTableView.rx.itemSelected
+            .do(onNext: { [weak self] in self?.searchResultTableView.deselectRow(at: $0, animated: false) })
             .map { Reactor.Action.searchResultSelected($0) }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
@@ -231,64 +255,71 @@ class SearchViewController: UIViewController, ReactorKit.StoryboardView {
     
     func changeViewMode(_ mode: SearchViewMode) {
         DispatchQueue.main.async {
-            switch mode {
-                case .watingInput:
-                    self.stackView.snp.updateConstraints { make in
-                        make.top.equalToSuperview().offset(self.initialStackViewTopOffset)
-                    }
-                case .beginEditing, .inputContinuing, .showingResult:
-                    let statusbarHeight = SearchConstants.statusBarHeight(rootView: self.rootView) ?? 0
-                    self.stackView.snp.updateConstraints { make in
-                        make.top.equalToSuperview().offset(statusbarHeight)
-                    }
-                
-            }
+            self.setStatusBarPosition(mode)
+            
             switch mode {
             case .watingInput:
+                self.stackView.setCustomSpacing(50, after: self.searchBarContainer)
                 
-                self.stackView.setCustomSpacing(50, after: self.searchBar)
-                
-                self.searchLabel.isHidden = false
-                self.latestSearchLabel.isHidden = false
+                self.searchLabelContainer.isHidden = false
+                self.latestSearchLabelContainer.isHidden = false
                 self.latestSearchTableView.isHidden = false
-                self.searchResultTableView.isHidden = true
+                self.searchResultTableContainer.isHidden = true
                 
-                self.searchBarContainer.backgroundColor = UIColor.white
+                
                 self.searchBar.searchBarStyle = .minimal
                 self.searchBar.showsCancelButton = false
-                
-//                self.searchBarContainer.transform = CGAffineTransform.identity
             case .beginEditing:
-                
-                self.searchBarContainer.backgroundColor = UIColor.searchGray(alpha: 0.05)
-//                let move = CGAffineTransform(translationX: 0, y: -statusbarHeight)
-//
-//                self.searchBarContainer.transform = move
-                
-                self.searchLabel.isHidden = true
+                self.searchLabelContainer.isHidden = true
                 self.searchBar.showsCancelButton = true
             case .inputContinuing:
                 
                 
-                self.searchLabel.isHidden = true
+                self.searchLabelContainer.isHidden = true
                 self.searchBar.showsCancelButton = true
-                self.latestSearchLabel.isHidden = true
+                self.latestSearchLabelContainer.isHidden = true
             case .showingResult:
                 
-                self.stackView.setCustomSpacing(0, after: self.searchBar)
+                self.stackView.setCustomSpacing(0, after: self.searchBarContainer)
                 self.searchBar.showsCancelButton = true
                 
                 
-                self.searchLabel.isHidden = true
-                self.latestSearchLabel.isHidden = true
+                self.searchLabelContainer.isHidden = true
+                self.latestSearchLabelContainer.isHidden = true
                 self.latestSearchTableView.isHidden = true
-                self.searchResultTableView.isHidden = false
+                self.searchResultTableContainer.isHidden = false
             }
         
         
             UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut, animations: {
                 self.rootView.layoutIfNeeded()
             })
+        }
+    }
+    
+    func setStatusBarPosition(_ mode: SearchViewMode) {
+        switch mode {
+            case .watingInput:
+                self.stackView.snp.updateConstraints { make in
+                    make.top.equalToSuperview().offset(self.initialStackViewTopOffset)
+                }
+                
+                self.searchBarContainer.backgroundColor = UIColor.white
+                
+                self.searchBar.snp.updateConstraints { make in
+                    make.top.equalToSuperview().offset(0)
+                }
+            case .beginEditing, .inputContinuing, .showingResult:
+                let statusbarHeight = SearchConstants.statusBarHeight(rootView: self.rootView) ?? 0
+                self.stackView.snp.updateConstraints { make in
+                    make.top.equalToSuperview().offset(0)
+                }
+                
+                self.searchBarContainer.backgroundColor = UIColor.searchGray(alpha: 0.05)
+            
+                self.searchBar.snp.updateConstraints { make in
+                    make.top.equalToSuperview().offset(statusbarHeight)
+                }
         }
     }
 }

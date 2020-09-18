@@ -9,7 +9,7 @@ PODS:
   - RxRelay (5.1.1):
     - RxSwift (~> 5)
   - RxSwift (5.1.1)
-  - SnapKit (4.0.1)
+  - SnapKit (5.0.1)
   - WeakMapTable (1.1.0)
 
 DEPENDENCIES:
@@ -17,7 +17,7 @@ DEPENDENCIES:
   - ReactorKit
   - RxCocoa (~> 5)
   - RxSwift (~> 5)
-  - SnapKit (~> 4.0.0)
+  - SnapKit (~> 5.0.0)
 
 SPEC REPOS:
   trunk:
@@ -35,9 +35,9 @@ SPEC CHECKSUMS:
   RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
   RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
-  SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   WeakMapTable: d0327eda092be6a8f7c532942ae98dc7948f5d32
 
-PODFILE CHECKSUM: 6b2da76b3b46e6b1314f16b37b3f52f5bab7300f
+PODFILE CHECKSUM: 84e07ad4fc8d015959f88034d0faa142f3dc7f12
 
 COCOAPODS: 1.9.1

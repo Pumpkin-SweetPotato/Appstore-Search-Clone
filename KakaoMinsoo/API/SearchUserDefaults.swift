@@ -13,7 +13,7 @@ struct LatestSearchKeyword {
     let key: String = "latestSearchKeywords"
     public var wrappedValue: [String] {
         get {
-            UserDefaults.standard.array(forKey: key) as! [String]
+            UserDefaults.standard.array(forKey: key) as? [String] ?? []
         }
         set {
             UserDefaults.standard.setValue(newValue, forKeyPath: key)

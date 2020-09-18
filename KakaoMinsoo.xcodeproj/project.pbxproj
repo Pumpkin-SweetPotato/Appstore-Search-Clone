@@ -115,6 +115,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		02CE7B3D251464AF00869DA0 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				CFBDD0EE25126D6C007E167F /* Main.storyboard */,
+				CFBDD0B52512347F007E167F /* SearchViewController.swift */,
+				CFBDD0F625127CA4007E167F /* SearchViewReactor.swift */,
+				CFBDD0F225127C2B007E167F /* SearchViewController+SearchBarDelegate.swift */,
+				CFBDD0F425127C5D007E167F /* SearchViewController+UITableViewDelegate.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		02CE7B3E251464C400869DA0 /* SearchDetail */ = {
+			isa = PBXGroup;
+			children = (
+				CFBDD0E825126D14007E167F /* SearchDetailViewController.swift */,
+				CF3A99ED2513992800D9CFAB /* SearchDetailViewReactor.swift */,
+				CFBDD0F025126D78007E167F /* SearchDetailViewController.storyboard */,
+			);
+			path = SearchDetail;
+			sourceTree = "<group>";
+		};
 		940A5EEEB08F59EDFE4EA99A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -227,14 +249,8 @@
 		CFBDD0E525126C8A007E167F /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				CFBDD0B52512347F007E167F /* SearchViewController.swift */,
-				CFBDD0F625127CA4007E167F /* SearchViewReactor.swift */,
-				CFBDD0F225127C2B007E167F /* SearchViewController+SearchBarDelegate.swift */,
-				CFBDD0F425127C5D007E167F /* SearchViewController+UITableViewDelegate.swift */,
-				CFBDD0E825126D14007E167F /* SearchDetailViewController.swift */,
-				CF3A99ED2513992800D9CFAB /* SearchDetailViewReactor.swift */,
-				CFBDD0EE25126D6C007E167F /* Main.storyboard */,
-				CFBDD0F025126D78007E167F /* SearchDetailViewController.storyboard */,
+				02CE7B3D251464AF00869DA0 /* Search */,
+				02CE7B3E251464C400869DA0 /* SearchDetail */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";

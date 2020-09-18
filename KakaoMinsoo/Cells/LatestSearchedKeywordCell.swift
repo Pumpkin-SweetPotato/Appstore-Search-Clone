@@ -34,13 +34,13 @@ class LatestSearchedKeywordCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        separatorInset = UIEdgeInsets(top: 0, left: -15, bottom: 0, right: 0)
+//        separatorInset = UIEdgeInsets(top: 0, left: -15, bottom: 0, right: 0)
         
         contentView.addSubview(searchIconImageView)
         contentView.addSubview(keywordLabel)
         
         searchIconImageView.snp.makeConstraints { make in
-            make.leading.equalToSuperview()
+            make.leading.equalToSuperview().offset(15)
             make.centerY.equalToSuperview()
         }
         
