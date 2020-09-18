@@ -122,6 +122,12 @@ class SearchDetailViewController: UIViewController, ReactorKit.StoryboardView {
         
         return availableDeviceDescriptionLabel
     }()
+
+    let showAllAvailableDeviceChevronButton: UIButton = {
+        let showAllAvailableDeviceChevronButton = UIButton()
+
+        return showAllAvailableDeviceChevronButton
+    }()
     
     let separator: UIView = UIView()
     
@@ -130,6 +136,78 @@ class SearchDetailViewController: UIViewController, ReactorKit.StoryboardView {
         
         return descriptionLabel
     }()
+
+    let developerLabel: UILabel = {
+        let developerLabel = UILabel()
+
+        return developerLabel
+    }()
+
+    let develiperDetailChevronButton: UIButton = {
+        let develiperDetailChevronButton = UIButton()
+
+        return develiperDetailChevronButton
+    }()
+
+    let separator: UIView = UIView()
+
+    let ratingsReviewsLabel: UILabel = {
+        let ratingsReviewsLabel = UILabel()
+
+        return ratingsReviewsLabel
+    }()
+
+    let seeAllButton: UIButton = {
+        let seeAllButton = UIButton()
+
+        return seeAllButton
+    }()
+
+    let bigRatingFloatContainer = UIView()
+
+    let bigRatingFloatLabel: UILabel = {
+        let bigRatingFloatLabel = UILabel()
+        
+        return bigRatingFloatLabel
+    }()
+
+    let outOf5Label: UILabel = {
+        let outOf5Label = UILabel()
+
+        return outOf5Label
+    }()
+
+    let ratingsOf5Stars: UIView = {
+        let ratingsOf5Stars = UIView()
+
+        return ratingsOf5Stars
+    }()
+    
+    let ratingsOf4Stars: UIView = {
+        let ratingsOf4Stars = UIView()
+
+        return ratingsOf4Stars
+    }()
+
+    let ratingsOf3Stars: UIView = {
+        let ratingsOf3Stars = UIView()
+
+        return ratingsOf3Stars
+    }()
+
+    let ratingsOf2Stars: UIView = {
+        let ratingsOf2Stars = UIView()
+
+        return ratingsOf2Stars
+    }()
+
+    let ratingsOf1Stars: UIView = {
+        let ratingsOf1Stars = UIView()
+
+        return ratingsOf1Stars
+    }()
+
+
 
     
     var disposeBag: DisposeBag = DisposeBag()
