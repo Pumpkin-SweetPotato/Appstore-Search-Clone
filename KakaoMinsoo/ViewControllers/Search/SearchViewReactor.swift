@@ -38,6 +38,8 @@ final class SearchViewReactor: Reactor {
         case setIsHiddenLatestSeachLabel(Bool)
         case setIsHiddenLatestSearchTableView(Bool)
         case setIsHiddenSearchResultTableView(Bool)
+        
+        case setNeedReload(Bool)
     }
     
     struct State {
@@ -53,6 +55,8 @@ final class SearchViewReactor: Reactor {
         var isHiddenLatestSearchLabel: Bool = false
         var isHiddenLatestSearchTableView: Bool = false
         var isHiddenSearchResultTabbleView: Bool = true
+        
+        var isNeedReload: Bool = false
     }
     
     var initialState: State
@@ -88,8 +92,10 @@ final class SearchViewReactor: Reactor {
                 .flatMap { Observable<Mutation>.just(.setSearchResults($0)) }
                 
             let setSearchViewMode = Observable<Mutation>.just(.setSearchViewMode(.showingResult))
+            
+            let setNeedReload: Observable<Mutation> = .concat(.just(.setNeedReload(true)), .just(.setNeedReload(false)))
                 
-            return .concat(setLatestSearchKeyword, requsetSearchResults, setSearchViewMode)
+            return .concat(setLatestSearchKeyword, requsetSearchResults, setSearchViewMode, setNeedReload)
             
         case .searchCancel:
             let setSearchViewMode = Observable<Mutation>.just(.setSearchViewMode(.watingInput))
@@ -111,7 +117,9 @@ final class SearchViewReactor: Reactor {
             
             let setViewMode: Observable<Mutation> = .just(.setSearchViewMode(.showingResult))
             
-            return .concat([setLatestSearchKeyword, setSelectedKeyword, requsetSearchResults, setViewMode])
+            let setNeedReload: Observable<Mutation> = .concat(.just(.setNeedReload(true)), .just(.setNeedReload(false)))
+            
+            return .concat([setLatestSearchKeyword, setSelectedKeyword, requsetSearchResults, setViewMode, setNeedReload])
         case .searchResultSelected(let indexPath):
             guard currentState.searchResults.count > indexPath.row else { return .empty() }
             let result = currentState.searchResults[indexPath.row]
@@ -156,6 +164,8 @@ final class SearchViewReactor: Reactor {
             state.isHiddenLatestSearchTableView = set
         case .setIsHiddenSearchResultTableView(let set):
             state.isHiddenSearchResultTabbleView = set
+        case .setNeedReload(let set):
+            state.isNeedReload = set
         }
         
         return state

@@ -27,6 +27,7 @@ class SearchDetailViewController: UIViewController, ReactorKit.StoryboardView {
         verticalStackView.axis = .vertical
         verticalStackView.alignment = .leading
         verticalStackView.distribution = .fill
+        verticalStackView.spacing = 20
         
         return verticalStackView
     }()
@@ -35,29 +36,7 @@ class SearchDetailViewController: UIViewController, ReactorKit.StoryboardView {
     
 //    let separator: UIView = UIView()
     
-    let descriptionLabel: UILabel = {
-       let descriptionLabel = UILabel()
-        
-        return descriptionLabel
-    }()
-    
-    let moreButton: UIButton = {
-       let moreButton = UIButton()
-        
-        return moreButton
-    }()
-
-    let developerLabel: UILabel = {
-        let developerLabel = UILabel()
-
-        return developerLabel
-    }()
-
-    let develiperDetailChevronButton: UIButton = {
-        let develiperDetailChevronButton = UIButton()
-
-        return develiperDetailChevronButton
-    }()
+    let appDescriptionView = AppDescriptionView()
 
 //    let separator: UIView = UIView()
 
@@ -261,12 +240,24 @@ class SearchDetailViewController: UIViewController, ReactorKit.StoryboardView {
         }
     }
     
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        verticalStackView
+            .arrangedSubviews
+            .compactMap { $0 as? SearchDetailViewDelegate }
+            .forEach { $0.didLayoutSubviews() }
+    }
+    
     func addSubViews() {
         rootView.addSubview(scrollView)
         scrollView.addSubview(srollContentView)
         srollContentView.addSubview(verticalStackView)
         
         verticalStackView.addArrangedSubview(appCommonInformationView)
+        verticalStackView.addArrangedSubview(Separator())
+        verticalStackView.addArrangedSubview(appDescriptionView)
     }
     
     func setConstraints() {
@@ -290,10 +281,15 @@ class SearchDetailViewController: UIViewController, ReactorKit.StoryboardView {
         appCommonInformationView.snp.makeConstraints { make in
             make.trailing.equalToSuperview()
         }
+        
+        appDescriptionView.snp.makeConstraints { make in
+            make.trailing.equalToSuperview()
+        }
     }
     
     func bind(reactor: SearchDetailViewReactor) {
         appCommonInformationView.searchResult = reactor.searchResult
+        appDescriptionView.reactor = AppDescriptionViewReactor(searchResult: reactor.searchResult)
     }
 }
 

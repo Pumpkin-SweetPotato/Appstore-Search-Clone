@@ -12,6 +12,9 @@ struct SearchConstants {
     static func statusBarHeight(rootView: UIView) -> CGFloat? {
         return rootView.window?.windowScene?.statusBarManager?.statusBarFrame.height
     }
+    
+    static var defaultLeading: CGFloat = 20
+    static var defaultTrailing: CGFloat = 20
 }
 
 extension UIColor {

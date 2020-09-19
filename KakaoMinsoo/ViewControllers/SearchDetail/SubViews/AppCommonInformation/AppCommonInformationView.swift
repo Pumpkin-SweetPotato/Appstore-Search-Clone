@@ -416,8 +416,12 @@ class AppCommonInformationView: UIView {
             self.corpLabel.text = searchResult.sellerName
             
             self.ratingFloatLabel.text = String(format: "%.1f", searchResult.averageUserRating)
+            if searchResult.averageUserRating == 0 {
+                self.ratingFloatLabel.isHidden = true
+            }
+            
             self.cosmosView.rating = Double(searchResult.averageUserRating)
-            self.ratingNumberLabel.text = "\(searchResult.formattedRatingCount) Ratings"
+            self.ratingNumberLabel.text = "\(searchResult.formattedRatingCount != "0" ? searchResult.formattedRatingCount : "No") Ratings"
             
             self.genreLabel.text = searchResult.primaryGenreName
             
@@ -573,5 +577,10 @@ extension AppCommonInformationView: UICollectionViewDelegateFlowLayout {
         let indexPath = IndexPath(row: 0, section: index)
         screenShotCollectionView.scrollToItem(at: indexPath, at: .left, animated: true)
         
+    }
+}
+
+extension AppCommonInformationView: SearchDetailViewDelegate {
+    func didLayoutSubviews() {
     }
 }

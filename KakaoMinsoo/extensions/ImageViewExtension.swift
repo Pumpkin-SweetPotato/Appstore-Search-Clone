@@ -41,3 +41,31 @@ extension UIImageView {
         }
     }
 }
+
+
+extension UILabel {
+    var isTruncated: Bool {
+        
+        guard let _ = text else {
+            return false
+        }
+        
+        return labelTextSize.height > bounds.size.height
+    }
+    
+    var labelTextSize: CGSize {
+        guard let labelText = text else {
+            return CGSize(width: 0, height: 0)
+        }
+        
+        let largestSize = CGSize(width: frame.size.width, height: .greatestFiniteMagnitude)
+
+        let labelTextSize = (labelText as NSString).boundingRect(
+            with: largestSize,
+            options: [.usesLineFragmentOrigin, .usesFontLeading],
+            attributes: [.font: font],
+            context: nil).size
+        
+        return labelTextSize
+    }
+}

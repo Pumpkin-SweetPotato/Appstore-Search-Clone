@@ -17,5 +17,14 @@ class Separator: UIView {
     required init?(coder: NSCoder) {
         return nil
     }
+    
+    override func didMoveToSuperview() {
+        super.didMoveToSuperview()
+        guard self.superview != nil else { return }
+        self.snp.makeConstraints { make in
+            make.trailing.equalToSuperview()
+            make.height.equalTo(1)
+        }
+    }
 }
 

@@ -18,6 +18,13 @@
 		CF3A99F62513B78500D9CFAB /* ImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A99F52513B78500D9CFAB /* ImageViewExtension.swift */; };
 		CF3A99F82513C19500D9CFAB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A99F72513C19500D9CFAB /* Constants.swift */; };
 		CF3A99FA2513C79000D9CFAB /* LatestSearchedKeywordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A99F92513C79000D9CFAB /* LatestSearchedKeywordCell.swift */; };
+		CFA8A9512515F8860052841E /* AppDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA8A9502515F8860052841E /* AppDescriptionView.swift */; };
+		CFA8A9532515FE020052841E /* AppDescriptionViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA8A9522515FE020052841E /* AppDescriptionViewReactor.swift */; };
+		CFA8A955251616060052841E /* SearchDetailViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA8A954251616060052841E /* SearchDetailViewProtocol.swift */; };
+		CFA8A95725161FAD0052841E /* RatingReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA8A95625161FAD0052841E /* RatingReviewView.swift */; };
+		CFA8A95925161FDC0052841E /* RatingReviewViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA8A95825161FDC0052841E /* RatingReviewViewReactor.swift */; };
+		CFA8A95B25162AA10052841E /* RatingBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA8A95A25162AA10052841E /* RatingBar.swift */; };
+		CFA8A95D25162B8F0052841E /* ReviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA8A95C25162B8F0052841E /* ReviewCollectionViewCell.swift */; };
 		CFBDD0B22512347F007E167F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBDD0B12512347F007E167F /* AppDelegate.swift */; };
 		CFBDD0B42512347F007E167F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBDD0B32512347F007E167F /* SceneDelegate.swift */; };
 		CFBDD0B62512347F007E167F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBDD0B52512347F007E167F /* SearchViewController.swift */; };
@@ -73,6 +80,13 @@
 		CF3A99F52513B78500D9CFAB /* ImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewExtension.swift; sourceTree = "<group>"; };
 		CF3A99F72513C19500D9CFAB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		CF3A99F92513C79000D9CFAB /* LatestSearchedKeywordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestSearchedKeywordCell.swift; sourceTree = "<group>"; };
+		CFA8A9502515F8860052841E /* AppDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDescriptionView.swift; sourceTree = "<group>"; };
+		CFA8A9522515FE020052841E /* AppDescriptionViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDescriptionViewReactor.swift; sourceTree = "<group>"; };
+		CFA8A954251616060052841E /* SearchDetailViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDetailViewProtocol.swift; sourceTree = "<group>"; };
+		CFA8A95625161FAD0052841E /* RatingReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingReviewView.swift; sourceTree = "<group>"; };
+		CFA8A95825161FDC0052841E /* RatingReviewViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingReviewViewReactor.swift; sourceTree = "<group>"; };
+		CFA8A95A25162AA10052841E /* RatingBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingBar.swift; sourceTree = "<group>"; };
+		CFA8A95C25162B8F0052841E /* ReviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCollectionViewCell.swift; sourceTree = "<group>"; };
 		CFBDD0AE2512347F007E167F /* KakaoMinsoo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KakaoMinsoo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFBDD0B12512347F007E167F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CFBDD0B32512347F007E167F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -177,9 +191,11 @@
 		CF1EFE6B2514E7B70047485D /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
-				CF1EFE6C2514E7C90047485D /* AppCommonInformationView.swift */,
-				CF1EFE702515C3890047485D /* AppScreenshotCell.swift */,
+				CFA8A95E25162B970052841E /* AppCommonInformation */,
 				CF1EFE6E2514E7E30047485D /* Separator.swift */,
+				CFA8A95F25162BAB0052841E /* AppDescriptionView */,
+				CFA8A954251616060052841E /* SearchDetailViewProtocol.swift */,
+				CFA8A96025162BBF0052841E /* RatingsAndReviews */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -199,6 +215,35 @@
 				CF3A99F52513B78500D9CFAB /* ImageViewExtension.swift */,
 			);
 			path = extensions;
+			sourceTree = "<group>";
+		};
+		CFA8A95E25162B970052841E /* AppCommonInformation */ = {
+			isa = PBXGroup;
+			children = (
+				CF1EFE6C2514E7C90047485D /* AppCommonInformationView.swift */,
+				CF1EFE702515C3890047485D /* AppScreenshotCell.swift */,
+			);
+			path = AppCommonInformation;
+			sourceTree = "<group>";
+		};
+		CFA8A95F25162BAB0052841E /* AppDescriptionView */ = {
+			isa = PBXGroup;
+			children = (
+				CFA8A9502515F8860052841E /* AppDescriptionView.swift */,
+				CFA8A9522515FE020052841E /* AppDescriptionViewReactor.swift */,
+			);
+			path = AppDescriptionView;
+			sourceTree = "<group>";
+		};
+		CFA8A96025162BBF0052841E /* RatingsAndReviews */ = {
+			isa = PBXGroup;
+			children = (
+				CFA8A95A25162AA10052841E /* RatingBar.swift */,
+				CFA8A95625161FAD0052841E /* RatingReviewView.swift */,
+				CFA8A95C25162B8F0052841E /* ReviewCollectionViewCell.swift */,
+				CFA8A95825161FDC0052841E /* RatingReviewViewReactor.swift */,
+			);
+			path = RatingsAndReviews;
 			sourceTree = "<group>";
 		};
 		CFBDD0A52512347F007E167F = {
@@ -464,9 +509,13 @@
 			files = (
 				CF3A99FA2513C79000D9CFAB /* LatestSearchedKeywordCell.swift in Sources */,
 				CF3A99F125139FD500D9CFAB /* PGOperation.swift in Sources */,
+				CFA8A95D25162B8F0052841E /* ReviewCollectionViewCell.swift in Sources */,
 				CF3A99F82513C19500D9CFAB /* Constants.swift in Sources */,
+				CFA8A9512515F8860052841E /* AppDescriptionView.swift in Sources */,
 				CF3A99F62513B78500D9CFAB /* ImageViewExtension.swift in Sources */,
 				CFBDD0DB25123F92007E167F /* AttributeType.swift in Sources */,
+				CFA8A95725161FAD0052841E /* RatingReviewView.swift in Sources */,
+				CFA8A95B25162AA10052841E /* RatingBar.swift in Sources */,
 				CFBDD0F525127C5D007E167F /* SearchViewController+UITableViewDelegate.swift in Sources */,
 				CF1EFE712515C3890047485D /* AppScreenshotCell.swift in Sources */,
 				CFBDD102251291B0007E167F /* SearchResultTableViewCell.swift in Sources */,
@@ -474,16 +523,19 @@
 				CF1EFE6A2514E1290047485D /* SearchResultUtils.swift in Sources */,
 				CF1EFE6F2514E7E30047485D /* Separator.swift in Sources */,
 				CF1EFE6D2514E7C90047485D /* AppCommonInformationView.swift in Sources */,
+				CFA8A955251616060052841E /* SearchDetailViewProtocol.swift in Sources */,
 				CFBDD0E1251255CA007E167F /* SearchResponse.swift in Sources */,
 				CF3A99F325139FEF00D9CFAB /* ImageDownloadHandler.swift in Sources */,
 				CFBDD0EA25126D14007E167F /* SearchDetailViewController.swift in Sources */,
 				CFBDD0D925123F81007E167F /* EntityType.swift in Sources */,
 				CFBDD0DF25124210007E167F /* ExplitType.swift in Sources */,
 				CFBDD0F925128393007E167F /* SearchUserDefaults.swift in Sources */,
+				CFA8A9532515FE020052841E /* AppDescriptionViewReactor.swift in Sources */,
 				CFBDD0B62512347F007E167F /* SearchViewController.swift in Sources */,
 				CFBDD104251291ED007E167F /* SearchResultTableCellReator.swift in Sources */,
 				CFBDD0D62512372B007E167F /* APIConstants.swift in Sources */,
 				CF3A99EE2513992800D9CFAB /* SearchDetailViewReactor.swift in Sources */,
+				CFA8A95925161FDC0052841E /* RatingReviewViewReactor.swift in Sources */,
 				CFBDD0F725127CA4007E167F /* SearchViewReactor.swift in Sources */,
 				CFBDD0B22512347F007E167F /* AppDelegate.swift in Sources */,
 				CFBDD0F325127C2B007E167F /* SearchViewController+SearchBarDelegate.swift in Sources */,

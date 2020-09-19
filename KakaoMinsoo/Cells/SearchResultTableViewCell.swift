@@ -42,10 +42,20 @@ class ThumbnailImageView: UIView {
         return rightThumbnailImageView
     }()
     
+    let singleThumbnailImageView: UIImageView = {
+        let singleThumbnailImageView = UIImageView()
+        singleThumbnailImageView.contentMode = .scaleAspectFit
+        singleThumbnailImageView.layer.cornerRadius = 10
+        singleThumbnailImageView.layer.masksToBounds = true
+        
+        return singleThumbnailImageView
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         addSubview(horizonStackView)
+        addSubview(singleThumbnailImageView)
         layer.cornerRadius = 10
         horizonStackView.addArrangedSubview(leftThumbnailImageView)
         horizonStackView.addArrangedSubview(middleThumbnailImageView)
@@ -60,6 +70,10 @@ class ThumbnailImageView: UIView {
     
     func setContraints() {
         horizonStackView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        singleThumbnailImageView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
         
@@ -219,7 +233,7 @@ class SearchResultTableViewCell: UITableViewCell, ReactorKit.View {
         getButton.layer.cornerRadius = getButtonHeight / 2
         
         thumbnailImageView.snp.makeConstraints { make in
-            make.top.equalTo(iconImageView.snp.bottom).offset(25)
+            make.top.equalTo(iconImageView.snp.bottom).offset(15)
             make.height.equalTo(195)
             make.leading.trailing.equalToSuperview()
             make.bottom.lessThanOrEqualToSuperview().offset(-15)
@@ -229,6 +243,7 @@ class SearchResultTableViewCell: UITableViewCell, ReactorKit.View {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         selectionStyle = .none
+        
         
         addViews()
         setConstraints()
@@ -286,12 +301,8 @@ class SearchResultTableViewCell: UITableViewCell, ReactorKit.View {
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] in
                 if $0.size.width > $0.size.height {
-//                    self?.thumbnailImageView.horizonStackView.removeArrangedSubview(self!.thumbnailImageView.middleThumbnailImageView)
-//                    self?.thumbnailImageView.horizonStackView.removeArrangedSubview(self!.thumbnailImageView.rightThumbnailImageView)
-//                    self?.thumbnailImageView.leftThumbnailImageView.snp.remakeConstraints { make in
-//                        make.width.equalToSuperview()
-//                        make.bottom.equalToSuperview()
-//                    }
+                    self?.thumbnailImageView.horizonStackView.isHidden = true
+                    self?.thumbnailImageView.singleThumbnailImageView.isHidden = false
                 }
             }).disposed(by: disposeBag)
             
@@ -299,7 +310,7 @@ class SearchResultTableViewCell: UITableViewCell, ReactorKit.View {
 //            .distinctUntilChanged()
         
         reactor.state.map { $0.leftThumbnailImage }
-            .bind(to: thumbnailImageView.leftThumbnailImageView.rx.fadeImage())
+            .bind(to: thumbnailImageView.leftThumbnailImageView.rx.fadeImage(), thumbnailImageView.singleThumbnailImageView.rx.fadeImage())
             .disposed(by: disposeBag)
 
         reactor.state.map { $0.middleThumbnailImage }

@@ -67,7 +67,6 @@ class SearchViewController: UIViewController, ReactorKit.StoryboardView {
     
     let searchResultTableView: UITableView = {
         let searchResultTableView: UITableView = UITableView()
-        searchResultTableView.separatorColor = .white
         searchResultTableView.register(SearchResultTableViewCell.self,
                                        forCellReuseIdentifier: SearchResultTableViewCell.reuseIdentifier)
         
@@ -152,13 +151,12 @@ class SearchViewController: UIViewController, ReactorKit.StoryboardView {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationController?.isNavigationBarHidden = true 
+        navigationController?.isNavigationBarHidden = true
+        searchResultTableView.separatorStyle = .none
         
         addViews()
-        
         setConstraints()
         setReactor()
-        
     }
     
     func setReactor() {
@@ -244,9 +242,9 @@ class SearchViewController: UIViewController, ReactorKit.StoryboardView {
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
-        reactor.state.map { $0.searchResults }
-            .map { $0.count }
+        reactor.state.map { $0.isNeedReload }
             .distinctUntilChanged()
+            .filter { $0 }
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
                 self?.searchResultTableView.reloadData()
