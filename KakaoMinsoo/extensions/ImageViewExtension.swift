@@ -24,4 +24,20 @@ extension Reactive where Base: UIImageView {
             }
         }
     }
+    
+    
+}
+
+extension UIImageView {
+    public func fadeImage(image: UIImage, withDuration duration: TimeInterval = 0.25) {
+        DispatchQueue.main.async {
+            let _alpha = self.alpha > 0 ? self.alpha : 1
+            self.alpha = 0
+            self.image = image
+        
+            UIView.animate(withDuration: duration) {
+                self.alpha = _alpha
+            }
+        }
+    }
 }

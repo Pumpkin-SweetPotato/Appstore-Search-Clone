@@ -46,6 +46,7 @@ class ThumbnailImageView: UIView {
         super.init(frame: frame)
         
         addSubview(horizonStackView)
+        layer.cornerRadius = 10
         horizonStackView.addArrangedSubview(leftThumbnailImageView)
         horizonStackView.addArrangedSubview(middleThumbnailImageView)
         horizonStackView.addArrangedSubview(rightThumbnailImageView)
@@ -70,7 +71,7 @@ class ThumbnailImageView: UIView {
         }
         
         horizonStackView.arrangedSubviews.forEach {
-            $0.layer.cornerRadius = 5
+            $0.layer.cornerRadius = 10
             $0.layer.masksToBounds = true
             $0.layer.borderColor = UIColor.lightGray.cgColor
             $0.layer.borderWidth = 0.5
@@ -219,7 +220,7 @@ class SearchResultTableViewCell: UITableViewCell, ReactorKit.View {
         
         thumbnailImageView.snp.makeConstraints { make in
             make.top.equalTo(iconImageView.snp.bottom).offset(25)
-            make.height.equalTo(190)
+            make.height.equalTo(195)
             make.leading.trailing.equalToSuperview()
             make.bottom.lessThanOrEqualToSuperview().offset(-15)
         }
@@ -257,13 +258,45 @@ class SearchResultTableViewCell: UITableViewCell, ReactorKit.View {
             .disposed(by: disposeBag)
         
         reactor.state.map { $0.ratingFloat }
+            .map { $0 == 0 }
+            .bind(to: cosmosView.rx.isHidden)
+            .disposed(by: disposeBag)
+        
+        reactor.state.map { $0.ratingFloat }
             .subscribe(onNext: { [weak self] in
                 self?.cosmosView.rating = Double($0)
             }).disposed(by: disposeBag)
         
         reactor.state.map { $0.ratingCountString }
+            .map { $0 == "0" }
+            .bind(to: ratingLabel.rx.isHidden)
+            .disposed(by: disposeBag)
+        
+        reactor.state.map { $0.ratingCountString }
             .bind(to: ratingLabel.rx.text)
             .disposed(by: disposeBag)
+        
+        
+        Observable.merge(
+            reactor.state.map { $0.leftThumbnailImage },
+            reactor.state.map { $0.middleThumbnailImage },
+            reactor.state.map { $0.rightThumbnailImage }
+            ).compactMap { $0 }
+            .take(1)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] in
+                if $0.size.width > $0.size.height {
+//                    self?.thumbnailImageView.horizonStackView.removeArrangedSubview(self!.thumbnailImageView.middleThumbnailImageView)
+//                    self?.thumbnailImageView.horizonStackView.removeArrangedSubview(self!.thumbnailImageView.rightThumbnailImageView)
+//                    self?.thumbnailImageView.leftThumbnailImageView.snp.remakeConstraints { make in
+//                        make.width.equalToSuperview()
+//                        make.bottom.equalToSuperview()
+//                    }
+                }
+            }).disposed(by: disposeBag)
+            
+            
+//            .distinctUntilChanged()
         
         reactor.state.map { $0.leftThumbnailImage }
             .bind(to: thumbnailImageView.leftThumbnailImageView.rx.fadeImage())

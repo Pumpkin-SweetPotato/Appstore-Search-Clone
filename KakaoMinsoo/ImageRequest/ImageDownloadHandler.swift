@@ -27,20 +27,21 @@ final class ImageDownloadManager {
     private init () {}
     
     func downloadImage(_ imageUrl: String, indexPath: IndexPath?, handler: ImageDownloadHandler?) {
-        self.completionHandler = handler
+//        self.completionHandler = handler
         
         if let cachedImage = imageCache.object(forKey: imageUrl as NSString) {
             // check for the cached image for url, if YES then return the cached image
-            print("Return cahced Image for \(imageUrl)    \(String(describing: indexPath?.row))")
-            self.completionHandler?(cachedImage, imageUrl, indexPath, nil)
+//            print("Return cahced Image for \(imageUrl)    \(String(describing: indexPath?.row))")
+//            self.completionHandler?(cachedImage, imageUrl, indexPath, nil)
+            handler?(cachedImage, imageUrl, indexPath, nil)
         } else {
             if let operations = imageDownloadQueue.operations as? [PGOperation],
                 let operation = operations.filter({ $0.imageUrlString == imageUrl && !$0.isFinished && $0.isExecuting }).first {
                 
-                print("Increase the priority for \(imageUrl)   \(String(describing: indexPath?.row))")
+//                print("Increase the priority for \(imageUrl)   \(String(describing: indexPath?.row))")
                 operation.queuePriority = .high
             } else {
-                print("Create a new task for \(imageUrl)")
+//                print("Create a new task for \(imageUrl)")
                 let operation = PGOperation(url: imageUrl, indexPath: indexPath)
                 if indexPath == nil {
                     operation.queuePriority = .veryHigh
@@ -50,13 +51,15 @@ final class ImageDownloadManager {
                         print("image downloading error \(url) \(error!.localizedDescription)")
                     }
                     if let newImage = image {
-                        print("setCache image \(url) , \(indexPath?.row ?? 0)")
+//                        print("setCache image \(url) , \(indexPath?.row ?? 0)")
                         self.imageCache.setObject(newImage, forKey: url as NSString)
                     }
-                    if self.completionHandler == nil {
-                        print("completionHandler is nil \(imageUrl)")
-                    }
-                    self.completionHandler?(image, url, indexPath, error)
+                    
+                    handler?(image, url, indexPath, error)
+//                    if self.completionHandler == nil {
+//                        print("completionHandler is nil \(imageUrl)")
+//                    }
+//                    self.completionHandler?(image, url, indexPath, error)
                 }
                 imageDownloadQueue.addOperation(operation)
             }

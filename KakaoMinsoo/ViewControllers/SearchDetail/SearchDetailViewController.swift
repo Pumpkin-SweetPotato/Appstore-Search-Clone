@@ -8,128 +8,32 @@
 
 import UIKit
 import ReactorKit
+import RxCocoa
 import Cosmos
 
 class SearchDetailViewController: UIViewController, ReactorKit.StoryboardView {
-    @IBOutlet var rootView: UIView!
+    @IBOutlet weak var rootView: UIView!
     
-    let appIconImageView: UIImageView = {
-       let appIconImageView = UIImageView()
+    let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
         
-        return appIconImageView
+        return scrollView
     }()
     
-    let appTitleLabel: UILabel = {
-       let appTitleLabel = UILabel()
+    let srollContentView = UIView()
+    
+    let verticalStackView: UIStackView = {
+        let verticalStackView = UIStackView()
+        verticalStackView.axis = .vertical
+        verticalStackView.alignment = .leading
+        verticalStackView.distribution = .fill
         
-        return appTitleLabel
+        return verticalStackView
     }()
     
-    let corpLabel: UILabel = {
-       let corpLabel = UILabel()
-        
-        return corpLabel
-    }()
+    let appCommonInformationView = AppCommonInformationView()
     
-    let getButton: UIButton = {
-        let getButton = UIButton()
-        
-        return getButton
-    }()
-    
-    let shareButton: UIButton = {
-        let shareButton = UIButton()
-        
-        return shareButton
-    }()
-    
-    let ratingContainer = UIView()
-    
-    let ratingFloatLabel: UILabel = {
-        let ratingFloatLabel = UILabel()
-        
-        return ratingFloatLabel
-    }()
-    
-    let cosmosView: CosmosView = {
-        let cosmosView = CosmosView()
-        cosmosView.settings.fillMode = .precise
-        cosmosView.settings.disablePanGestures = true
-        cosmosView.settings.updateOnTouch = false
-        cosmosView.settings.starSize = 30
-        cosmosView.settings.starMargin = 0
-        cosmosView.settings.filledColor = UIColor.searchGray
-        cosmosView.settings.emptyBorderColor = UIColor.searchGray
-        cosmosView.settings.filledBorderColor = UIColor.searchGray
-    
-        return cosmosView
-    }()
-    
-    let rankingContainer = UIView()
-    
-    let rankingLabel: UILabel = {
-        let rankingLabel = UILabel()
-        
-        return rankingLabel
-    }()
-    
-    let genreLabel: UILabel = {
-       let genreLabel = UILabel()
-        
-        return genreLabel
-    }()
-    
-    let advisoryContainer = UIView()
-    
-    let advisoryLabel: UILabel = {
-       let advisoryLabel = UILabel()
-        
-        return advisoryLabel
-    }()
-    
-    let ageLabel: UILabel = {
-       let ageLabel = UILabel()
-        
-        return ageLabel
-    }()
-    
-    let ratingNumberLabel: UILabel = {
-       let ratingNumberLabel = UILabel()
-        
-        return ratingNumberLabel
-    }()
-    
-    let screenShotCollectionView: UICollectionView = {
-        let flowlayout = UICollectionViewFlowLayout()
-        let screenShotCollectionView = UICollectionView(frame: .zero, collectionViewLayout: flowlayout)
-        
-        return screenShotCollectionView
-    }()
-    
-    let availableDeviceContainer = UIView()
-    
-    let availableDevicesStackView: UIStackView = {
-        let availableDevicesStackView = UIStackView()
-        availableDevicesStackView.axis = .horizontal
-        availableDevicesStackView.alignment = .bottom
-        availableDevicesStackView.distribution = .equalSpacing
-        
-        return availableDevicesStackView
-    }()
-    
-    let availableDeviceDescriptionLabel: UILabel = {
-       let availableDeviceDescriptionLabel = UILabel()
-        
-        return availableDeviceDescriptionLabel
-    }()
-
-    let showAllAvailableDeviceChevronButton: UIButton = {
-        let showAllAvailableDeviceChevronButton = UIButton()
-
-        return showAllAvailableDeviceChevronButton
-    }()
-    
-    let separator: UIView = UIView()
+//    let separator: UIView = UIView()
     
     let descriptionLabel: UILabel = {
        let descriptionLabel = UILabel()
@@ -155,7 +59,7 @@ class SearchDetailViewController: UIViewController, ReactorKit.StoryboardView {
         return develiperDetailChevronButton
     }()
 
-    let separator: UIView = UIView()
+//    let separator: UIView = UIView()
 
     let ratingsReviewsLabel: UILabel = {
         let ratingsReviewsLabel = UILabel()
@@ -264,7 +168,7 @@ class SearchDetailViewController: UIViewController, ReactorKit.StoryboardView {
         return reviewContainer
     }()
     
-    let separator: UIView = UIView()
+//    let separator: UIView = UIView()
     
     let whatsNewLabel: UILabel = {
         let whatsNewLabel = UILabel()
@@ -296,17 +200,17 @@ class SearchDetailViewController: UIViewController, ReactorKit.StoryboardView {
         return versionUpadteDescriptionLabel
     }()
     
-    let separator = UIView()
+//    let separator = UIView()
     
     let informationContainer: UIView = {
         let informationContainer = UIView()
         
-        let informationView = InformationView()
-        
-        addInformation(isHasDetail)
-        
-        let developerWebsiteInformation
-        let privacyPolicyInformation
+//        let informationView = InformationView()
+//
+//        addInformation(isHasDetail)
+//
+//        let developerWebsiteInformation
+//        let privacyPolicyInformation
         
         return informationContainer
     }()
@@ -317,14 +221,14 @@ class SearchDetailViewController: UIViewController, ReactorKit.StoryboardView {
         return informationLabel
     }()
     
-    let separator = UIView()
+//    let separator = UIView()
     
     let supportsContainer: UIView = {
         let supportsContainer = UIView()
-        
-        let suppertView = SupportView()
-        
-        addSupportView
+//
+//        let suppertView = SupportView()
+//
+//        addSupportView
         
         
         return supportsContainer
@@ -344,7 +248,9 @@ class SearchDetailViewController: UIViewController, ReactorKit.StoryboardView {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.isNavigationBarHidden = false
-        // Do any additional setup after loading the view.
+        
+        addSubViews()
+        setConstraints()
     }
     
     override func willMove(toParent parent: UIViewController?) {
@@ -355,7 +261,40 @@ class SearchDetailViewController: UIViewController, ReactorKit.StoryboardView {
         }
     }
     
-    func bind(reactor: SearchDetailViewReactor) {
+    func addSubViews() {
+        rootView.addSubview(scrollView)
+        scrollView.addSubview(srollContentView)
+        srollContentView.addSubview(verticalStackView)
         
+        verticalStackView.addArrangedSubview(appCommonInformationView)
+    }
+    
+    func setConstraints() {
+        scrollView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        srollContentView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+            make.width.equalToSuperview()
+            make.height.equalToSuperview().priority(.low)
+        }
+        
+        verticalStackView.snp.makeConstraints { make in
+            let topOffset = (navigationController?.navigationBar.bounds.height ?? 0) + (SearchConstants.statusBarHeight(rootView: view) ?? 0)
+            make.top.equalToSuperview().offset(topOffset)
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalToSuperview()
+        }
+        
+        appCommonInformationView.snp.makeConstraints { make in
+            make.trailing.equalToSuperview()
+        }
+    }
+    
+    func bind(reactor: SearchDetailViewReactor) {
+        appCommonInformationView.searchResult = reactor.searchResult
     }
 }
+
+

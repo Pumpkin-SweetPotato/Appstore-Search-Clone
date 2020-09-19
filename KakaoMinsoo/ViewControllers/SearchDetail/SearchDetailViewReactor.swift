@@ -20,12 +20,6 @@ final class SearchDetailViewReactor: Reactor {
     }
     
     struct State {
-        var appIconImage: UIImage?
-        var appNameString: String
-        var subtitleString: String
-        var ratingFloat: Float
-        var ratingCountString: String
-        var thumbnailImages: [UIImage]
     }
     
     var initialState: State
@@ -34,34 +28,7 @@ final class SearchDetailViewReactor: Reactor {
     init(searchResult: SearchResult) {
         self.searchResult = searchResult
         
-        let userRatingString: String = {
-            let floatRating: Float = Float(searchResult.userRatingCount)
-            if floatRating / 1000 > 0 {
-                return String(format: "%.1Kf", floatRating / 1000)
-            } else {
-                return String(searchResult.userRatingCount)
-            }
-        }()
-        
-        let userRatingFloat: Float = {
-            
-            let ratingString = searchResult.contentAdvisoryRating
-            
-            let lowerBound = ratingString.index(ratingString.startIndex, offsetBy: 0)
-            let upperBound = ratingString.index(ratingString.startIndex, offsetBy: 1)
-            let rating = String(ratingString[lowerBound..<upperBound])
-            let userRatingFloat: Float = Float(rating) ?? 0
-            
-            
-            return userRatingFloat
-        }()
-        
-        initialState = State(appIconImage: nil,
-                             appNameString: searchResult.trackName,
-                             subtitleString: searchResult.primaryGenreName,
-                             ratingFloat: userRatingFloat,
-                             ratingCountString: userRatingString,
-                             thumbnailImages: [])
+        initialState = State()
     }
     
     func mutate(action: Action) -> Observable<Mutation> {

@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		167A07E385866EFA7C9A12F9 /* Pods_KakaoMinsooTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCDF4AEA5CBC7EA822E78CAD /* Pods_KakaoMinsooTests.framework */; };
+		CF1EFE6A2514E1290047485D /* SearchResultUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1EFE692514E1290047485D /* SearchResultUtils.swift */; };
+		CF1EFE6D2514E7C90047485D /* AppCommonInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1EFE6C2514E7C90047485D /* AppCommonInformationView.swift */; };
+		CF1EFE6F2514E7E30047485D /* Separator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1EFE6E2514E7E30047485D /* Separator.swift */; };
+		CF1EFE712515C3890047485D /* AppScreenshotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1EFE702515C3890047485D /* AppScreenshotCell.swift */; };
 		CF3A99EE2513992800D9CFAB /* SearchDetailViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A99ED2513992800D9CFAB /* SearchDetailViewReactor.swift */; };
 		CF3A99F125139FD500D9CFAB /* PGOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A99F025139FD500D9CFAB /* PGOperation.swift */; };
 		CF3A99F325139FEF00D9CFAB /* ImageDownloadHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3A99F225139FEF00D9CFAB /* ImageDownloadHandler.swift */; };
@@ -59,6 +63,10 @@
 		66DF841A7FD009C9E82D82DB /* Pods_KakaoMinsoo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KakaoMinsoo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BF01F6C1EBEF1F48CED303B /* Pods-KakaoMinsoo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KakaoMinsoo.release.xcconfig"; path = "Target Support Files/Pods-KakaoMinsoo/Pods-KakaoMinsoo.release.xcconfig"; sourceTree = "<group>"; };
 		BCDF4AEA5CBC7EA822E78CAD /* Pods_KakaoMinsooTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KakaoMinsooTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF1EFE692514E1290047485D /* SearchResultUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultUtils.swift; sourceTree = "<group>"; };
+		CF1EFE6C2514E7C90047485D /* AppCommonInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCommonInformationView.swift; sourceTree = "<group>"; };
+		CF1EFE6E2514E7E30047485D /* Separator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Separator.swift; sourceTree = "<group>"; };
+		CF1EFE702515C3890047485D /* AppScreenshotCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppScreenshotCell.swift; sourceTree = "<group>"; };
 		CF3A99ED2513992800D9CFAB /* SearchDetailViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDetailViewReactor.swift; sourceTree = "<group>"; };
 		CF3A99F025139FD500D9CFAB /* PGOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PGOperation.swift; sourceTree = "<group>"; };
 		CF3A99F225139FEF00D9CFAB /* ImageDownloadHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadHandler.swift; sourceTree = "<group>"; };
@@ -132,6 +140,7 @@
 			children = (
 				CFBDD0E825126D14007E167F /* SearchDetailViewController.swift */,
 				CF3A99ED2513992800D9CFAB /* SearchDetailViewReactor.swift */,
+				CF1EFE6B2514E7B70047485D /* SubViews */,
 				CFBDD0F025126D78007E167F /* SearchDetailViewController.storyboard */,
 			);
 			path = SearchDetail;
@@ -155,6 +164,24 @@
 				11AAC797F3781DAF5AA69E23 /* Pods-KakaoMinsooTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		CF1EFE682514E1160047485D /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				CF1EFE692514E1290047485D /* SearchResultUtils.swift */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
+		CF1EFE6B2514E7B70047485D /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				CF1EFE6C2514E7C90047485D /* AppCommonInformationView.swift */,
+				CF1EFE702515C3890047485D /* AppScreenshotCell.swift */,
+				CF1EFE6E2514E7E30047485D /* Separator.swift */,
+			);
+			path = SubViews;
 			sourceTree = "<group>";
 		};
 		CF3A99EF25139FC600D9CFAB /* ImageRequest */ = {
@@ -206,6 +233,7 @@
 				CFBDD0BA25123481007E167F /* Assets.xcassets */,
 				CFBDD0BC25123481007E167F /* LaunchScreen.storyboard */,
 				CF3A99F72513C19500D9CFAB /* Constants.swift */,
+				CF1EFE682514E1160047485D /* utils */,
 				CFBDD0BF25123481007E167F /* Info.plist */,
 				CF3A99F42513B77500D9CFAB /* extensions */,
 				CF3A99EF25139FC600D9CFAB /* ImageRequest */,
@@ -440,8 +468,12 @@
 				CF3A99F62513B78500D9CFAB /* ImageViewExtension.swift in Sources */,
 				CFBDD0DB25123F92007E167F /* AttributeType.swift in Sources */,
 				CFBDD0F525127C5D007E167F /* SearchViewController+UITableViewDelegate.swift in Sources */,
+				CF1EFE712515C3890047485D /* AppScreenshotCell.swift in Sources */,
 				CFBDD102251291B0007E167F /* SearchResultTableViewCell.swift in Sources */,
 				CFBDD0DD2512415E007E167F /* SearchLanguagge.swift in Sources */,
+				CF1EFE6A2514E1290047485D /* SearchResultUtils.swift in Sources */,
+				CF1EFE6F2514E7E30047485D /* Separator.swift in Sources */,
+				CF1EFE6D2514E7C90047485D /* AppCommonInformationView.swift in Sources */,
 				CFBDD0E1251255CA007E167F /* SearchResponse.swift in Sources */,
 				CF3A99F325139FEF00D9CFAB /* ImageDownloadHandler.swift in Sources */,
 				CFBDD0EA25126D14007E167F /* SearchDetailViewController.swift in Sources */,

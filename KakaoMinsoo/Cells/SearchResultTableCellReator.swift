@@ -39,14 +39,7 @@ final class SearchResultTableCellReator: Reactor {
     init(searchResult: SearchResult) {
         self.searchResult = searchResult
         
-        let userRatingString: String = {
-            let floatRating: Float = Float(searchResult.userRatingCount)
-            if floatRating / 1000 > 0 {
-                return String(format: "%.1fK", floatRating / 1000)
-            } else {
-                return String(searchResult.userRatingCount)
-            }
-        }()
+        let userRatingString: String = searchResult.formattedRatingCount
         
 //        let userRatingFloat: Float = {
 //
