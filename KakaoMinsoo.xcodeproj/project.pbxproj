@@ -50,6 +50,9 @@
 		CFBDD0FD2512861A007E167F /* SearchUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBDD0F825128393007E167F /* SearchUserDefaults.swift */; };
 		CFBDD102251291B0007E167F /* SearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBDD101251291B0007E167F /* SearchResultTableViewCell.swift */; };
 		CFBDD104251291ED007E167F /* SearchResultTableCellReator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBDD103251291ED007E167F /* SearchResultTableCellReator.swift */; };
+		CFC8D3682516551E00C18101 /* WhatsNewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC8D3672516551E00C18101 /* WhatsNewView.swift */; };
+		CFC8D36A2516555400C18101 /* WhatNewViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC8D3692516555400C18101 /* WhatNewViewReactor.swift */; };
+		CFC8D36C25165C9E00C18101 /* DateConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC8D36B25165C9E00C18101 /* DateConverter.swift */; };
 		E1441E72B9A1609873F64F84 /* Pods_KakaoMinsoo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66DF841A7FD009C9E82D82DB /* Pods_KakaoMinsoo.framework */; };
 /* End PBXBuildFile section */
 
@@ -115,6 +118,9 @@
 		CFBDD0FA251284D8007E167F /* PropertyWrapperTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyWrapperTest.swift; sourceTree = "<group>"; };
 		CFBDD101251291B0007E167F /* SearchResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewCell.swift; sourceTree = "<group>"; };
 		CFBDD103251291ED007E167F /* SearchResultTableCellReator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableCellReator.swift; sourceTree = "<group>"; };
+		CFC8D3672516551E00C18101 /* WhatsNewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsNewView.swift; sourceTree = "<group>"; };
+		CFC8D3692516555400C18101 /* WhatNewViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatNewViewReactor.swift; sourceTree = "<group>"; };
+		CFC8D36B25165C9E00C18101 /* DateConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateConverter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				CF1EFE692514E1290047485D /* SearchResultUtils.swift */,
+				CFC8D36B25165C9E00C18101 /* DateConverter.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -196,6 +203,7 @@
 				CFA8A95F25162BAB0052841E /* AppDescriptionView */,
 				CFA8A954251616060052841E /* SearchDetailViewProtocol.swift */,
 				CFA8A96025162BBF0052841E /* RatingsAndReviews */,
+				CFC8D3662516550500C18101 /* WhatsNewView */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -238,10 +246,10 @@
 		CFA8A96025162BBF0052841E /* RatingsAndReviews */ = {
 			isa = PBXGroup;
 			children = (
-				CFA8A95A25162AA10052841E /* RatingBar.swift */,
 				CFA8A95625161FAD0052841E /* RatingReviewView.swift */,
-				CFA8A95C25162B8F0052841E /* ReviewCollectionViewCell.swift */,
 				CFA8A95825161FDC0052841E /* RatingReviewViewReactor.swift */,
+				CFA8A95A25162AA10052841E /* RatingBar.swift */,
+				CFA8A95C25162B8F0052841E /* ReviewCollectionViewCell.swift */,
 			);
 			path = RatingsAndReviews;
 			sourceTree = "<group>";
@@ -336,6 +344,15 @@
 				CFBDD103251291ED007E167F /* SearchResultTableCellReator.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		CFC8D3662516550500C18101 /* WhatsNewView */ = {
+			isa = PBXGroup;
+			children = (
+				CFC8D3672516551E00C18101 /* WhatsNewView.swift */,
+				CFC8D3692516555400C18101 /* WhatNewViewReactor.swift */,
+			);
+			path = WhatsNewView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -526,6 +543,7 @@
 				CFA8A955251616060052841E /* SearchDetailViewProtocol.swift in Sources */,
 				CFBDD0E1251255CA007E167F /* SearchResponse.swift in Sources */,
 				CF3A99F325139FEF00D9CFAB /* ImageDownloadHandler.swift in Sources */,
+				CFC8D36C25165C9E00C18101 /* DateConverter.swift in Sources */,
 				CFBDD0EA25126D14007E167F /* SearchDetailViewController.swift in Sources */,
 				CFBDD0D925123F81007E167F /* EntityType.swift in Sources */,
 				CFBDD0DF25124210007E167F /* ExplitType.swift in Sources */,
@@ -535,9 +553,11 @@
 				CFBDD104251291ED007E167F /* SearchResultTableCellReator.swift in Sources */,
 				CFBDD0D62512372B007E167F /* APIConstants.swift in Sources */,
 				CF3A99EE2513992800D9CFAB /* SearchDetailViewReactor.swift in Sources */,
+				CFC8D36A2516555400C18101 /* WhatNewViewReactor.swift in Sources */,
 				CFA8A95925161FDC0052841E /* RatingReviewViewReactor.swift in Sources */,
 				CFBDD0F725127CA4007E167F /* SearchViewReactor.swift in Sources */,
 				CFBDD0B22512347F007E167F /* AppDelegate.swift in Sources */,
+				CFC8D3682516551E00C18101 /* WhatsNewView.swift in Sources */,
 				CFBDD0F325127C2B007E167F /* SearchViewController+SearchBarDelegate.swift in Sources */,
 				CFBDD0B42512347F007E167F /* SceneDelegate.swift in Sources */,
 				CFBDD0D4251234BE007E167F /* APIClient.swift in Sources */,

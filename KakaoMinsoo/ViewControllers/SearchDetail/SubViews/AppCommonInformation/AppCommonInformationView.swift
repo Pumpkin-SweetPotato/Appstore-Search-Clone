@@ -151,9 +151,6 @@ class AppCommonInformationView: UIView {
     
     let screenShotCollectionView: UICollectionView = {
         let flowlayout = UICollectionViewFlowLayout()
-//        flowlayout.itemSize = UICollectionViewFlowLayout.automaticSize
-//        flowlayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-//        flowlayout.sectionInset = .zero
         flowlayout.minimumInteritemSpacing = .zero
         flowlayout.minimumLineSpacing = .zero
         flowlayout.scrollDirection = .horizontal
@@ -571,7 +568,7 @@ extension AppCommonInformationView: UICollectionViewDelegateFlowLayout {
         if index < 0 {
             index = 0
         } else {
-            index = min(screenshotUrlsCount, index)
+            index = min(screenshotUrlsCount - 1, index)
         }
         
         let indexPath = IndexPath(row: 0, section: index)

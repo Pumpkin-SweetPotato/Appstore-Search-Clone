@@ -40,144 +40,11 @@ class SearchDetailViewController: UIViewController, ReactorKit.StoryboardView {
 
 //    let separator: UIView = UIView()
 
-    let ratingsReviewsLabel: UILabel = {
-        let ratingsReviewsLabel = UILabel()
-
-        return ratingsReviewsLabel
-    }()
-
-    let seeAllButton: UIButton = {
-        let seeAllButton = UIButton()
-
-        return seeAllButton
-    }()
-
-    let bigRatingFloatContainer = UIView()
-
-    let bigRatingFloatLabel: UILabel = {
-        let bigRatingFloatLabel = UILabel()
-        
-        return bigRatingFloatLabel
-    }()
-
-    let outOf5Label: UILabel = {
-        let outOf5Label = UILabel()
-
-        return outOf5Label
-    }()
-
-    let ratingsOf5Stars: UIView = {
-        let ratingsOf5Stars = UIView()
-
-        return ratingsOf5Stars
-    }()
-    
-    let ratingsOf4Stars: UIView = {
-        let ratingsOf4Stars = UIView()
-
-        return ratingsOf4Stars
-    }()
-
-    let ratingsOf3Stars: UIView = {
-        let ratingsOf3Stars = UIView()
-
-        return ratingsOf3Stars
-    }()
-
-    let ratingsOf2Stars: UIView = {
-        let ratingsOf2Stars = UIView()
-
-        return ratingsOf2Stars
-    }()
-
-    let ratingsOf1Stars: UIView = {
-        let ratingsOf1Stars = UIView()
-
-        return ratingsOf1Stars
-    }()
-
-    let reviewContainer: UIView = {
-        let reviewContainer = UIView()
-        
-        let reviewCollectionView: UICollectionView = {
-            let flowLayout = UICollectionViewLayout()
-            let reviewCollectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
-            
-            return reviewCollectionView
-        }()
-        // cell
-        let conclusionLabel: UILabel = {
-            let conclusionLabel = UILabel()
-            
-            return conclusionLabel
-        }()
-        
-        let reviewRatingCosmos: CosmosView = {
-            let reviewRatingCosmos = CosmosView()
-            reviewRatingCosmos.settings.fillMode = .precise
-            reviewRatingCosmos.settings.disablePanGestures = true
-            reviewRatingCosmos.settings.updateOnTouch = false
-            reviewRatingCosmos.settings.starSize = 30
-            reviewRatingCosmos.settings.starMargin = 0
-            reviewRatingCosmos.settings.filledColor = UIColor.yellow
-            reviewRatingCosmos.settings.emptyBorderColor = UIColor.yellow
-            reviewRatingCosmos.settings.filledBorderColor = UIColor.yellow
-        
-            return reviewRatingCosmos
-        }()
-        
-        let reviewedDateLabel: UILabel = {
-            let reviewedDateLabel = UILabel()
-            
-            return reviewedDateLabel
-        }()
-        
-        let reviewerNameLabel: UILabel = {
-            let reviewerNanemLabel = UILabel()
-            
-            return reviewerNanemLabel
-        }()
-        
-        let moreButton: UIButton = {
-           let moreButton = UIButton()
-            
-            return moreButton
-        }()
-        //
-        return reviewContainer
-    }()
-    
+    let ratingReviewView = RatingReviewView()
 //    let separator: UIView = UIView()
     
-    let whatsNewLabel: UILabel = {
-        let whatsNewLabel = UILabel()
-        
-        return whatsNewLabel
-    }()
+    let whatsNewView = WhatsNewView()
     
-    let versionHistoryButton: UIButton = {
-       let versionHistoryButton = UIButton()
-        
-        return versionHistoryButton
-    }()
-    
-    let versionLabel: UILabel = {
-       let versionLabel = UILabel()
-        
-        return versionLabel
-    }()
-    
-    let versionUpdatedAgoLabel: UILabel = {
-        let versionUpdatedAgoLabel = UILabel()
-        
-        return versionUpdatedAgoLabel
-    }()
-    
-    let versionUpdateDescriptionLabel: UILabel = {
-       let versionUpadteDescriptionLabel = UILabel()
-        
-        return versionUpadteDescriptionLabel
-    }()
     
 //    let separator = UIView()
     
@@ -256,8 +123,12 @@ class SearchDetailViewController: UIViewController, ReactorKit.StoryboardView {
         srollContentView.addSubview(verticalStackView)
         
         verticalStackView.addArrangedSubview(appCommonInformationView)
-        verticalStackView.addArrangedSubview(Separator())
+        verticalStackView.addArrangedSubview(Separator(widthFactor: 0.9, height: 0.5))
         verticalStackView.addArrangedSubview(appDescriptionView)
+        verticalStackView.addArrangedSubview(Separator(widthFactor: 0.9, height: 0.5))
+        verticalStackView.addArrangedSubview(ratingReviewView)
+        verticalStackView.addArrangedSubview(Separator(widthFactor: 0.9, height: 0.5))
+        verticalStackView.addArrangedSubview(whatsNewView)
     }
     
     func setConstraints() {
@@ -275,7 +146,7 @@ class SearchDetailViewController: UIViewController, ReactorKit.StoryboardView {
             let topOffset = (navigationController?.navigationBar.bounds.height ?? 0) + (SearchConstants.statusBarHeight(rootView: view) ?? 0)
             make.top.equalToSuperview().offset(topOffset)
             make.leading.trailing.equalToSuperview()
-            make.bottom.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-40)
         }
         
         appCommonInformationView.snp.makeConstraints { make in
@@ -285,11 +156,21 @@ class SearchDetailViewController: UIViewController, ReactorKit.StoryboardView {
         appDescriptionView.snp.makeConstraints { make in
             make.trailing.equalToSuperview()
         }
+        
+        ratingReviewView.snp.makeConstraints { make in
+            make.trailing.equalToSuperview()
+        }
+        
+        whatsNewView.snp.makeConstraints { make in
+            make.trailing.equalToSuperview()
+        }
     }
     
     func bind(reactor: SearchDetailViewReactor) {
         appCommonInformationView.searchResult = reactor.searchResult
         appDescriptionView.reactor = AppDescriptionViewReactor(searchResult: reactor.searchResult)
+        ratingReviewView.reactor = RatingReviewViewReactor(searchResult: reactor.searchResult)
+        whatsNewView.reactor = WhatsNewViewReactor(searchResult: reactor.searchResult)
     }
 }
 

@@ -63,7 +63,7 @@ extension UILabel {
         let labelTextSize = (labelText as NSString).boundingRect(
             with: largestSize,
             options: [.usesLineFragmentOrigin, .usesFontLeading],
-            attributes: [.font: font],
+            attributes: [.font: font as Any],
             context: nil).size
         
         return labelTextSize

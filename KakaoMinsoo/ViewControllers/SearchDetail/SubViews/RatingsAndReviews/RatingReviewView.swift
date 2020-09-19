@@ -19,20 +19,20 @@ class RatingReviewView: UIView, ReactorKit.View {
         return ratingsReviewsLabel
     }()
     
-    let seeAllLabel: UILabel = {
-        let seeAllLabel = UILabel()
-        seeAllLabel.font = .systemFont(ofSize: 14)
-        seeAllLabel.text = "See All"
-        seeAllLabel.textColor = .systemBlue
+    let seeAllButton: UIButton = {
+        let seeAllButton = UIButton()
+        seeAllButton.titleLabel?.font = .systemFont(ofSize: 14)
+        seeAllButton.setTitle("See All", for: .normal)
+        seeAllButton.setTitleColor(.systemBlue, for: .normal)
         
-        return seeAllLabel
+        return seeAllButton
     }()
     
     let ratingContainer = UIView()
     
     let floatRatingLabel: UILabel = {
         let floatRatingLabel = UILabel()
-        floatRatingLabel.font = .systemFont(ofSize: 30, weight: .bold)
+        floatRatingLabel.font = .systemFont(ofSize: 45, weight: .bold)
         floatRatingLabel.textColor = UIColor.black.withAlphaComponent(0.9)
         
         return floatRatingLabel
@@ -42,6 +42,8 @@ class RatingReviewView: UIView, ReactorKit.View {
         let outOfRatingLabel = UILabel()
         outOfRatingLabel.font = .systemFont(ofSize: 14, weight: .semibold)
         outOfRatingLabel.textColor = UIColor.black.withAlphaComponent(0.7)
+        outOfRatingLabel.text = "out of 5"
+        outOfRatingLabel.textAlignment = .center
         
         return outOfRatingLabel
     }()
@@ -55,9 +57,9 @@ class RatingReviewView: UIView, ReactorKit.View {
         fiveStarCosmos.settings.updateOnTouch = false
         fiveStarCosmos.settings.starSize = 8
         fiveStarCosmos.settings.starMargin = 0
-        fiveStarCosmos.settings.filledColor = UIColor.searchGray(alpha: 0.8)
-        fiveStarCosmos.settings.emptyBorderColor = UIColor.searchGray(alpha: 0.8)
-        fiveStarCosmos.settings.filledBorderColor = UIColor.searchGray(alpha: 0.8)
+        fiveStarCosmos.settings.filledColor = UIColor.searchGray
+        fiveStarCosmos.settings.emptyBorderColor = UIColor.searchGray
+        fiveStarCosmos.settings.filledBorderColor = UIColor.searchGray
         
         fiveStarCosmos.rating = 5
         
@@ -73,11 +75,11 @@ class RatingReviewView: UIView, ReactorKit.View {
         fourStarCosmos.settings.updateOnTouch = false
         fourStarCosmos.settings.starSize = 8
         fourStarCosmos.settings.starMargin = 0
-        fourStarCosmos.settings.filledColor = UIColor.searchGray(alpha: 0.8)
-        fourStarCosmos.settings.emptyBorderColor = UIColor.searchGray(alpha: 0.8)
-        fourStarCosmos.settings.filledBorderColor = UIColor.searchGray(alpha: 0.8)
-        
-        fourStarCosmos.rating = 5
+        fourStarCosmos.settings.filledColor = UIColor.searchGray
+        fourStarCosmos.settings.emptyBorderColor = UIColor.searchGray
+        fourStarCosmos.settings.filledBorderColor = UIColor.searchGray
+        fourStarCosmos.settings.totalStars = 4
+        fourStarCosmos.rating = 4
         
         return fourStarCosmos
     }()
@@ -91,11 +93,11 @@ class RatingReviewView: UIView, ReactorKit.View {
         threeStarCosmos.settings.updateOnTouch = false
         threeStarCosmos.settings.starSize = 8
         threeStarCosmos.settings.starMargin = 0
-        threeStarCosmos.settings.filledColor = UIColor.searchGray(alpha: 0.8)
-        threeStarCosmos.settings.emptyBorderColor = UIColor.searchGray(alpha: 0.8)
-        threeStarCosmos.settings.filledBorderColor = UIColor.searchGray(alpha: 0.8)
-        
-        threeStarCosmos.rating = 5
+        threeStarCosmos.settings.filledColor = UIColor.searchGray
+        threeStarCosmos.settings.emptyBorderColor = UIColor.searchGray
+        threeStarCosmos.settings.filledBorderColor = UIColor.searchGray
+        threeStarCosmos.settings.totalStars = 3
+        threeStarCosmos.rating = 3
         
         return threeStarCosmos
     }()
@@ -109,11 +111,11 @@ class RatingReviewView: UIView, ReactorKit.View {
         twoStarCosmos.settings.updateOnTouch = false
         twoStarCosmos.settings.starSize = 8
         twoStarCosmos.settings.starMargin = 0
-        twoStarCosmos.settings.filledColor = UIColor.searchGray(alpha: 0.8)
-        twoStarCosmos.settings.emptyBorderColor = UIColor.searchGray(alpha: 0.8)
-        twoStarCosmos.settings.filledBorderColor = UIColor.searchGray(alpha: 0.8)
-        
-        twoStarCosmos.rating = 5
+        twoStarCosmos.settings.filledColor = UIColor.searchGray
+        twoStarCosmos.settings.emptyBorderColor = UIColor.searchGray
+        twoStarCosmos.settings.filledBorderColor = UIColor.searchGray
+        twoStarCosmos.settings.totalStars = 2
+        twoStarCosmos.rating = 2
         
         return twoStarCosmos
     }()
@@ -127,11 +129,12 @@ class RatingReviewView: UIView, ReactorKit.View {
         oneStarCosmos.settings.updateOnTouch = false
         oneStarCosmos.settings.starSize = 8
         oneStarCosmos.settings.starMargin = 0
-        oneStarCosmos.settings.filledColor = UIColor.searchGray(alpha: 0.8)
-        oneStarCosmos.settings.emptyBorderColor = UIColor.searchGray(alpha: 0.8)
-        oneStarCosmos.settings.filledBorderColor = UIColor.searchGray(alpha: 0.8)
+        oneStarCosmos.settings.filledColor = UIColor.searchGray
+        oneStarCosmos.settings.emptyBorderColor = UIColor.searchGray
+        oneStarCosmos.settings.filledBorderColor = UIColor.searchGray
+        oneStarCosmos.settings.totalStars = 1
         
-        oneStarCosmos.rating = 5
+        oneStarCosmos.rating = 1
         
         return oneStarCosmos
     }()
@@ -141,20 +144,167 @@ class RatingReviewView: UIView, ReactorKit.View {
     let ratingNumberLabel: UILabel = {
         let ratingNumberLabel = UILabel()
         ratingNumberLabel.font = .systemFont(ofSize: 14, weight: .light)
+        ratingNumberLabel.textColor = UIColor.searchGray(alpha: 0.8)
         
         return ratingNumberLabel
     }()
     
     let reviewCollectionView: UICollectionView = {
-        let flowLayout = UICollectionViewFlowLayout()
-        let reviewCollectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+        let flowlayout = UICollectionViewFlowLayout()
+        flowlayout.minimumInteritemSpacing = .zero
+        flowlayout.minimumLineSpacing = .zero
+        flowlayout.scrollDirection = .horizontal
+
+        let reviewCollectionView = UICollectionView(frame: .zero, collectionViewLayout: flowlayout)
+        reviewCollectionView.isPagingEnabled = false
+        reviewCollectionView.showsHorizontalScrollIndicator = false
+        reviewCollectionView.register(ReviewCollectionViewCell.self,
+                                      forCellWithReuseIdentifier: ReviewCollectionViewCell.reuseIdentifier)
+        reviewCollectionView.contentInset = .init(top: 0, left: 20, bottom: 0, right: 10)
+        reviewCollectionView.backgroundColor = .systemBackground
         
         
         return reviewCollectionView
     }()
     
+    let cellSize = CGSize(width: UIScreen.main.bounds.width * 0.90 - 1,
+                          height: UIScreen.main.bounds.height * 0.3 - 1)
+    
+    let cellInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
+    
+    var disposeBag: DisposeBag = DisposeBag()
+    
+    func addSubviews() {
+        addSubview(ratingsReviewsLabel)
+        addSubview(seeAllButton)
+        addSubview(ratingContainer)
+        ratingContainer.addSubview(floatRatingLabel)
+        ratingContainer.addSubview(outOfRatingLabel)
+        addSubview(ratingStarContainer)
+        ratingStarContainer.addSubview(fiveStarCosmos)
+        ratingStarContainer.addSubview(fiveStarRatingBar)
+        ratingStarContainer.addSubview(fourStarCosmos)
+        ratingStarContainer.addSubview(fourStarRatingBar)
+        ratingStarContainer.addSubview(threeStarCosmos)
+        ratingStarContainer.addSubview(threeStarRatingBar)
+        ratingStarContainer.addSubview(twoStarCosmos)
+        ratingStarContainer.addSubview(twoStarRatingBar)
+        ratingStarContainer.addSubview(oneStarCosmos)
+        ratingStarContainer.addSubview(oneStarRatingBar)
+        ratingStarContainer.addSubview(ratingNumberLabel)
+        addSubview(reviewCollectionView)
+    }
+    
+    func setConstraints() {
+        ratingsReviewsLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.leading.equalToSuperview().offset(SearchConstants.defaultLeading)
+        }
+        
+        seeAllButton.snp.makeConstraints { make in
+            make.bottom.equalTo(ratingsReviewsLabel)
+            make.trailing.equalToSuperview().offset(-SearchConstants.defaultTrailing)
+        }
+        
+        ratingContainer.snp.makeConstraints { make in
+            make.top.equalTo(ratingsReviewsLabel.snp.bottom).offset(8)
+            make.leading.equalToSuperview().offset(SearchConstants.defaultLeading)
+        }
+        
+        floatRatingLabel.snp.makeConstraints { make in
+            make.top.leading.trailing.equalToSuperview()
+        }
+        
+        outOfRatingLabel.snp.makeConstraints { make in
+            make.top.equalTo(floatRatingLabel.snp.bottom)
+            make.centerX.equalToSuperview()
+            make.bottom.equalToSuperview()
+        }
+        
+        ratingStarContainer.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        
+        ratingStarContainer.snp.makeConstraints { make in
+            make.top.equalTo(ratingContainer).offset(8)
+            make.leading.equalTo(ratingContainer.snp.trailing).offset(20)
+            make.trailing.equalToSuperview().offset(-SearchConstants.defaultTrailing)
+        }
+        
+        fiveStarCosmos.snp.makeConstraints { make in
+            make.top.leading.equalToSuperview()
+        }
+        
+        fiveStarRatingBar.snp.makeConstraints { make in
+            make.leading.equalTo(fiveStarCosmos.snp.trailing).offset(5)
+            make.height.equalTo(2)
+            make.trailing.equalToSuperview()
+            make.centerY.equalTo(fiveStarCosmos)
+        }
+        
+        fourStarCosmos.snp.makeConstraints { make in
+            make.top.equalTo(fiveStarCosmos.snp.bottom).offset(2)
+            make.trailing.equalTo(fiveStarCosmos)
+        }
+        
+        fourStarRatingBar.snp.makeConstraints { make in
+            make.leading.equalTo(fourStarCosmos.snp.trailing).offset(5)
+            make.height.equalTo(2)
+            make.trailing.equalToSuperview()
+            make.centerY.equalTo(fourStarCosmos)
+        }
+        
+        threeStarCosmos.snp.makeConstraints { make in
+            make.top.equalTo(fourStarCosmos.snp.bottom).offset(2)
+            make.trailing.equalTo(fiveStarCosmos)
+        }
+        
+        threeStarRatingBar.snp.makeConstraints { make in
+            make.leading.equalTo(threeStarCosmos.snp.trailing).offset(5)
+            make.height.equalTo(2)
+            make.trailing.equalToSuperview()
+            make.centerY.equalTo(threeStarCosmos)
+        }
+        
+        twoStarCosmos.snp.makeConstraints { make in
+            make.top.equalTo(threeStarCosmos.snp.bottom).offset(2)
+            make.trailing.equalTo(fiveStarCosmos)
+        }
+        
+        twoStarRatingBar.snp.makeConstraints { make in
+            make.leading.equalTo(twoStarCosmos.snp.trailing).offset(5)
+            make.height.equalTo(2)
+            make.trailing.equalToSuperview()
+            make.centerY.equalTo(twoStarCosmos)
+        }
+        
+        oneStarCosmos.snp.makeConstraints { make in
+            make.top.equalTo(twoStarCosmos.snp.bottom).offset(2)
+            make.trailing.equalTo(fiveStarCosmos)
+        }
+        
+        oneStarRatingBar.snp.makeConstraints { make in
+            make.leading.equalTo(oneStarCosmos.snp.trailing).offset(5)
+            make.height.equalTo(2)
+            make.trailing.equalToSuperview()
+            make.centerY.equalTo(oneStarCosmos)
+        }
+        
+        ratingNumberLabel.snp.makeConstraints { make in
+            make.top.equalTo(oneStarCosmos.snp.bottom).offset(3)
+            make.trailing.equalToSuperview()
+        }
+        
+        reviewCollectionView.snp.makeConstraints { make in
+            make.top.equalTo(ratingContainer.snp.bottom).offset(10)
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(250)
+            make.bottom.equalToSuperview()
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
+        addSubviews()
+        setConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -162,4 +312,107 @@ class RatingReviewView: UIView, ReactorKit.View {
     }
     
     
+    func bind(reactor: RatingReviewViewReactor) {
+        reviewCollectionView.delegate = self
+        reviewCollectionView.dataSource = self
+        
+        reactor.state.map { $0.ratingFloatString }
+            .distinctUntilChanged()
+            .bind(to: floatRatingLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        reactor.state.map { $0.ratingNumberString }
+            .distinctUntilChanged()
+            .compactMap { $0 }
+            .map { "\($0) Ratings" }
+            .bind(to: ratingNumberLabel.rx.text)
+            .disposed(by: disposeBag)
+    }
+    
+}
+
+extension RatingReviewView: UICollectionViewDelegate {
+    
+}
+
+extension RatingReviewView: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 3
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ReviewCollectionViewCell.reuseIdentifier, for: indexPath)
+            as? ReviewCollectionViewCell else { fatalError() }
+        
+        if indexPath.section == 2 {
+            cell.answerContainer.isHidden = true
+        }
+        
+        return cell
+    }
+    
+    
+}
+
+
+extension RatingReviewView: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        return cellSize
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+
+        return cellInset
+    }
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        let pageWidth = cellSize.width
+        targetContentOffset.pointee = scrollView.contentOffset
+        
+        let targetIndexCGFloat: CGFloat =
+            scrollView.contentOffset.x / (pageWidth + cellInset.left + cellInset.right)
+    
+        var factor: CGFloat = 0.5
+        
+        if velocity.x < 0 {
+            factor = -factor
+        }
+        
+        var index = Int( round(targetIndexCGFloat + factor))
+        
+        if index < 0 {
+            index = 0
+        } else {
+            index = min(3, index)
+        }
+        
+        let indexPath = IndexPath(row: 0, section: index)
+        reviewCollectionView.scrollToItem(at: indexPath, at: .left, animated: true)
+    }
+}
+
+
+extension RatingReviewView: SearchDetailViewDelegate {
+    func didLayoutSubviews() {
+        if fiveStarRatingBar.frame.size != .zero {
+            fiveStarRatingBar.rating = 0.6
+        }
+        if fiveStarRatingBar.frame.size != .zero {
+            fourStarRatingBar.rating = 0.2
+        }
+        if fiveStarRatingBar.frame.size != .zero {
+            threeStarRatingBar.rating = 0.3
+        }
+        if fiveStarRatingBar.frame.size != .zero {
+            twoStarRatingBar.rating = 0.1
+        }
+        if fiveStarRatingBar.frame.size != .zero {
+            oneStarRatingBar.rating = 0.3
+        }
+    }
 }

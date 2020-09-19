@@ -58,13 +58,13 @@ class KakaoMinsooTests: XCTestCase {
         
         let completionHandler: ((Data?, URLResponse?, Error?) -> Void) = { (data, response, error) in
 
-            guard let data = data, let response = response else { return }
+            guard let data = data, let _ = response else { return }
             
             let json = try? JSONSerialization.jsonObject(with: data, options: [.allowFragments])
             
             
             print("--- response ---")
-            print(json)
+            print(json ?? "")
             dataReceivedExpectation.fulfill()
             print("--- response ---")
         }
@@ -98,7 +98,7 @@ class KakaoMinsooTests: XCTestCase {
         
         let completionHandler: ((Data?, URLResponse?, Error?) -> Void) = { (data, response, error) in
 
-            guard let data = data, let response = response else { return }
+            guard let data = data, let _ = response else { return }
             
             do {
                 print("--- response ---")

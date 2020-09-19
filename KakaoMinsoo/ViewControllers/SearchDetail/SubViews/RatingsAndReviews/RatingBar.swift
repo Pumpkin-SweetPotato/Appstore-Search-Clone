@@ -16,6 +16,7 @@ class RatingBar: UIView {
             if ratingBarLayer == nil {
                 ratingBarLayer = createRatingBarLayer()
             }
+            layer.backgroundColor = UIColor.searchGray(alpha: 0.2).cgColor
             layer.addSublayer(ratingBarLayer)
             ratingBarLayer.strokeEnd = rating
         }
@@ -23,7 +24,9 @@ class RatingBar: UIView {
     
     
     override init(frame: CGRect) {
+        rating = 0
         super.init(frame: frame)
+        
     }
     
     required init?(coder: NSCoder) {
@@ -42,10 +45,12 @@ class RatingBar: UIView {
         ratingBarLayer.frame = bounds
         ratingBarLayer.lineWidth = lineWidth
         ratingBarLayer.lineCap = .square
-        ratingBarLayer.fillColor = UIColor.clear.cgColor
-        ratingBarLayer.strokeColor = UIColor.searchGray.cgColor
+        
+        
+        
+        ratingBarLayer.strokeColor = UIColor.searchGray(alpha: 0.8).cgColor
         ratingBarLayer.strokeEnd = 0
-        ratingBarLayer.borderColor = UIColor.searchGray(alpha: 0.8).cgColor
+//        ratingBarLayer.borderColor = UIColor.searchGray(alpha: 0.8).cgColor
 
         return ratingBarLayer
     }

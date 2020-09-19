@@ -44,6 +44,7 @@ final class RatingReviewViewReactor: Reactor {
             ratingFloatString: ratingFloatString,
             ratingNumberString: ratingNumberString
         )
+    }
     
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {

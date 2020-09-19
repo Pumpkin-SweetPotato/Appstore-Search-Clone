@@ -131,12 +131,4 @@ struct SearchResult: Codable {
     
 }
 
-class DateConverter {
-    static func convertDate(_ dateString: String) -> Date? {
-        let dateFormatter: DateFormatter = DateFormatter()
-        
-        dateFormatter.dateFormat = "yyyy-MM-ssTHH:mm:ssZ"
-        
-        return dateFormatter.date(from: dateString)
-    }
-}
+
