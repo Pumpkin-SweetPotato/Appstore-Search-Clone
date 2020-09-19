@@ -43,8 +43,6 @@ final class WhatsNewViewReactor: Reactor {
             
         }
         
-        
-        
         initialState = State(
             version: searchResult.version,
             releasedDateString: releasedDateString,

@@ -167,8 +167,10 @@ class RatingReviewView: UIView, ReactorKit.View {
         return reviewCollectionView
     }()
     
-    let cellSize = CGSize(width: UIScreen.main.bounds.width * 0.90 - 1,
-                          height: UIScreen.main.bounds.height * 0.3 - 1)
+    let cellWidthFactor: CGFloat = DeviceType.iPhoneX || DeviceType.iPhoneXRMax ? 0.9 : 0.9
+    let cellHeightFactor: CGFloat = DeviceType.iPhoneX || DeviceType.iPhoneXRMax ? 0.2 : 0.3
+    
+    let cellSize: CGSize
     
     let cellInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
     
@@ -296,12 +298,14 @@ class RatingReviewView: UIView, ReactorKit.View {
         reviewCollectionView.snp.makeConstraints { make in
             make.top.equalTo(ratingContainer.snp.bottom).offset(10)
             make.leading.trailing.equalToSuperview()
-            make.height.equalTo(250)
+            make.height.equalTo(cellSize.height + 1)
             make.bottom.equalToSuperview()
         }
     }
     
     override init(frame: CGRect) {
+        cellSize = CGSize(width: UIScreen.main.bounds.width * cellWidthFactor - 1,
+                                 height: UIScreen.main.bounds.height * cellHeightFactor - 1)
         super.init(frame: frame)
         addSubviews()
         setConstraints()

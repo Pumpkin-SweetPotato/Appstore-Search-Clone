@@ -15,7 +15,7 @@ extension SearchViewController: UITableViewDelegate {
         case latestSearchTableView:
             return 30
         case searchResultTableView:
-            return 600
+            return 300
         default:
             return 0
         }

@@ -17,7 +17,7 @@ class Separator: UIView {
         super.init(frame: .zero)
         
         addSubview(separator)
-        separator.backgroundColor = .searchGray(alpha: 0.8)
+        separator.backgroundColor = .searchGray(alpha: 0.4)
         
         separator.snp.makeConstraints { make in
             make.top.bottom.equalToSuperview()

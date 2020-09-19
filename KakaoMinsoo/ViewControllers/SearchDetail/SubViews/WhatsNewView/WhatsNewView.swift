@@ -32,7 +32,7 @@ class WhatsNewView: UIView, ReactorKit.View {
     
     let latestVersionLabel: UILabel = {
         let latestVersionLabel = UILabel()
-        latestVersionLabel.font = .systemFont(ofSize: 12, weight: .light)
+        latestVersionLabel.font = .systemFont(ofSize: 15, weight: .light)
         latestVersionLabel.textColor = .searchGray(alpha: 0.8)
         
         return latestVersionLabel
@@ -40,7 +40,7 @@ class WhatsNewView: UIView, ReactorKit.View {
     
     let latestVersionReleasedDateLabel: UILabel = {
         let latestVersionReleasedDateLabel = UILabel()
-        latestVersionReleasedDateLabel.font = .systemFont(ofSize: 12)
+        latestVersionReleasedDateLabel.font = .systemFont(ofSize: 13)
         latestVersionReleasedDateLabel.textColor = .searchGray(alpha: 0.8)
         
         return latestVersionReleasedDateLabel
@@ -50,7 +50,7 @@ class WhatsNewView: UIView, ReactorKit.View {
     
     let versionReleaseNoteLabel: UILabel = {
         let versionReleaseNoteLabel = UILabel()
-        versionReleaseNoteLabel.font = .systemFont(ofSize: 12)
+        versionReleaseNoteLabel.font = .systemFont(ofSize: 13)
         versionReleaseNoteLabel.numberOfLines = 3
         
         return versionReleaseNoteLabel
@@ -149,6 +149,7 @@ class WhatsNewView: UIView, ReactorKit.View {
         
         reactor.state.map { $0.version }
             .distinctUntilChanged()
+            .map { "Version \($0)" }
             .bind(to: latestVersionLabel.rx.text)
             .disposed(by: disposeBag)
         
@@ -166,14 +167,10 @@ class WhatsNewView: UIView, ReactorKit.View {
         
         reactor.state.map { $0.isExpandWhatsNew }
             .distinctUntilChanged()
-            .subscribe(onNext: { [weak self] _ in
-                self?.versionReleaseNoteLabel.numberOfLines = 0
-            }).disposed(by: disposeBag)
-        
-        reactor.state.map { $0.isExpandWhatsNew }
-            .distinctUntilChanged()
             .filter { $0 }
             .subscribe(onNext: { [weak self] _ in
+                self?.moreLabel.isHidden = true
+                self?.versionReleaseNoteLabel.text = reactor.searchResult.releaseNotes
                 self?.versionReleaseNoteLabel.numberOfLines = 0
             }).disposed(by: disposeBag)
     }

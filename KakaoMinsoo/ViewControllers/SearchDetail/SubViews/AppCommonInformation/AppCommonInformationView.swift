@@ -73,8 +73,8 @@ class AppCommonInformationView: UIView {
     
     let ratingFloatLabel: UILabel = {
         let ratingFloatLabel = UILabel()
-        ratingFloatLabel.font = .systemFont(ofSize: 15)
-        ratingFloatLabel.textColor = .searchGray(alpha: 0.8)
+        ratingFloatLabel.font = .systemFont(ofSize: 18)
+        ratingFloatLabel.textColor = .searchGray(alpha: 1)
         
         return ratingFloatLabel
     }()
@@ -84,18 +84,18 @@ class AppCommonInformationView: UIView {
         cosmosView.settings.fillMode = .precise
         cosmosView.settings.disablePanGestures = true
         cosmosView.settings.updateOnTouch = false
-        cosmosView.settings.starSize = 15
+        cosmosView.settings.starSize = 18
         cosmosView.settings.starMargin = 0
-        cosmosView.settings.filledColor = UIColor.searchGray(alpha: 0.8)
-        cosmosView.settings.emptyBorderColor = UIColor.searchGray(alpha: 0.8)
-        cosmosView.settings.filledBorderColor = UIColor.searchGray(alpha: 0.8)
+        cosmosView.settings.filledColor = UIColor.searchGray(alpha: 1)
+        cosmosView.settings.emptyBorderColor = UIColor.searchGray(alpha: 1)
+        cosmosView.settings.filledBorderColor = UIColor.searchGray(alpha: 1)
     
         return cosmosView
     }()
     
     let ratingNumberLabel: UILabel = {
         let ratingNumberLabel = UILabel()
-        ratingNumberLabel.font = .systemFont(ofSize: 8, weight: .thin)
+        ratingNumberLabel.font = .systemFont(ofSize: 12, weight: .light)
         ratingNumberLabel.textColor = .searchGray(alpha: 0.8)
         
         return ratingNumberLabel
@@ -117,15 +117,29 @@ class AppCommonInformationView: UIView {
     
     let rankingContainer = UIView()
     
-    let rankingLabel: UILabel = {
-        let rankingLabel = UILabel()
+    let rankingNumberContainer = UIView()
+    
+    let noLabel: UILabel = {
+        let noLabel = UILabel()
+        noLabel.text = "No"
+        noLabel.font = .systemFont(ofSize: 12, weight: .semibold)
+        noLabel.textColor = .searchGray(alpha: 1)
         
-        return rankingLabel
+        return noLabel
+    }()
+    
+    let rankingNumberLabel: UILabel = {
+        let rankingNumberLabel = UILabel()
+        rankingNumberLabel.text = "3"
+        rankingNumberLabel.font = .systemFont(ofSize: 18, weight: .bold)
+        rankingNumberLabel.textColor = .searchGray(alpha: 1)
+        
+        return rankingNumberLabel
     }()
     
     let genreLabel: UILabel = {
         let genreLabel = UILabel()
-        genreLabel.font = .systemFont(ofSize: 8, weight: .thin)
+        genreLabel.font = .systemFont(ofSize: 12, weight: .light)
         genreLabel.textColor = .searchGray(alpha: 0.8)
         
         return genreLabel
@@ -135,8 +149,8 @@ class AppCommonInformationView: UIView {
     
     let advisoryLabel: UILabel = {
         let advisoryLabel = UILabel()
-        advisoryLabel.font = .systemFont(ofSize: 15)
-        advisoryLabel.textColor = .searchGray(alpha: 0.8)
+        advisoryLabel.font = .systemFont(ofSize: 18, weight: .semibold)
+        advisoryLabel.textColor = .searchGray(alpha: 1)
         
         return advisoryLabel
     }()
@@ -144,7 +158,8 @@ class AppCommonInformationView: UIView {
     let ageLabel: UILabel = {
         let ageLabel = UILabel()
         ageLabel.text = "Age"
-        ageLabel.font = .systemFont(ofSize: 8, weight: .thin)
+        ageLabel.font = .systemFont(ofSize: 12, weight: .light)
+        ageLabel.textColor = .searchGray(alpha: 0.8)
         
         return ageLabel
     }()
@@ -238,7 +253,9 @@ class AppCommonInformationView: UIView {
         editorsChoiceContainer.addSubview(editorsChoiceAppLabel)
         
         horizontalAppDetailInfoStackView.addArrangedSubview(rankingContainer)
-        rankingContainer.addSubview(rankingLabel)
+        rankingContainer.addSubview(rankingNumberContainer)
+        rankingNumberContainer.addSubview(noLabel)
+        rankingNumberContainer.addSubview(rankingNumberLabel)
         rankingContainer.addSubview(genreLabel)
         
         horizontalAppDetailInfoStackView.addArrangedSubview(advisoryContainer)
@@ -251,27 +268,24 @@ class AppCommonInformationView: UIView {
     }
     
     func setConstraints() {
-        
-        let defaultLeadingOffsetFromSuperView: CGFloat = 20
-        let defaultTrailingOffsetFromSuperView: CGFloat = 20
-        
         // MARK: - Top Info
+        
         appIconImageView.snp.makeConstraints { make in
             make.top.equalToSuperview()
-            make.leading.equalToSuperview().offset(defaultLeadingOffsetFromSuperView)
-            make.width.height.equalTo(100)
+            make.leading.equalToSuperview().offset(SearchConstants.defaultLeading)
+            make.width.height.equalTo(120)
         }
         
         appTitleLabel.snp.makeConstraints { make in
             make.top.equalTo(appIconImageView).offset(4)
             make.leading.equalTo(appIconImageView.snp.trailing).offset(15)
-            make.trailing.equalToSuperview().offset(-15)
+            make.trailing.equalToSuperview().offset(-SearchConstants.defaultTrailing)
         }
         
         corpLabel.snp.makeConstraints { make in
             make.top.equalTo(appTitleLabel.snp.bottom).offset(6)
             make.leading.equalTo(appIconImageView.snp.trailing).offset(15)
-            make.trailing.equalToSuperview().offset(-15)
+            make.trailing.equalToSuperview().offset(-SearchConstants.defaultTrailing)
         }
         
         let getButtonHeight: CGFloat = 25
@@ -292,7 +306,7 @@ class AppCommonInformationView: UIView {
         }
 
         shareButton.snp.makeConstraints { make in
-            make.trailing.equalToSuperview().offset(-defaultTrailingOffsetFromSuperView)
+            make.trailing.equalToSuperview().offset(-SearchConstants.defaultTrailing)
             make.height.equalTo(20)
             make.width.equalTo(17)
             make.centerY.equalTo(getButton)
@@ -302,14 +316,14 @@ class AppCommonInformationView: UIView {
         
         horizontalAppDetailInfoStackView.snp.makeConstraints { make in
             make.top.equalTo(getButton.snp.bottom).offset(35)
-            make.leading.equalToSuperview().offset(defaultLeadingOffsetFromSuperView)
-            make.trailing.equalToSuperview().offset(-defaultTrailingOffsetFromSuperView)
+            make.leading.equalToSuperview().offset(SearchConstants.defaultLeading)
+            make.trailing.equalToSuperview().offset(-SearchConstants.defaultTrailing)
         }
         
         // MARK:- Rating
         ratingContainer.snp.makeConstraints { make in
 //            make.top.equalTo(getButton.snp.bottom).offset(35)
-//            make.leading.equalToSuperview().offset(defaultLeadingOffsetFromSuperView)
+//            make.leading.equalToSuperview().offset(SearchConstants.defaultLeading)
         }
         
         ratingFloatLabel.snp.makeConstraints { make in
@@ -339,13 +353,25 @@ class AppCommonInformationView: UIView {
             make.width.equalTo(30).priority(.low)
         }
         
-        rankingLabel.snp.makeConstraints { make in
+        rankingNumberContainer.snp.makeConstraints { make in
             make.top.equalToSuperview()
-            make.leading.trailing.equalToSuperview()
+            make.centerX.equalToSuperview()
+        }
+        
+        noLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.leading.equalToSuperview()
+        }
+        
+        rankingNumberLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.leading.equalTo(noLabel.snp.trailing).offset(-1)
+            make.trailing.equalToSuperview()
+            make.bottom.equalToSuperview()
         }
         
         genreLabel.snp.makeConstraints { make in
-            make.top.equalTo(rankingLabel.snp.bottom).offset(5)
+            make.top.equalTo(rankingNumberContainer.snp.bottom).offset(5)
             make.leading.trailing.equalToSuperview()
             make.bottom.equalToSuperview()
         }
@@ -354,7 +380,7 @@ class AppCommonInformationView: UIView {
         advisoryContainer.snp.makeConstraints { make in
             make.width.equalTo(50).priority(.low)
 //            make.top.equalTo(getButton.snp.bottom).offset(35)
-//            make.trailing.equalToSuperview().offset(-defaultTrailingOffsetFromSuperView)
+//            make.trailing.equalToSuperview().offset(-SearchConstants.defaultTrailing)
         }
         
         advisoryLabel.snp.makeConstraints { make in
@@ -376,8 +402,8 @@ class AppCommonInformationView: UIView {
         
         availableDeviceContainer.snp.makeConstraints { make in
             make.top.equalTo(screenShotCollectionView.snp.bottom).offset(20)
-            make.leading.equalToSuperview().offset(defaultLeadingOffsetFromSuperView)
-            make.trailing.equalToSuperview().offset(defaultTrailingOffsetFromSuperView)
+            make.leading.equalToSuperview().offset(SearchConstants.defaultLeading)
+            make.trailing.equalToSuperview().offset(-SearchConstants.defaultTrailing)
             make.bottom.equalToSuperview()
         }
         
@@ -435,8 +461,8 @@ class AppCommonInformationView: UIView {
                     guard let image = image else { return }
                     self._firstScreenshotImage = image
                     DispatchQueue.main.async {
-                        self.determineScreenshotItemSize(with: image)
                         self.determineCollectionViewSize(with: image)
+                        self.determineScreenshotItemSize(with: image)
                         self.screenShotCollectionView.reloadData()
                     }
                 })
@@ -451,11 +477,14 @@ class AppCommonInformationView: UIView {
         var itemSize: CGSize = .zero
 
         if firstScreenshotImage.size.width > firstScreenshotImage.size.height {
+            let heightFactor: CGFloat = (DeviceType.iPhoneX || DeviceType.iPhoneXRMax) ? 0.24 : 0.3
             itemSize = CGSize(width: UIScreen.main.bounds.width * 0.90 - 1,
-                              height: UIScreen.main.bounds.height * 0.3 - 1)
+                              height: UIScreen.main.bounds.height * heightFactor - 1)
         } else {
-            itemSize = CGSize(width: UIScreen.main.bounds.width * 0.56 - 1,
-                              height: UIScreen.main.bounds.height * 0.55 - 1)
+            let heightFactor: CGFloat = (DeviceType.iPhoneX || DeviceType.iPhoneXRMax) ? 0.55 : 0.55
+            let widthFactor: CGFloat = (DeviceType.iPhoneX || DeviceType.iPhoneXRMax) ? 0.7: 0.56
+            itemSize = CGSize(width: UIScreen.main.bounds.width * widthFactor - 1,
+                              height: UIScreen.main.bounds.height * heightFactor - 1)
         }
         
         screenshotCellSize = itemSize
@@ -463,20 +492,21 @@ class AppCommonInformationView: UIView {
     
     private func determineCollectionViewSize(with firstImage: UIImage) {
         if firstImage.size.width > firstImage.size.height {
-            screenShotCollectionView.snp.updateConstraints { make in
-                make.height.equalTo(UIScreen.main.bounds.height * 0.3)
-            }
+            let heightFactor: CGFloat = (DeviceType.iPhoneX || DeviceType.iPhoneXRMax) ? 0.24 : 0.3
             
-            screenShotCollectionView.setNeedsLayout()
-            screenShotCollectionView.layoutIfNeeded()
+            screenShotCollectionView.snp.updateConstraints { make in
+                make.height.equalTo(UIScreen.main.bounds.height * heightFactor)
+            }
         } else {
-            screenShotCollectionView.snp.updateConstraints { make in
-                make.height.equalTo(UIScreen.main.bounds.height * 0.55)
-            }
+            let heightFactor: CGFloat = (DeviceType.iPhoneX || DeviceType.iPhoneXRMax) ? 0.55 : 0.55
             
-            screenShotCollectionView.setNeedsLayout()
-            screenShotCollectionView.layoutIfNeeded()
+            screenShotCollectionView.snp.updateConstraints { make in
+                make.height.equalTo(UIScreen.main.bounds.height * heightFactor)
+            }
         }
+        
+        screenShotCollectionView.setNeedsLayout()
+        screenShotCollectionView.layoutIfNeeded()
     
         self.screenShotCollectionView.collectionViewLayout.invalidateLayout()
         

@@ -53,6 +53,7 @@
 		CFC8D3682516551E00C18101 /* WhatsNewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC8D3672516551E00C18101 /* WhatsNewView.swift */; };
 		CFC8D36A2516555400C18101 /* WhatNewViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC8D3692516555400C18101 /* WhatNewViewReactor.swift */; };
 		CFC8D36C25165C9E00C18101 /* DateConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC8D36B25165C9E00C18101 /* DateConverter.swift */; };
+		CFC8D36F25167CD800C18101 /* DeviceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC8D36E25167CD800C18101 /* DeviceType.swift */; };
 		E1441E72B9A1609873F64F84 /* Pods_KakaoMinsoo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66DF841A7FD009C9E82D82DB /* Pods_KakaoMinsoo.framework */; };
 /* End PBXBuildFile section */
 
@@ -121,6 +122,7 @@
 		CFC8D3672516551E00C18101 /* WhatsNewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsNewView.swift; sourceTree = "<group>"; };
 		CFC8D3692516555400C18101 /* WhatNewViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatNewViewReactor.swift; sourceTree = "<group>"; };
 		CFC8D36B25165C9E00C18101 /* DateConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateConverter.swift; sourceTree = "<group>"; };
+		CFC8D36E25167CD800C18101 /* DeviceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				CF1EFE692514E1290047485D /* SearchResultUtils.swift */,
+				CFC8D36E25167CD800C18101 /* DeviceType.swift */,
 				CFC8D36B25165C9E00C18101 /* DateConverter.swift */,
 			);
 			path = utils;
@@ -198,6 +201,7 @@
 		CF1EFE6B2514E7B70047485D /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
+				CFC8D36D25166FA100C18101 /* InformationView */,
 				CFA8A95E25162B970052841E /* AppCommonInformation */,
 				CF1EFE6E2514E7E30047485D /* Separator.swift */,
 				CFA8A95F25162BAB0052841E /* AppDescriptionView */,
@@ -353,6 +357,13 @@
 				CFC8D3692516555400C18101 /* WhatNewViewReactor.swift */,
 			);
 			path = WhatsNewView;
+			sourceTree = "<group>";
+		};
+		CFC8D36D25166FA100C18101 /* InformationView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = InformationView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -561,6 +572,7 @@
 				CFBDD0F325127C2B007E167F /* SearchViewController+SearchBarDelegate.swift in Sources */,
 				CFBDD0B42512347F007E167F /* SceneDelegate.swift in Sources */,
 				CFBDD0D4251234BE007E167F /* APIClient.swift in Sources */,
+				CFC8D36F25167CD800C18101 /* DeviceType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

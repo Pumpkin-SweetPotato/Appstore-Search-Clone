@@ -24,6 +24,10 @@ class ThumbnailImageView: UIView {
     let leftThumbnailImageView: UIImageView = {
         let leftThumbnailImageView = UIImageView()
         leftThumbnailImageView.contentMode = .scaleAspectFit
+        leftThumbnailImageView.layer.cornerRadius = 10
+        leftThumbnailImageView.layer.masksToBounds = true
+        leftThumbnailImageView.layer.borderColor = UIColor.lightGray.cgColor
+        leftThumbnailImageView.layer.borderWidth = 0.5
         
         return leftThumbnailImageView
     }()
@@ -31,6 +35,10 @@ class ThumbnailImageView: UIView {
     let middleThumbnailImageView: UIImageView = {
         let middleThumbnailImageView = UIImageView()
         middleThumbnailImageView.contentMode = .scaleAspectFit
+        middleThumbnailImageView.layer.cornerRadius = 10
+        middleThumbnailImageView.layer.masksToBounds = true
+        middleThumbnailImageView.layer.borderColor = UIColor.lightGray.cgColor
+        middleThumbnailImageView.layer.borderWidth = 0.5
         
         return middleThumbnailImageView
     }()
@@ -38,6 +46,10 @@ class ThumbnailImageView: UIView {
     let rightThumbnailImageView: UIImageView = {
         let rightThumbnailImageView = UIImageView()
         rightThumbnailImageView.contentMode = .scaleAspectFit
+        rightThumbnailImageView.layer.cornerRadius = 10
+        rightThumbnailImageView.layer.masksToBounds = true
+        rightThumbnailImageView.layer.borderColor = UIColor.lightGray.cgColor
+        rightThumbnailImageView.layer.borderWidth = 0.5
         
         return rightThumbnailImageView
     }()
@@ -47,6 +59,7 @@ class ThumbnailImageView: UIView {
         singleThumbnailImageView.contentMode = .scaleAspectFit
         singleThumbnailImageView.layer.cornerRadius = 10
         singleThumbnailImageView.layer.masksToBounds = true
+        singleThumbnailImageView.isHidden = true
         
         return singleThumbnailImageView
     }()
@@ -82,13 +95,6 @@ class ThumbnailImageView: UIView {
                 make.width.equalToSuperview().multipliedBy(0.317)
                 make.bottom.equalToSuperview()
             }
-        }
-        
-        horizonStackView.arrangedSubviews.forEach {
-            $0.layer.cornerRadius = 10
-            $0.layer.masksToBounds = true
-            $0.layer.borderColor = UIColor.lightGray.cgColor
-            $0.layer.borderWidth = 0.5
         }
     }
     
@@ -234,10 +240,16 @@ class SearchResultTableViewCell: UITableViewCell, ReactorKit.View {
         
         thumbnailImageView.snp.makeConstraints { make in
             make.top.equalTo(iconImageView.snp.bottom).offset(15)
-            make.height.equalTo(195)
+//            make.height.equalTo(195)
+            make.height.equalTo(UIScreen.main.bounds.height * 0.24).priority(.low)
             make.leading.trailing.equalToSuperview()
             make.bottom.lessThanOrEqualToSuperview().offset(-15)
         }
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        setConstraints()
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -303,6 +315,9 @@ class SearchResultTableViewCell: UITableViewCell, ReactorKit.View {
                 if $0.size.width > $0.size.height {
                     self?.thumbnailImageView.horizonStackView.isHidden = true
                     self?.thumbnailImageView.singleThumbnailImageView.isHidden = false
+                } else {
+                    self?.thumbnailImageView.horizonStackView.isHidden = false
+                    self?.thumbnailImageView.singleThumbnailImageView.isHidden = true
                 }
             }).disposed(by: disposeBag)
             
