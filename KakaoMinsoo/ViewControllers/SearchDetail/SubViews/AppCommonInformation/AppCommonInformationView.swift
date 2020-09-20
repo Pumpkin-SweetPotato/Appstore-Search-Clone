@@ -237,12 +237,14 @@ class AppCommonInformationView: UIView {
     }
     
     func configureViews() {
-        addSubview(appIconImageView)
-        addSubview(appTitleLabel)
-        addSubview(corpLabel)
-        addSubview(getButton)
-        addSubview(inAppPurchaseLabel)
-        addSubview(shareButton)
+        addSubview(topContainer)
+        topContainer.addSubview(appIconImageView)
+        topContainer.addSubview(appTitleLabel)
+        topContainer.addSubview(corpLabel)
+        topContainer.addSubview(getButton)
+        topContainer.addSubview(inAppPurchaseLabel)
+        topContainer.addSubview(shareButton)
+        
         addSubview(horizontalAppDetailInfoStackView)
         
         horizontalAppDetailInfoStackView.addArrangedSubview(ratingContainer)
@@ -272,6 +274,9 @@ class AppCommonInformationView: UIView {
     
     func setConstraints() {
         // MARK: - Top Info
+        topContainer.snp.makeConstraints { make in
+            make.top.leading.trailing.equalToSuperview()
+        }
         
         appIconImageView.snp.makeConstraints { make in
             make.top.equalToSuperview()
@@ -299,6 +304,7 @@ class AppCommonInformationView: UIView {
             make.leading.equalTo(appIconImageView.snp.trailing).offset(15)
             make.height.equalTo(getButtonHeight)
             make.width.equalTo(60)
+            make.bottom.equalToSuperview()
         }
         
         getButton.layer.cornerRadius = getButtonHeight / 2
@@ -318,7 +324,7 @@ class AppCommonInformationView: UIView {
         // App Detail Information StackView
         
         horizontalAppDetailInfoStackView.snp.makeConstraints { make in
-            make.top.equalTo(getButton.snp.bottom).offset(35)
+            make.top.equalTo(topContainer.snp.bottom).offset(35)
             make.leading.equalToSuperview().offset(SearchConstants.defaultLeading)
             make.trailing.equalToSuperview().offset(-SearchConstants.defaultTrailing)
         }

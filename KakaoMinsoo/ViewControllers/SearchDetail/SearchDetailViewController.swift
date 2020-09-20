@@ -154,6 +154,7 @@ class SearchDetailViewController: UIViewController, ReactorKit.StoryboardView {
         self.navigationItem.titleView = navigationItemContainer
         self.navigationItem.titleView?.addSubview(navigationImageView)
         self.navigationItem.titleView?.addSubview(getButton)
+
         
         navigationItemContainer.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -167,7 +168,7 @@ class SearchDetailViewController: UIViewController, ReactorKit.StoryboardView {
         navigationImageView.layer.cornerRadius = 3
         
         getButton.snp.makeConstraints { make in
-            make.centerX.equalToSuperview().offset(UIScreen.main.bounds.width / 2 - 5 - 30)
+            make.centerX.equalToSuperview().offset(UIScreen.main.bounds.width / 2 - 8 - 30)
             make.height.equalTo(25)
             make.width.equalTo(60)
             make.centerY.equalToSuperview()
@@ -180,7 +181,7 @@ class SearchDetailViewController: UIViewController, ReactorKit.StoryboardView {
         DispatchQueue.main.async {
             UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut, animations: {
                 self.navigationItemContainer.alpha = isHidden ? 0 : 1
-                self.appCommonInformationView. alpha = isHidden ? 1 : 0
+                self.appCommonInformationView.topContainer.alpha = isHidden ? 1 : 0
             }, completion: { _ in
                 
             })
@@ -200,22 +201,12 @@ class SearchDetailViewController: UIViewController, ReactorKit.StoryboardView {
         
         scrollView.rx.contentOffset
             .distinctUntilChanged()
+            .filter { $0 != .zero }
             .subscribe(onNext: { [weak self] contentOffset in
                 guard let self = self else { return }
-//                let getButtonTopOffset =
-//                        self.appCommonInformationView.getButton.convert(self.rootView.frame, from: self.rootView)
                 let converted = self.appCommonInformationView.convert(self.appCommonInformationView.getButton.frame, to: self.rootView)
-                print("getbutton \(converted)")
-                print("contentOffset \(contentOffset)")
                 if contentOffset.y >= converted.minY - 44 {
                     self.isHiddenNavigationBarItem(false)
-//                    self?.setNavigationBarItem()
-//                    self.navigationController?.navigationBar.setItems(<#T##items: [UINavigationItem]?##[UINavigationItem]?#>, animated: <#T##Bool#>)
-//                    self.navigationController?.navigationBar.shadowImage = self.defaultNavigationBarShadowImage
-//                    self.navigationController?.navigationBar.setBackgroundImage(self.defaultNavigationBarBackgroundImage, for: .default)
-//                } else {
-//                    self.navigationController?.navigationBar.shadowImage = UIImage()
-//                    self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
                 } else {
                     self.isHiddenNavigationBarItem(true)
                 }
