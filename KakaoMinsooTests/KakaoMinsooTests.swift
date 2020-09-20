@@ -73,7 +73,7 @@ class KakaoMinsooTests: XCTestCase {
         request?.resume()
         
         
-        wait(for: [dataReceivedExpectation], timeout: 1)
+        wait(for: [dataReceivedExpectation], timeout: 1.5)
     }
     
     func testJSONConvert() throws {

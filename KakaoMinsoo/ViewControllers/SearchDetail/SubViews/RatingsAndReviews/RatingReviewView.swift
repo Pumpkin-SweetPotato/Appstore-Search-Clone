@@ -281,6 +281,7 @@ class RatingReviewView: UIView, ReactorKit.View {
         oneStarCosmos.snp.makeConstraints { make in
             make.top.equalTo(twoStarCosmos.snp.bottom).offset(2)
             make.trailing.equalTo(fiveStarCosmos)
+            make.bottom.equalToSuperview()
         }
         
         oneStarRatingBar.snp.makeConstraints { make in

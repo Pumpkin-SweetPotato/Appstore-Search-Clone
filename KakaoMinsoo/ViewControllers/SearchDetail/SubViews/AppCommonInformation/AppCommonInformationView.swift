@@ -12,6 +12,8 @@ import RxSwift
 import Cosmos
 
 class AppCommonInformationView: UIView {
+    let topContainer = UIView()
+    
     let appIconImageView: UIImageView = {
         let appIconImageView = UIImageView()
         appIconImageView.contentMode = .scaleAspectFit
@@ -23,14 +25,15 @@ class AppCommonInformationView: UIView {
     
     let appTitleLabel: UILabel = {
         let appTitleLabel = UILabel()
-        appTitleLabel.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        appTitleLabel.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
+        appTitleLabel.numberOfLines = 2
         
         return appTitleLabel
     }()
     
     let corpLabel: UILabel = {
         let corpLabel = UILabel()
-        corpLabel.font = UIFont.systemFont(ofSize: 12)
+        corpLabel.font = UIFont.systemFont(ofSize: 14)
         corpLabel.textColor = .searchGray(alpha: 0.8)
         
         return corpLabel
@@ -188,7 +191,7 @@ class AppCommonInformationView: UIView {
         let availableDevicesStackView = UIStackView()
         availableDevicesStackView.axis = .horizontal
         availableDevicesStackView.alignment = .bottom
-        availableDevicesStackView.distribution = .equalSpacing
+        availableDevicesStackView.distribution = .fillEqually
         
         return availableDevicesStackView
     }()
@@ -295,7 +298,7 @@ class AppCommonInformationView: UIView {
             make.top.lessThanOrEqualTo(corpLabel.snp.bottom).offset(35).priority(.high)
             make.leading.equalTo(appIconImageView.snp.trailing).offset(15)
             make.height.equalTo(getButtonHeight)
-            make.width.equalTo(55)
+            make.width.equalTo(60)
         }
         
         getButton.layer.cornerRadius = getButtonHeight / 2
@@ -307,8 +310,8 @@ class AppCommonInformationView: UIView {
 
         shareButton.snp.makeConstraints { make in
             make.trailing.equalToSuperview().offset(-SearchConstants.defaultTrailing)
-            make.height.equalTo(20)
-            make.width.equalTo(17)
+            make.height.equalTo(23)
+            make.width.equalTo(19)
             make.centerY.equalTo(getButton)
         }
         
@@ -346,13 +349,16 @@ class AppCommonInformationView: UIView {
         // MARK: - TODO editor's choice
         
         // MARK: - Ranking
+        rankingContainer.accessibilityLabel = "rankingContainer"
         rankingContainer.snp.makeConstraints { make in
 //            make.top.equalTo(getButton.snp.bottom).offset(35)
 //            make.leading.equalTo(ratingContainer.snp.trailing).offset(40)
 //            make.trailing.equalTo(advisoryContainer.snp.leading).offset(-40)
-            make.width.equalTo(30).priority(.low)
+            
         }
+//        rankingContainer.setContentHuggingPriority(.init(751), for: .horizontal)
         
+        rankingNumberContainer.accessibilityLabel = "rankingNumberContainer"
         rankingNumberContainer.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.centerX.equalToSuperview()
@@ -360,25 +366,27 @@ class AppCommonInformationView: UIView {
         
         noLabel.snp.makeConstraints { make in
             make.top.equalToSuperview()
-            make.leading.equalToSuperview()
+            make.leading.greaterThanOrEqualToSuperview()
         }
         
         rankingNumberLabel.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.leading.equalTo(noLabel.snp.trailing).offset(-1)
-            make.trailing.equalToSuperview()
+            make.trailing.lessThanOrEqualToSuperview()
             make.bottom.equalToSuperview()
         }
         
         genreLabel.snp.makeConstraints { make in
             make.top.equalTo(rankingNumberContainer.snp.bottom).offset(5)
-            make.leading.trailing.equalToSuperview()
+            make.leading.greaterThanOrEqualToSuperview()
+            make.centerX.equalToSuperview()
+            make.trailing.lessThanOrEqualToSuperview()
             make.bottom.equalToSuperview()
         }
         
         // MARK: - Advisory
         advisoryContainer.snp.makeConstraints { make in
-            make.width.equalTo(50).priority(.low)
+//            make.width.equalTo(50).priority(.low)
 //            make.top.equalTo(getButton.snp.bottom).offset(35)
 //            make.trailing.equalToSuperview().offset(-SearchConstants.defaultTrailing)
         }
@@ -408,7 +416,8 @@ class AppCommonInformationView: UIView {
         }
         
         availableDevicesStackView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.top.bottom.leading.equalToSuperview()
+            make.width.lessThanOrEqualToSuperview()
         }
     }
     

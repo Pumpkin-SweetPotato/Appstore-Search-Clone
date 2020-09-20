@@ -139,7 +139,7 @@ class ReviewCollectionViewCell: UICollectionViewCell {
         writerLabel.snp.makeConstraints { make in
             make.top.equalTo(writingDateLabel.snp.bottom).offset(3)
             make.trailing.equalToSuperview()
-            make.bottom.equalToSuperview()
+           
         }
         
         reviewContainer.setContentHuggingPriority(.defaultLow, for: .vertical)

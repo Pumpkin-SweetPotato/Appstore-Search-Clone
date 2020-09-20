@@ -16,10 +16,10 @@ final class SearchDetailViewReactor: Reactor {
     
     enum Mutation {
         case setIconImage(UIImage?)
-        case setThumbnailImages([UIImage])
     }
     
     struct State {
+        var iconImage: UIImage?
     }
     
     var initialState: State
@@ -34,11 +34,18 @@ final class SearchDetailViewReactor: Reactor {
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .prepareViewStates:
-            return .empty()
+            return ImageDownloadManager.shared.downloadImage(searchResult.artworkUrl100, indexPath: nil)
+                .flatMap { Observable<Mutation>.just(.setIconImage($0.0)) }
+            
         }
     }
     
     func reduce(state: State, mutation: Mutation) -> State {
+        var state = state
+        switch mutation {
+        case .setIconImage(let image):
+            state.iconImage = image
+        }
         return state
     }
     

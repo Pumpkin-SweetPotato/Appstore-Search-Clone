@@ -267,9 +267,12 @@ class SearchViewController: UIViewController, ReactorKit.StoryboardView {
                 
                 self.searchBar.searchBarStyle = .minimal
                 self.searchBar.showsCancelButton = false
-            case .beginEditing:
+            case .searchBarFocused:
                 self.searchLabelContainer.isHidden = true
+                self.latestSearchLabelContainer.isHidden = false
                 self.searchBar.showsCancelButton = true
+            case .beginEditing:
+                self.latestSearchLabelContainer.isHidden = true
             case .inputContinuing:
                 
                 
@@ -307,7 +310,7 @@ class SearchViewController: UIViewController, ReactorKit.StoryboardView {
                 self.searchBar.snp.updateConstraints { make in
                     make.top.equalToSuperview().offset(0)
                 }
-            case .beginEditing, .inputContinuing, .showingResult:
+            case .searchBarFocused, .beginEditing, .inputContinuing, .showingResult:
                 let statusbarHeight = SearchConstants.statusBarHeight(rootView: self.rootView) ?? 0
                 self.stackView.snp.updateConstraints { make in
                     make.top.equalToSuperview().offset(0)

@@ -52,6 +52,7 @@ class WhatsNewView: UIView, ReactorKit.View {
         let versionReleaseNoteLabel = UILabel()
         versionReleaseNoteLabel.font = .systemFont(ofSize: 13)
         versionReleaseNoteLabel.numberOfLines = 3
+        versionReleaseNoteLabel.lineBreakMode = .byWordWrapping
         
         return versionReleaseNoteLabel
     }()

@@ -12,6 +12,7 @@ import ReactorKit
 final class SearchViewReactor: Reactor {
     enum SearchViewMode {
         case watingInput
+        case searchBarFocused
         case beginEditing
         case inputContinuing
         case showingResult
@@ -72,7 +73,7 @@ final class SearchViewReactor: Reactor {
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .searchBarSelected:
-            return .just(.setSearchViewMode(.beginEditing))
+            return .just(.setSearchViewMode(.searchBarFocused))
             
         case .searchBarTextDidChanged(let keyword):
             if keyword.isEmpty {
@@ -193,38 +194,38 @@ final class SearchViewReactor: Reactor {
     func setViewsHidden(mode: SearchViewMode) -> Observable<Mutation> {
         var mutations: [Observable<Mutation>] = []
         
-        switch mode {
-        case .watingInput:
-            mutations.append(.just(.setIsHiddenSearchLabel(false)))
-            mutations.append(.just(.setIsHiddenLatestSeachLabel(false)))
-            mutations.append(.just(.setIsHiddenLatestSearchTableView(false)))
-            mutations.append(.just(.setIsHiddenSearchResultTableView(true)))
-            mutations.append(.just(.setIsShowCancelButtonOnSearchBar(false)))
-        case .beginEditing:
-//            let statusbarHeight = SearchConstants.statusBarHeight(rootView: self.rootView) ?? 0
-//            self.stackView.snp.updateConstraints { make in
-//                make.top.equalToSuperview().offset(statusbarHeight)
-//            }
-            mutations.append(.just(.setIsHiddenSearchLabel(true)))
-            mutations.append(.just(.setIsShowCancelButtonOnSearchBar(true)))
-        case .inputContinuing:
-//            let statusbarHeight = SearchConstants.statusBarHeight(rootView: self.rootView) ?? 0
-//            self.stackView.snp.updateConstraints { make in
-//                make.top.equalToSuperview().offset(statusbarHeight)
-//            }
-            
-            mutations.append(.just(.setIsHiddenSearchLabel(true)))
-            mutations.append(.just(.setIsHiddenLatestSeachLabel(true)))
-            mutations.append(.just(.setIsShowCancelButtonOnSearchBar(true)))
-        case .showingResult:
-//            self.stackView.setCustomSpacing(0, after: self.searchBar)
-            mutations.append(.just(.setIsHiddenSearchLabel(true)))
-            mutations.append(.just(.setIsHiddenLatestSeachLabel(true)))
-            mutations.append(.just(.setIsHiddenLatestSearchTableView(true)))
-            mutations.append(.just(.setIsHiddenSearchResultTableView(false)))
-            mutations.append(.just(.setIsShowCancelButtonOnSearchBar(true)))
-        }
-        
+//        switch mode {
+//        case .watingInput:
+//            mutations.append(.just(.setIsHiddenSearchLabel(false)))
+//            mutations.append(.just(.setIsHiddenLatestSeachLabel(false)))
+//            mutations.append(.just(.setIsHiddenLatestSearchTableView(false)))
+//            mutations.append(.just(.setIsHiddenSearchResultTableView(true)))
+//            mutations.append(.just(.setIsShowCancelButtonOnSearchBar(false)))
+//        case .beginEditing:
+////            let statusbarHeight = SearchConstants.statusBarHeight(rootView: self.rootView) ?? 0
+////            self.stackView.snp.updateConstraints { make in
+////                make.top.equalToSuperview().offset(statusbarHeight)
+////            }
+//            mutations.append(.just(.setIsHiddenSearchLabel(true)))
+//            mutations.append(.just(.setIsShowCancelButtonOnSearchBar(true)))
+//        case .inputContinuing:
+////            let statusbarHeight = SearchConstants.statusBarHeight(rootView: self.rootView) ?? 0
+////            self.stackView.snp.updateConstraints { make in
+////                make.top.equalToSuperview().offset(statusbarHeight)
+////            }
+//
+//            mutations.append(.just(.setIsHiddenSearchLabel(true)))
+//            mutations.append(.just(.setIsHiddenLatestSeachLabel(true)))
+//            mutations.append(.just(.setIsShowCancelButtonOnSearchBar(true)))
+//        case .showingResult:
+////            self.stackView.setCustomSpacing(0, after: self.searchBar)
+//            mutations.append(.just(.setIsHiddenSearchLabel(true)))
+//            mutations.append(.just(.setIsHiddenLatestSeachLabel(true)))
+//            mutations.append(.just(.setIsHiddenLatestSearchTableView(true)))
+//            mutations.append(.just(.setIsHiddenSearchResultTableView(false)))
+//            mutations.append(.just(.setIsShowCancelButtonOnSearchBar(true)))
+//        }
+//
         return .concat(mutations)
     }
     
