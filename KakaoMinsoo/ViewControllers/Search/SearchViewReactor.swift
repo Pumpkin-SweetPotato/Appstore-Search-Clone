@@ -96,7 +96,7 @@ final class SearchViewReactor: Reactor {
                 return .concat([
                     .just(.setSearchViewMode(.inputContinuing)),
                     .just(.setSearchKeyword(keyword)),
-                    .just(.setFilteredSearchResults(Array(uniqueKeywords).sorted())),
+                    .just(.setFilteredSearchResults(Array(uniqueKeywords).sorted(by: { $0.count > $1.count }))),
                     setNeedReloadFilteredTableView
                 ])
             }

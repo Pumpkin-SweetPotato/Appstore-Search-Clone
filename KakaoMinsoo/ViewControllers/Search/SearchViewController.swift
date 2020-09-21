@@ -251,8 +251,7 @@ class SearchViewController: UIViewController, ReactorKit.StoryboardView {
         reactor.state.map { $0.selectedSearchKeyword }
             .distinctUntilChanged()
             .compactMap { $0 }
-            .do(onNext: { [weak self] _ in self?.searchBar.endEditing(false) })
-            .bind(to: searchBar.rx.text.orEmpty)
+            .bind(to: searchBar.rx.text)
             .disposed(by: disposeBag)
     }
     
@@ -315,14 +314,11 @@ class SearchViewController: UIViewController, ReactorKit.StoryboardView {
                 self.filteredLatestSearchTableView.isHidden = true
                 self.latestSearchTableViewContainer.isHidden = false
                 self.searchResultTableContainer.isHidden = true
-//                self.tableViewContainer.isHidden = false
                 
                 // searchbar
-                self.searchBar.searchBarStyle = .minimal
-                self.searchBar.showsCancelButton = false
+                self.searchBar.setShowsCancelButton(false, animated: true)
             case .searchBarFocused:
                 // labels
-                self.latestSearchLabelContainer.isHidden = false
                 
                 // searchbar
                 self.searchLabelContainer.isHidden = true
@@ -337,26 +333,25 @@ class SearchViewController: UIViewController, ReactorKit.StoryboardView {
                 self.filteredLatestSearchTableView.isHidden = false
                 self.latestSearchTableViewContainer.isHidden = false
                 self.searchResultTableContainer.isHidden = true
-//                self.tableViewContainer.isHidden = false
                 
                 // searchbar
                 
-                self.searchBar.showsCancelButton = true
+                self.searchBar.setShowsCancelButton(true, animated: true)
             case .showingResult:
                 // labels
+                self.latestSearchLabelContainer.isHidden = true
                 self.searchLabelContainer.isHidden = true
+                
                 
                 self.stackView.setCustomSpacing(0, after: self.searchBarContainer)
                 
                 // tableview
-//                self.tableViewContainer.isHidden = true
-//                self.filteredLatestSearchTableView.isHidden = true
-//                self.latestSearchTableView.isHidden = true
                 self.latestSearchTableViewContainer.isHidden = true
                 self.searchResultTableContainer.isHidden = false
                 
                 // searchbar
-                self.searchBar.showsCancelButton = true
+            
+                self.searchBar.setShowsCancelButton(true, animated: true)
             }
         
         
