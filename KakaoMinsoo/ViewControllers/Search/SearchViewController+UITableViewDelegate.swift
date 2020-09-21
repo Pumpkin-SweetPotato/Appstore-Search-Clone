@@ -26,7 +26,7 @@ extension SearchViewController: UITableViewDelegate {
         case latestSearchTableView, filteredLatestSearchTableView:
             return 35
         case searchResultTableView:
-            return  UITableView.automaticDimension
+            return DeviceType.iPhoneX || DeviceType.iPhoneXRMax ? 330 : 300 
         default:
             return 0
         }
@@ -42,7 +42,7 @@ extension SearchViewController: UITableViewDataSource {
         case filteredLatestSearchTableView:
             return reactor?.currentState.filteredLatestSearchedKeywords.count ?? 0
         case searchResultTableView:
-            return reactor?.currentState.searchResults.count ?? 0
+            return reactor?.currentState.slicedSearchResults.count ?? 0
         default:
             return 0
         }
@@ -76,9 +76,9 @@ extension SearchViewController: UITableViewDataSource {
         case searchResultTableView:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchResultTableViewCell.reuseIdentifier, for: indexPath) as? SearchResultTableViewCell else { fatalError("couldnt instantiate result table view cell") }
             
-            guard let results = reactor?.currentState.searchResults,
+            guard let results = reactor?.currentState.slicedSearchResults,
                 results.count > indexPath.row,
-                let result = reactor?.currentState.searchResults[indexPath.row] else { fatalError("couldnt retrieve search result \(indexPath.row)") }
+                let result = reactor?.currentState.slicedSearchResults[indexPath.row] else { fatalError("couldnt retrieve search result \(indexPath.row)") }
             
             cell.reactor = SearchResultTableCellReator(searchResult: result)
             

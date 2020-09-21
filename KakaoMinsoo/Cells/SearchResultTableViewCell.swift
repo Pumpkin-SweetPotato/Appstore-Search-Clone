@@ -275,6 +275,7 @@ class SearchResultTableViewCell: UITableViewCell, ReactorKit.View {
 
     func bind(reactor: SearchResultTableCellReator) {
         reactor.state.map { $0.appIconImage }
+            .distinctUntilChanged()
             .bind(to: iconImageView.rx.fadeImage())
             .disposed(by: disposeBag)
         
@@ -327,14 +328,17 @@ class SearchResultTableViewCell: UITableViewCell, ReactorKit.View {
 //            .distinctUntilChanged()
         
         reactor.state.map { $0.leftThumbnailImage }
+            .distinctUntilChanged()
             .bind(to: thumbnailImageView.leftThumbnailImageView.rx.fadeImage(), thumbnailImageView.singleThumbnailImageView.rx.fadeImage())
             .disposed(by: disposeBag)
 
         reactor.state.map { $0.middleThumbnailImage }
+            .distinctUntilChanged()
             .bind(to: thumbnailImageView.middleThumbnailImageView.rx.fadeImage())
             .disposed(by: disposeBag)
         
         reactor.state.map { $0.rightThumbnailImage }
+            .distinctUntilChanged()
             .bind(to: thumbnailImageView.rightThumbnailImageView.rx.fadeImage())
             .disposed(by: disposeBag)
 

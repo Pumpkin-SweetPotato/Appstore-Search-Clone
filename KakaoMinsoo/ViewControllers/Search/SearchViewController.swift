@@ -294,10 +294,11 @@ class SearchViewController: UIViewController, ReactorKit.StoryboardView {
             .disposed(by: disposeBag)
         
         searchResultTableView.rx.contentOffset
+            .distinctUntilChanged()
             .subscribe(onNext: { [weak self] contentOffset in
                 guard let self = self else { return }
                 if (self.searchResultTableView.contentOffset.y >= (self.searchResultTableView.contentSize.height - self.searchResultTableView.frame.size.height)) {
-//                    reactor.action.onNext()
+                    reactor.action.onNext(.loadMore)
                 }
                 
             }).disposed(by: disposeBag)
@@ -307,8 +308,29 @@ class SearchViewController: UIViewController, ReactorKit.StoryboardView {
             .filter { $0 }
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
+                self?.searchResultTableView.contentOffset = .zero
                 self?.searchResultTableView.reloadData()
+                
             }).disposed(by: disposeBag)
+        
+        reactor.state.map { $0.addedIndexPaths }
+            .distinctUntilChanged()
+            .filter { !$0.isEmpty }
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] indexPaths in
+                
+//                self?.searchResultTableView.beginUpdates()
+                self?.searchResultTableView.performBatchUpdates({
+                    self?.searchResultTableView.insertRows(at: indexPaths, with: .fade)
+                }, completion: { _ in
+                    self?.searchResultTableView.setNeedsLayout()
+                    self?.searchResultTableView.layoutIfNeeded()
+                })
+                
+//                self?.searchResultTableView.endUpdates()
+                
+            }).disposed(by: disposeBag)
+        
     }
     
     func changeViewMode(_ mode: SearchViewMode) {
@@ -370,7 +392,9 @@ class SearchViewController: UIViewController, ReactorKit.StoryboardView {
         
         
             UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut, animations: {
-                self.rootView.layoutIfNeeded()
+                self.stackView.layoutIfNeeded()
+                print("ad", self.reactor?.currentState.addedIndexPaths.count)
+                print("ssr", self.reactor?.currentState.slicedSearchResults.count)
             })
         }
     }

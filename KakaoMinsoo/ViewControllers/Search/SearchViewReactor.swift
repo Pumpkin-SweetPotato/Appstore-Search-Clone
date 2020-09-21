@@ -48,6 +48,7 @@ final class SearchViewReactor: Reactor {
         case setIsHiddenSearchResultTableView(Bool)
         
         case setNeedReload(Bool)
+        case setAddedIndexPaths([IndexPath])
         case setIsNeedReloadFilteredKeywordTableView(Bool)
     }
     
@@ -70,13 +71,14 @@ final class SearchViewReactor: Reactor {
         var isHiddenLatestSearchTableView: Bool = false
         var isHiddenSearchResultTabbleView: Bool = true
         
+        var addedIndexPaths: [IndexPath] = []
         var isNeedReload: Bool = false
         var isNeedReloadFilteredKeywordTableView: Bool = false
     }
     
     var initialState: State
     let apiClient: APIClient
-    let sliceCount: Int = 40
+    let sliceCount: Int = 20
     
     init(apiClient: APIClient) {
         self.apiClient = apiClient
@@ -121,14 +123,22 @@ final class SearchViewReactor: Reactor {
             
             let requsetSearchResults = makeRequest(keyword: currentKeyword)
                 .map { $0.results }
-                .flatMap { Observable<Mutation>.concat([.just(.setSearchResults($0)),
-                                                        .just(.setSlicedSearchResults($0))]) }
+                .flatMap { [unowned self] results -> Observable<Mutation> in
+                    if results.count < self.sliceCount {
+                        return Observable<Mutation>.concat([.just(.setSearchResults(results)),
+                                                            .just(.setSlicedSearchResults(results))])
+                    } else {
+                        return Observable<Mutation>.concat([.just(.setSearchResults(results)),
+                                                            .just(.setSlicedSearchResults(Array(results[0..<sliceCount])))])
+                    }
+                }
                 
             let setSearchViewMode = Observable<Mutation>.just(.setSearchViewMode(.showingResult))
             
             let setNeedReload: Observable<Mutation> = .concat(.just(.setNeedReload(true)), .just(.setNeedReload(false)))
                 
-            return .concat(setLatestSearchKeyword, requsetSearchResults, setSearchViewMode, setNeedReload)
+            let setSliceIndex: Observable<Mutation> = .just(.setSliceIndex(1))
+            return .concat(setLatestSearchKeyword, requsetSearchResults, setSliceIndex, setSearchViewMode, setNeedReload)
             
         case .searchCancel:
             let setSearchViewMode = Observable<Mutation>.just(.setSearchViewMode(.initial))
@@ -144,16 +154,27 @@ final class SearchViewReactor: Reactor {
             
             let setSelectedKeyword: Observable<Mutation> = .concat(.just(.setSelectedSearchKeyword(keyword)), .just(.setSelectedSearchKeyword(nil)))
             
+            let setKeyword: Observable<Mutation> = .just(.setSearchKeyword(keyword))
+            
             let requsetSearchResults = makeRequest(keyword: keyword)
                 .map { $0.results }
-                .flatMap { Observable<Mutation>.concat([.just(.setSearchResults($0)),
-                                                        .just(.setSlicedSearchResults($0))]) }
+                .flatMap { [unowned self] results -> Observable<Mutation> in
+                    if results.count < self.sliceCount {
+                        return Observable<Mutation>.concat([.just(.setSearchResults(results)),
+                                                            .just(.setSlicedSearchResults(results))])
+                    } else {
+                        return Observable<Mutation>.concat([.just(.setSearchResults(results)),
+                                                            .just(.setSlicedSearchResults(Array(results[0..<sliceCount])))])
+                    }
+                }
             
             let setViewMode: Observable<Mutation> = .just(.setSearchViewMode(.showingResult))
             
             let setNeedReload: Observable<Mutation> = .concat(.just(.setNeedReload(true)), .just(.setNeedReload(false)))
             
-            return .concat([setLatestSearchKeyword, setSelectedKeyword, requsetSearchResults, setViewMode, setNeedReload])
+            let setSliceIndex: Observable<Mutation> = .just(.setSliceIndex(1))
+            
+            return .concat([setLatestSearchKeyword, setKeyword, setSelectedKeyword, requsetSearchResults, setSliceIndex, setViewMode, setNeedReload])
         case .filteredLatestSearchKeywordSelected(let indexPath):
             let keyword = currentState.filteredLatestSearchedKeywords[indexPath.row]
 //            SearchUserDefaults.latestSearchKeywords.append(keyword)
@@ -163,16 +184,27 @@ final class SearchViewReactor: Reactor {
             
             let setSelectedKeyword: Observable<Mutation> = .concat(.just(.setSelectedSearchKeyword(keyword)), .just(.setSelectedSearchKeyword(nil)))
             
+            let setKeyword: Observable<Mutation> = .just(.setSearchKeyword(keyword))
+            
             let requsetSearchResults = makeRequest(keyword: keyword)
                 .map { $0.results }
-                .flatMap { Observable<Mutation>.concat([.just(.setSearchResults($0)),
-                                                        .just(.setSlicedSearchResults($0))]) }
+                .flatMap { [unowned self] results -> Observable<Mutation> in
+                    if results.count < self.sliceCount {
+                        return Observable<Mutation>.concat([.just(.setSearchResults(results)),
+                                                            .just(.setSlicedSearchResults(results))])
+                    } else {
+                        return Observable<Mutation>.concat([.just(.setSearchResults(results)),
+                                                            .just(.setSlicedSearchResults(Array(results[0..<sliceCount])))])
+                    }
+                }
             
             let setViewMode: Observable<Mutation> = .just(.setSearchViewMode(.showingResult))
             
             let setNeedReload: Observable<Mutation> = .concat(.just(.setNeedReload(true)), .just(.setNeedReload(false)))
             
-            return .concat([setLatestSearchKeyword, setSelectedKeyword, requsetSearchResults, setViewMode, setNeedReload])
+            let setSliceIndex: Observable<Mutation> = .just(.setSliceIndex(1))
+            
+            return .concat([setLatestSearchKeyword, setKeyword, setSelectedKeyword, setSliceIndex, requsetSearchResults, setViewMode, setNeedReload])
         case .searchResultSelected(let indexPath):
             guard currentState.searchResults.count > indexPath.row else { return .empty() }
             let result = currentState.searchResults[indexPath.row]
@@ -189,8 +221,30 @@ final class SearchViewReactor: Reactor {
                 .just(.setSearchDetailViewController(nil))
             return .concat(setViewController, unsetViewController)
         case .loadMore:
-            currentState.searchResults[0...currentState.sliceIndex * sliceCount]
-            return .empty()
+            guard currentState.sliceIndex * sliceCount < currentState.searchResults.count else { return .empty() }
+            
+            let _sliceIndex = currentState.sliceIndex + 1
+            let _sliceCount: Int = _sliceIndex * sliceCount
+            let originalSearchResults = currentState.searchResults
+            
+            var slicedSearchResult: [SearchResult] = []
+            if _sliceCount > currentState.searchResults.count {
+                slicedSearchResult = originalSearchResults
+            } else {
+                slicedSearchResult = Array(originalSearchResults[0..<_sliceCount])
+            }
+            
+            var addedIndexPath: [IndexPath] = []
+            
+            for row in currentState.slicedSearchResults.count ..< slicedSearchResult.count {
+                addedIndexPath.append(IndexPath(row: row, section: 0))
+            }
+            
+            let setAddedIndexPath = Observable<Mutation>.concat(.just(.setAddedIndexPaths(addedIndexPath)), .just(.setAddedIndexPaths([])))
+            
+            return .concat([.just(.setSliceIndex(_sliceIndex)),
+                            .just(.setSlicedSearchResults(slicedSearchResult)),
+                            setAddedIndexPath])
         }
     }
     
@@ -199,7 +253,6 @@ final class SearchViewReactor: Reactor {
         
         switch mutation {
         case .setSearchKeyword(let keyword):
-            print("keyword \(keyword)")
             state.searchKeyword = keyword
         case .setLatestSearchedKeywords(let keywords):
             state.latestSearchedKeywords = keywords
@@ -229,6 +282,8 @@ final class SearchViewReactor: Reactor {
             state.isHiddenSearchResultTabbleView = set
         case .setNeedReload(let set):
             state.isNeedReload = set
+        case .setAddedIndexPaths(let indexPaths):
+            state.addedIndexPaths = indexPaths
         case .setIsNeedReloadFilteredKeywordTableView(let set):
             state.isNeedReloadFilteredKeywordTableView = set
         }
