@@ -178,10 +178,22 @@ class SearchDetailViewController: UIViewController, ReactorKit.StoryboardView {
     }
     
     func isHiddenNavigationBarItem(_ isHidden: Bool) {
+        guard self.navigationItemContainer.alpha != (isHidden ? 0 : 1) else { return }
+        
+        if !isHidden {
+            self.navigationItemContainer.transform = CGAffineTransform(translationX: 0, y: 0.8)
+        }
+        
         DispatchQueue.main.async {
             UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut, animations: {
                 self.navigationItemContainer.alpha = isHidden ? 0 : 1
                 self.appCommonInformationView.topContainer.alpha = isHidden ? 1 : 0
+                
+                if isHidden {
+                    self.navigationItemContainer.transform = CGAffineTransform(translationX: 0, y: 1.2)
+                } else {
+                    self.navigationItemContainer.transform = .identity
+                }
             }, completion: { _ in
                 
             })
