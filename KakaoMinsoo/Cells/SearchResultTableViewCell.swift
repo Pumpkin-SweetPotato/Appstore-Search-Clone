@@ -238,10 +238,12 @@ class SearchResultTableViewCell: UITableViewCell, ReactorKit.View {
         
         getButton.layer.cornerRadius = getButtonHeight / 2
         
+        let factor: CGFloat = (DeviceType.iPhoneX || DeviceType.iPhoneXRMax) ? 0.24 : 0.29
+        
         thumbnailImageView.snp.makeConstraints { make in
             make.top.equalTo(iconImageView.snp.bottom).offset(15)
 //            make.height.equalTo(195)
-            make.height.equalTo(UIScreen.main.bounds.height * 0.24).priority(.low)
+            make.height.equalTo(UIScreen.main.bounds.height * factor).priority(.low)
             make.leading.trailing.equalToSuperview()
             make.bottom.lessThanOrEqualToSuperview().offset(-15)
         }
@@ -335,5 +337,21 @@ class SearchResultTableViewCell: UITableViewCell, ReactorKit.View {
         reactor.state.map { $0.rightThumbnailImage }
             .bind(to: thumbnailImageView.rightThumbnailImageView.rx.fadeImage())
             .disposed(by: disposeBag)
+
+        reactor.state.map { $0.thumbnailImageCount }
+            .distinctUntilChanged()
+            .subscribe(onNext: { [weak self] count in
+                guard let self = self else { return }
+                if count < 3 {
+                    for index in 0..<count {
+                        if index == 0 {
+                            self.thumbnailImageView.rightThumbnailImageView.alpha = 0
+                        } else if index == 1 {
+                            self.thumbnailImageView.middleThumbnailImageView.alpha = 0
+                        }
+                    }
+                    
+                }
+            }).disposed(by: disposeBag)
     }
 }

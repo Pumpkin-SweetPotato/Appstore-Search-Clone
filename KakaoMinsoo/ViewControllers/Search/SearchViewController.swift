@@ -256,13 +256,10 @@ class SearchViewController: UIViewController, ReactorKit.StoryboardView {
     }
     
     func bindTableView(reactor: SearchViewReactor) {
+        //
+        
         latestSearchTableView.rx.itemSelected
             .map { Reactor.Action.latestSearchKeywordSelected($0) }
-            .bind(to: reactor.action)
-            .disposed(by: disposeBag)
-        
-        filteredLatestSearchTableView.rx.itemSelected
-            .map { Reactor.Action.filteredLatestSearchKeywordSelected($0) }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
@@ -273,6 +270,12 @@ class SearchViewController: UIViewController, ReactorKit.StoryboardView {
             .subscribe(onNext: { [weak self] _ in
                 self?.latestSearchTableView.reloadData()
             }).disposed(by: disposeBag)
+        //
+        
+        filteredLatestSearchTableView.rx.itemSelected
+            .map { Reactor.Action.filteredLatestSearchKeywordSelected($0) }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
         
         reactor.state.map { $0.isNeedReloadFilteredKeywordTableView }
             .distinctUntilChanged()
@@ -282,11 +285,22 @@ class SearchViewController: UIViewController, ReactorKit.StoryboardView {
                 self?.filteredLatestSearchTableView.reloadData()
             }).disposed(by: disposeBag)
         
+        //
+        
         searchResultTableView.rx.itemSelected
             .do(onNext: { [weak self] in self?.searchResultTableView.deselectRow(at: $0, animated: false) })
             .map { Reactor.Action.searchResultSelected($0) }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
+        
+        searchResultTableView.rx.contentOffset
+            .subscribe(onNext: { [weak self] contentOffset in
+                guard let self = self else { return }
+                if (self.searchResultTableView.contentOffset.y >= (self.searchResultTableView.contentSize.height - self.searchResultTableView.frame.size.height)) {
+//                    reactor.action.onNext()
+                }
+                
+            }).disposed(by: disposeBag)
         
         reactor.state.map { $0.isNeedReload }
             .distinctUntilChanged()

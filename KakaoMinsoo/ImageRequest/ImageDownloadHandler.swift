@@ -133,6 +133,7 @@ final class ImageDownloadManager {
     func cancelDownloadImage(_ imageUrlString: String, indexPath: IndexPath?) {
         guard let operation = getOperation(with: imageUrlString) else { return }
         
+        operation.downloadHandler = nil
         operation.cancelDownloadImageTask()
     }
     

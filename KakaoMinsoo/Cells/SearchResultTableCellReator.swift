@@ -30,6 +30,8 @@ final class SearchResultTableCellReator: Reactor {
         var leftThumbnailImage: UIImage?
         var middleThumbnailImage: UIImage?
         var rightThumbnailImage: UIImage?
+        
+        var thumbnailImageCount: Int
     }
     
     var initialState: State
@@ -61,7 +63,8 @@ final class SearchResultTableCellReator: Reactor {
                              ratingCountString: userRatingString,
                              leftThumbnailImage: nil,
                              middleThumbnailImage: nil,
-                             rightThumbnailImage: nil)
+                             rightThumbnailImage: nil,
+                             thumbnailImageCount: searchResult.screenshotUrls.count)
     }
     
     func mutate(action: Action) -> Observable<Mutation> {

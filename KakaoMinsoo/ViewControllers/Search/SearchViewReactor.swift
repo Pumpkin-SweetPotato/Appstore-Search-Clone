@@ -25,12 +25,18 @@ final class SearchViewReactor: Reactor {
         case latestSearchKeywordSelected(IndexPath)
         case filteredLatestSearchKeywordSelected(IndexPath)
         case searchResultSelected(IndexPath)
+        
+        case loadMore
     }
     
     enum Mutation {
         case setSearchKeyword(String)
         case setLatestSearchedKeywords([String])
+        
         case setSearchResults([SearchResult])
+        case setSlicedSearchResults([SearchResult])
+        case setSliceIndex(Int)
+        
         case setFilteredSearchResults([String])
         case setSelectedSearchKeyword(String?)
         case setSearchViewMode(SearchViewMode)
@@ -49,7 +55,11 @@ final class SearchViewReactor: Reactor {
         var searchKeyword: String
         var latestSearchedKeywords: [String]
         var filteredLatestSearchedKeywords: [String]
+        
         var searchResults: [SearchResult]
+        var slicedSearchResults: [SearchResult]
+        var sliceIndex: Int = 1
+
         var selectedSearchKeyword: String?
         var searchViewMode: SearchViewMode = .initial
         var searchDetailViewController: SearchDetailViewController?
@@ -66,13 +76,15 @@ final class SearchViewReactor: Reactor {
     
     var initialState: State
     let apiClient: APIClient
+    let sliceCount: Int = 40
     
     init(apiClient: APIClient) {
         self.apiClient = apiClient
         initialState = State(searchKeyword: "",
                              latestSearchedKeywords: SearchUserDefaults.latestSearchKeywords,
                              filteredLatestSearchedKeywords: [],
-                             searchResults: [])
+                             searchResults: [],
+                             slicedSearchResults: [])
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -109,7 +121,8 @@ final class SearchViewReactor: Reactor {
             
             let requsetSearchResults = makeRequest(keyword: currentKeyword)
                 .map { $0.results }
-                .flatMap { Observable<Mutation>.just(.setSearchResults($0)) }
+                .flatMap { Observable<Mutation>.concat([.just(.setSearchResults($0)),
+                                                        .just(.setSlicedSearchResults($0))]) }
                 
             let setSearchViewMode = Observable<Mutation>.just(.setSearchViewMode(.showingResult))
             
@@ -133,7 +146,8 @@ final class SearchViewReactor: Reactor {
             
             let requsetSearchResults = makeRequest(keyword: keyword)
                 .map { $0.results }
-                .flatMap { Observable<Mutation>.just(.setSearchResults($0)) }
+                .flatMap { Observable<Mutation>.concat([.just(.setSearchResults($0)),
+                                                        .just(.setSlicedSearchResults($0))]) }
             
             let setViewMode: Observable<Mutation> = .just(.setSearchViewMode(.showingResult))
             
@@ -151,7 +165,8 @@ final class SearchViewReactor: Reactor {
             
             let requsetSearchResults = makeRequest(keyword: keyword)
                 .map { $0.results }
-                .flatMap { Observable<Mutation>.just(.setSearchResults($0)) }
+                .flatMap { Observable<Mutation>.concat([.just(.setSearchResults($0)),
+                                                        .just(.setSlicedSearchResults($0))]) }
             
             let setViewMode: Observable<Mutation> = .just(.setSearchViewMode(.showingResult))
             
@@ -173,6 +188,9 @@ final class SearchViewReactor: Reactor {
             let unsetViewController: Observable<Mutation> =
                 .just(.setSearchDetailViewController(nil))
             return .concat(setViewController, unsetViewController)
+        case .loadMore:
+            currentState.searchResults[0...currentState.sliceIndex * sliceCount]
+            return .empty()
         }
     }
     
@@ -181,6 +199,7 @@ final class SearchViewReactor: Reactor {
         
         switch mutation {
         case .setSearchKeyword(let keyword):
+            print("keyword \(keyword)")
             state.searchKeyword = keyword
         case .setLatestSearchedKeywords(let keywords):
             state.latestSearchedKeywords = keywords
@@ -188,6 +207,10 @@ final class SearchViewReactor: Reactor {
             state.filteredLatestSearchedKeywords = keywords
         case .setSearchResults(let results):
             state.searchResults = results
+        case .setSliceIndex(let index):
+            state.sliceIndex = index
+        case .setSlicedSearchResults(let results):
+            state.slicedSearchResults = results
         case .setSelectedSearchKeyword(let keyword):
             state.selectedSearchKeyword = keyword
         case .setSearchViewMode(let mode):
@@ -220,7 +243,8 @@ final class SearchViewReactor: Reactor {
     func makeParameter(with keyword: String) -> SearchRequestParameter {
         return SearchRequestParameter(
             term: keyword,
-            attribute: nil
+            attribute: nil,
+            limit: 100
         )
     }
     
