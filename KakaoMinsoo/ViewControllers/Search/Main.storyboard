@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="brx-Yj-FNy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="brx-Yj-FNy">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -30,17 +32,180 @@
                     <view key="view" contentMode="scaleToFill" id="cPw-b5-IZI" userLabel="Root view">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="rtr-dc-n7E">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="etD-1l-G8m" userLabel="SearchLabelContainer">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="검색" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ybw-1k-Ung" userLabel="SearchLabel">
+                                                <rect key="frame" x="15" y="0.0" width="399" height="50"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="Ybw-1k-Ung" secondAttribute="bottom" id="0zs-kL-hoy"/>
+                                            <constraint firstItem="Ybw-1k-Ung" firstAttribute="leading" secondItem="etD-1l-G8m" secondAttribute="leading" constant="15" id="5y8-Bu-X7p"/>
+                                            <constraint firstItem="Ybw-1k-Ung" firstAttribute="top" secondItem="etD-1l-G8m" secondAttribute="top" id="Fgh-Th-xTb"/>
+                                            <constraint firstAttribute="trailing" secondItem="Ybw-1k-Ung" secondAttribute="trailing" id="ia2-dJ-53A"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VL0-4y-QSH" userLabel="SearchBarContainer">
+                                        <rect key="frame" x="0.0" y="50" width="414" height="56"/>
+                                        <subviews>
+                                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="App Store" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QQg-jp-oru">
+                                                <rect key="frame" x="5" y="0.0" width="394" height="56"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </searchBar>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="QQg-jp-oru" firstAttribute="leading" secondItem="VL0-4y-QSH" secondAttribute="leading" constant="5" id="0ER-37-y94"/>
+                                            <constraint firstAttribute="bottom" secondItem="QQg-jp-oru" secondAttribute="bottom" id="A52-LW-RsT"/>
+                                            <constraint firstItem="QQg-jp-oru" firstAttribute="top" secondItem="VL0-4y-QSH" secondAttribute="top" id="qTt-eL-pTB"/>
+                                            <constraint firstAttribute="trailing" secondItem="QQg-jp-oru" secondAttribute="trailing" constant="15" id="vFH-Im-Kby"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kf0-my-J1D" userLabel="LatestSearchLabelContainer">
+                                        <rect key="frame" x="0.0" y="106" width="414" height="50"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="최근 검색어" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DDr-NH-bYc" userLabel="LatestSearchLabel">
+                                                <rect key="frame" x="15" y="0.0" width="399" height="50"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="DDr-NH-bYc" firstAttribute="top" secondItem="kf0-my-J1D" secondAttribute="top" id="2Am-Hj-21q"/>
+                                            <constraint firstItem="DDr-NH-bYc" firstAttribute="leading" secondItem="kf0-my-J1D" secondAttribute="leading" constant="15" id="50j-W4-wVn"/>
+                                            <constraint firstAttribute="trailing" secondItem="DDr-NH-bYc" secondAttribute="trailing" id="9bq-E4-VcM"/>
+                                            <constraint firstAttribute="bottom" secondItem="DDr-NH-bYc" secondAttribute="bottom" id="EP4-DT-dHo"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7qV-X4-URB" userLabel="LatestSearchTableViewContainer">
+                                        <rect key="frame" x="0.0" y="156" width="414" height="618"/>
+                                        <subviews>
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="30" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5xw-gK-sq7" userLabel="LatestSearchKeywordTableView">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="618"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <prototypes>
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LatestSearchedKeywordCell" id="Bkx-TB-Vhg" customClass="LatestSearchedKeywordCell" customModule="KakaoMinsoo" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="28" width="414" height="30"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Bkx-TB-Vhg" id="nD8-2I-OUq">
+                                                            <rect key="frame" x="0.0" y="0.0" width="414" height="30"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                        </tableViewCellContentView>
+                                                    </tableViewCell>
+                                                </prototypes>
+                                                <sections/>
+                                            </tableView>
+                                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="30" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aPv-mP-z86" userLabel="FilteredLatestSearchKeyword">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="617"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <prototypes>
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LatestSearchedKeywordCell" id="SCY-Ey-Viu" customClass="LatestSearchedKeywordCell" customModule="KakaoMinsoo" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="28" width="414" height="30"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SCY-Ey-Viu" id="agY-V0-VUw">
+                                                            <rect key="frame" x="0.0" y="0.0" width="414" height="30"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                        </tableViewCellContentView>
+                                                    </tableViewCell>
+                                                </prototypes>
+                                                <sections/>
+                                            </tableView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="aPv-mP-z86" secondAttribute="bottom" constant="1" id="7a5-5q-osp"/>
+                                            <constraint firstItem="aPv-mP-z86" firstAttribute="top" secondItem="7qV-X4-URB" secondAttribute="top" id="89f-8F-tXX"/>
+                                            <constraint firstItem="5xw-gK-sq7" firstAttribute="leading" secondItem="7qV-X4-URB" secondAttribute="leading" id="9va-iE-1Lw"/>
+                                            <constraint firstAttribute="trailing" secondItem="aPv-mP-z86" secondAttribute="trailing" id="Bnk-0x-Hdm"/>
+                                            <constraint firstAttribute="bottom" secondItem="5xw-gK-sq7" secondAttribute="bottom" id="EbF-CS-OGI"/>
+                                            <constraint firstItem="aPv-mP-z86" firstAttribute="leading" secondItem="7qV-X4-URB" secondAttribute="leading" id="Ewa-OM-aEF"/>
+                                            <constraint firstAttribute="trailing" secondItem="5xw-gK-sq7" secondAttribute="trailing" id="Ym6-lF-D7B"/>
+                                            <constraint firstItem="5xw-gK-sq7" firstAttribute="top" secondItem="7qV-X4-URB" secondAttribute="top" id="xDR-AC-6aQ"/>
+                                        </constraints>
+                                    </view>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6bp-Ta-kM1" userLabel="SearchResultTableView">
+                                        <rect key="frame" x="0.0" y="774" width="414" height="1"/>
+                                        <subviews>
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4SD-f7-lJw" userLabel="SearchResultTableView">
+                                                <rect key="frame" x="15" y="0.0" width="384" height="1"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <prototypes>
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SearchResultTableViewCell" id="Kui-ab-VBs" customClass="SearchResultTableViewCell" customModule="KakaoMinsoo" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="28" width="384" height="0.0"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Kui-ab-VBs" id="cHI-KY-UYR">
+                                                            <rect key="frame" x="0.0" y="0.0" width="384" height="0.0"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                        </tableViewCellContentView>
+                                                    </tableViewCell>
+                                                </prototypes>
+                                                <sections/>
+                                            </tableView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="4SD-f7-lJw" firstAttribute="leading" secondItem="6bp-Ta-kM1" secondAttribute="leading" constant="15" id="5ID-JL-gR4"/>
+                                            <constraint firstItem="4SD-f7-lJw" firstAttribute="top" secondItem="6bp-Ta-kM1" secondAttribute="top" id="D7r-zW-WDN"/>
+                                            <constraint firstAttribute="trailing" secondItem="4SD-f7-lJw" secondAttribute="trailing" constant="15" id="Q5q-al-Zhg"/>
+                                            <constraint firstAttribute="bottom" secondItem="4SD-f7-lJw" secondAttribute="bottom" id="c3P-TB-wM2"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="1" id="dSa-Mc-YTe"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="6bp-Ta-kM1" secondAttribute="trailing" id="6iZ-oz-29w"/>
+                                    <constraint firstAttribute="trailing" secondItem="etD-1l-G8m" secondAttribute="trailing" id="PJP-dZ-lu4"/>
+                                    <constraint firstAttribute="trailing" secondItem="7qV-X4-URB" secondAttribute="trailing" id="RN6-Sr-tTF"/>
+                                    <constraint firstAttribute="trailing" secondItem="VL0-4y-QSH" secondAttribute="trailing" id="XOg-k6-8pF"/>
+                                    <constraint firstAttribute="trailing" secondItem="kf0-my-J1D" secondAttribute="trailing" id="uo6-5b-d5p"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="CUv-Uu-i5a"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="CUv-Uu-i5a" firstAttribute="trailing" secondItem="rtr-dc-n7E" secondAttribute="trailing" id="FZP-3J-ofT"/>
+                            <constraint firstItem="rtr-dc-n7E" firstAttribute="leading" secondItem="CUv-Uu-i5a" secondAttribute="leading" id="f9e-OI-vws"/>
+                            <constraint firstItem="rtr-dc-n7E" firstAttribute="top" secondItem="CUv-Uu-i5a" secondAttribute="top" id="oV1-Jf-qVD"/>
+                            <constraint firstItem="CUv-Uu-i5a" firstAttribute="bottom" secondItem="rtr-dc-n7E" secondAttribute="bottom" id="uRg-3X-sJO"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="vK5-pK-zHn"/>
                     <connections>
+                        <outlet property="filteredLatestSearchTableView" destination="aPv-mP-z86" id="M9V-pX-FTL"/>
+                        <outlet property="latestSearchLabel" destination="DDr-NH-bYc" id="Ked-76-9gl"/>
+                        <outlet property="latestSearchLabelContainer" destination="kf0-my-J1D" id="b9B-fx-OgI"/>
+                        <outlet property="latestSearchTableView" destination="5xw-gK-sq7" id="R9C-kr-gT8"/>
+                        <outlet property="latestSearchTableViewContainer" destination="7qV-X4-URB" id="TmN-gq-AFf"/>
                         <outlet property="rootView" destination="cPw-b5-IZI" id="ajU-cM-8Lh"/>
+                        <outlet property="searchBar" destination="QQg-jp-oru" id="72v-bL-fKr"/>
+                        <outlet property="searchBarContainer" destination="VL0-4y-QSH" id="AxD-qR-Ybo"/>
+                        <outlet property="searchLabel" destination="Ybw-1k-Ung" id="iN8-b2-Yky"/>
+                        <outlet property="searchLabelContainer" destination="etD-1l-G8m" id="xCT-zc-YDd"/>
+                        <outlet property="searchResultTableContainer" destination="6bp-Ta-kM1" id="PGo-Io-e1d"/>
+                        <outlet property="searchResultTableView" destination="4SD-f7-lJw" id="sGh-Xa-U1k"/>
+                        <outlet property="stackView" destination="rtr-dc-n7E" id="SGQ-Ns-QYw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pwo-cj-vxf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1025" y="-597"/>
+            <point key="canvasLocation" x="1024.6376811594205" y="-597.32142857142856"/>
         </scene>
     </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

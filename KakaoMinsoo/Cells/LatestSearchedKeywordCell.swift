@@ -73,9 +73,21 @@ class LatestSearchedKeywordCell: UITableViewCell, ReactorKit.View {
         
    }
    
-   required init?(coder: NSCoder) {
-       return nil
-   }
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        contentView.addSubview(horizontalStackView)
+        horizontalStackView.addArrangedSubview(searchIconImageView)
+        horizontalStackView.addArrangedSubview(keywordLabel)
+        
+        horizontalStackView.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(SearchConstants.defaultLeading)
+            make.top.bottom.equalToSuperview()
+            make.trailing.equalToSuperview().offset(-SearchConstants.defaultTrailing)
+        }
+        
+        horizontalStackView.setCustomSpacing(15, after: searchIconImageView)
+        searchIconImageView.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+    }
    
    override func setSelected(_ selected: Bool, animated: Bool) {
        super.setSelected(selected, animated: animated)
@@ -97,6 +109,17 @@ class LatestSearchedKeywordCell: UITableViewCell, ReactorKit.View {
         reactor.state.map { $0.isHiddenGlassIcon }
             .bind(to: searchIconImageView.rx.isHidden)
             .disposed(by: disposeBag)
+        
+        reactor.state.map { $0.isHiddenGlassIcon }
+            .distinctUntilChanged()
+            .subscribe(onNext: { [weak self] isLatestTableView in
+                if isLatestTableView {
+                    self?.separatorInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 0)
+                    self?.horizontalStackView.snp.makeConstraints { make in
+                        make.leading.equalToSuperview().offset(15)
+                    }
+                }
+            }).disposed(by: disposeBag)
         
         reactor.state.map { $0.labelColor }
             .distinctUntilChanged()

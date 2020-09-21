@@ -121,7 +121,7 @@ class SearchResultTableViewCell: UITableViewCell, ReactorKit.View {
     let resultInfoVerticalStackView: UIStackView = {
         let resultInfoVerticalStackView = UIStackView()
         resultInfoVerticalStackView.axis = .vertical
-        resultInfoVerticalStackView.distribution = .fill
+        resultInfoVerticalStackView.distribution = .equalSpacing
         resultInfoVerticalStackView.alignment = .leading
         
         return resultInfoVerticalStackView
@@ -129,7 +129,7 @@ class SearchResultTableViewCell: UITableViewCell, ReactorKit.View {
     
     let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 17)
+        label.font = UIFont.systemFont(ofSize: 18)
         label.lineBreakMode = .byTruncatingTail
         
         return label
@@ -137,7 +137,8 @@ class SearchResultTableViewCell: UITableViewCell, ReactorKit.View {
     
     let genreLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 12, weight: .light)
+        label.font = UIFont.systemFont(ofSize: 14, weight: .light)
+        label.textColor = .searchGray
         
         return label
     }()
@@ -198,7 +199,7 @@ class SearchResultTableViewCell: UITableViewCell, ReactorKit.View {
         iconImageView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(20)
             make.left.equalToSuperview()
-            make.width.height.equalTo(60)
+            make.width.height.equalTo(70)
         }
         
         iconImageView.layer.masksToBounds = true
@@ -206,11 +207,12 @@ class SearchResultTableViewCell: UITableViewCell, ReactorKit.View {
         
         resultInfoVerticalStackView.snp.makeConstraints { make in
             make.top.equalTo(iconImageView)
-            make.leading.equalTo(iconImageView.snp.trailing).offset(6)
+            make.leading.equalTo(iconImageView.snp.trailing).offset(15)
+            make.bottom.equalTo(iconImageView).offset(-5)
         }
         
-        resultInfoVerticalStackView.setCustomSpacing(4, after: titleLabel)
-        resultInfoVerticalStackView.setCustomSpacing(4, after: genreLabel)
+//        resultInfoVerticalStackView.setCustomSpacing(4, after: titleLabel)
+//        resultInfoVerticalStackView.setCustomSpacing(4, after: genreLabel)
         
         ratingContainerView.snp.makeConstraints { make in
             make.trailing.equalToSuperview()
@@ -238,7 +240,7 @@ class SearchResultTableViewCell: UITableViewCell, ReactorKit.View {
         
         getButton.layer.cornerRadius = getButtonHeight / 2
         
-        let factor: CGFloat = (DeviceType.iPhoneX || DeviceType.iPhoneXRMax) ? 0.24 : 0.29
+        let factor: CGFloat = (DeviceType.iPhoneX || DeviceType.iPhoneXRMax) ? 0.32 : 0.29
         
         thumbnailImageView.snp.makeConstraints { make in
             make.top.equalTo(iconImageView.snp.bottom).offset(15)
@@ -263,8 +265,14 @@ class SearchResultTableViewCell: UITableViewCell, ReactorKit.View {
         setConstraints()
     }
     
+    
     required init?(coder: NSCoder) {
-        return nil
+        super.init(coder: coder)
+        selectionStyle = .none
+        
+        
+        addViews()
+        setConstraints()
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

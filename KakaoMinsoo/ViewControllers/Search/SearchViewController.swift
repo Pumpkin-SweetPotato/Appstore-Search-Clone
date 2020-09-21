@@ -14,168 +14,179 @@ import RxCocoa
 class SearchViewController: UIViewController, ReactorKit.StoryboardView {
     typealias SearchViewMode = SearchViewReactor.SearchViewMode
     @IBOutlet weak var rootView: UIView!
+    @IBOutlet weak var searchLabelContainer: UIView!
+    @IBOutlet weak var searchLabel: UILabel!
+    @IBOutlet weak var stackView: UIStackView!
+    @IBOutlet weak var searchBarContainer: UIView!
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var latestSearchLabelContainer: UIView!
+    @IBOutlet weak var latestSearchLabel: UILabel!
+    @IBOutlet weak var latestSearchTableViewContainer: UIView!
+    @IBOutlet weak var latestSearchTableView: UITableView!
+    @IBOutlet weak var filteredLatestSearchTableView: UITableView!
+    @IBOutlet weak var searchResultTableContainer: UIView!
+    @IBOutlet weak var searchResultTableView: UITableView!
+//    let searchLabelContainer = UIView()
+//
+//    let searchLabel: UILabel = {
+//        let searchLabel = UILabel()
+//        searchLabel.text = "검색"
+//        searchLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+//
+//        return searchLabel
+//    }()
+//
+//    let stackView: UIStackView = {
+//        let stackView: UIStackView = UIStackView()
+//        stackView.alignment = .leading
+//        stackView.axis = .vertical
+//        stackView.distribution = .fill
+//
+//        return stackView
+//    }()
     
-    let searchLabelContainer = UIView()
+//    let searchBarContainer = UIView()
     
-    let searchLabel: UILabel = {
-        let searchLabel = UILabel()
-        searchLabel.text = "검색"
-        searchLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-        
-        return searchLabel
-    }()
+//    let searchBar: UISearchBar = {
+//        let searchBar = UISearchBar()
+//        searchBar.searchBarStyle = .minimal
+//        searchBar.placeholder = "App Store"
+//        searchBar.setImage(UIImage(systemName: "magnifyingglass"), for: .search, state: .normal)
+//
+//        return searchBar
+//    }()
     
-    let stackView: UIStackView = {
-        let stackView: UIStackView = UIStackView()
-        stackView.alignment = .leading
-        stackView.axis = .vertical
-        stackView.distribution = .fill
-        
-        return stackView
-    }()
+//    let latestSearchLabelContainer = UIView()
     
-    let searchBarContainer = UIView()
+//    let latestSearchLabel: UILabel = {
+//        let latestSearchLabel = UILabel()
+//        latestSearchLabel.text = "최근 검색어"
+//        latestSearchLabel.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
+//
+//        return latestSearchLabel
+//    }()
     
-    let searchBar: UISearchBar = {
-        let searchBar = UISearchBar()
-        searchBar.searchBarStyle = .minimal
-        searchBar.placeholder = "App Store"
-        searchBar.setImage(UIImage(systemName: "magnifyingglass"), for: .search, state: .normal)
-        
-        return searchBar
-    }()
+//    let latestSearchTableViewContainer = UIView()
     
-    let latestSearchLabelContainer = UIView()
+//    let latestSearchTableView: UITableView = {
+//        let latestSearchTableView: UITableView = UITableView()
+//        latestSearchTableView.register(LatestSearchedKeywordCell.self,
+//                                       forCellReuseIdentifier: LatestSearchedKeywordCell.reuseIdentifier)
+//
+//        return latestSearchTableView
+//    }()
     
-    let latestSearchLabel: UILabel = {
-        let latestSearchLabel = UILabel()
-        latestSearchLabel.text = "최근 검색어"
-        latestSearchLabel.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
-        
-        return latestSearchLabel
-    }()
+//    let filteredLatestSearchTableView: UITableView = {
+//        let filteredLatestSearchTableView: UITableView = UITableView()
+//        filteredLatestSearchTableView.register(LatestSearchedKeywordCell.self,
+//                                       forCellReuseIdentifier: LatestSearchedKeywordCell.reuseIdentifier)
+//
+//        return filteredLatestSearchTableView
+//    }()
     
-    let latestSearchTableViewContainer = UIView()
+//    let searchResultTableContainer = UIView()
     
-    let latestSearchTableView: UITableView = {
-        let latestSearchTableView: UITableView = UITableView()
-        latestSearchTableView.register(LatestSearchedKeywordCell.self,
-                                       forCellReuseIdentifier: LatestSearchedKeywordCell.reuseIdentifier)
-        
-        return latestSearchTableView
-    }()
-    
-    let filteredLatestSearchTableView: UITableView = {
-        let filteredLatestSearchTableView: UITableView = UITableView()
-        filteredLatestSearchTableView.register(LatestSearchedKeywordCell.self,
-                                       forCellReuseIdentifier: LatestSearchedKeywordCell.reuseIdentifier)
-        
-        return filteredLatestSearchTableView
-    }()
-    
-    let searchResultTableContainer = UIView()
-    
-    let searchResultTableView: UITableView = {
-        let searchResultTableView: UITableView = UITableView()
-        searchResultTableView.register(SearchResultTableViewCell.self,
-                                       forCellReuseIdentifier: SearchResultTableViewCell.reuseIdentifier)
-        
-        return searchResultTableView
-    }()
+//    let searchResultTableView: UITableView = {
+//        let searchResultTableView: UITableView = UITableView()
+//        searchResultTableView.register(SearchResultTableViewCell.self,
+//                                       forCellReuseIdentifier: SearchResultTableViewCell.reuseIdentifier)
+//
+//        return searchResultTableView
+//    }()
     
     let initialStackViewTopOffset: CGFloat = 60
     
     var disposeBag: DisposeBag = DisposeBag()
 
     fileprivate func addViews() {
-        rootView.addSubview(stackView)
-        stackView.addArrangedSubview(searchLabelContainer)
-        searchLabelContainer.addSubview(searchLabel)
-        stackView.addArrangedSubview(searchBarContainer)
-        searchBarContainer.addSubview(searchBar)
-        stackView.addArrangedSubview(latestSearchLabelContainer)
-        latestSearchLabelContainer.addSubview(latestSearchLabel)
-        stackView.addArrangedSubview(latestSearchTableViewContainer)
-        latestSearchTableViewContainer.addSubview(latestSearchTableView)
-        latestSearchTableViewContainer.addSubview(filteredLatestSearchTableView)
-        stackView.addArrangedSubview(searchResultTableContainer)
-        searchResultTableContainer.addSubview(searchResultTableView)
+//        rootView.addSubview(stackView)
+//        stackView.addArrangedSubview(searchLabelContainer)
+//        searchLabelContainer.addSubview(searchLabel)
+//        stackView.addArrangedSubview(searchBarContainer)
+//        searchBarContainer.addSubview(searchBar)
+//        stackView.addArrangedSubview(latestSearchLabelContainer)
+//        latestSearchLabelContainer.addSubview(latestSearchLabel)
+//        stackView.addArrangedSubview(latestSearchTableViewContainer)
+//        latestSearchTableViewContainer.addSubview(latestSearchTableView)
+//        latestSearchTableViewContainer.addSubview(filteredLatestSearchTableView)
+//        stackView.addArrangedSubview(searchResultTableContainer)
+//        searchResultTableContainer.addSubview(searchResultTableView)
     }
     
     fileprivate func setConstraints() {
-        stackView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(initialStackViewTopOffset)
-            make.leading.trailing.bottom.equalToSuperview()
-        }
-        
-        searchLabelContainer.snp.makeConstraints { make in
-            make.trailing.equalToSuperview()
-        }
-        
-        searchLabel.snp.makeConstraints { make in
-            make.trailing.top.bottom.equalToSuperview()
-            make.leading.equalToSuperview().offset(15)
-        }
-        
-        stackView.setCustomSpacing(5, after: searchLabel)
-        
-        searchBarContainer.snp.makeConstraints { make in
-            make.trailing.equalToSuperview()
-        }
-        
-        searchBar.snp.makeConstraints { make in
-            make.top.bottom.equalToSuperview()
-            make.leading.equalToSuperview().offset(5)
-            make.trailing.equalToSuperview().offset(-15)
-        }
-        
-        stackView.setCustomSpacing(50, after: searchBarContainer)
-        
-        latestSearchLabelContainer.snp.makeConstraints { make in
-            make.trailing.equalToSuperview()
-        }
-        
-        latestSearchLabel.snp.makeConstraints { make in
-            make.trailing.top.bottom.equalToSuperview()
-            make.leading.equalToSuperview().offset(15)
-        }
-        
-        stackView.setCustomSpacing(3, after: latestSearchLabel)
-        
-        latestSearchTableViewContainer.snp.makeConstraints { make in
-            make.trailing.equalToSuperview()
-        }
-        
-        latestSearchTableViewContainer.accessibilityLabel = "tableViewContainer"
-        
-        latestSearchTableView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-        
-        latestSearchTableView.accessibilityLabel = "latestSearchTableView"
-        
-        filteredLatestSearchTableView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-        
-        filteredLatestSearchTableView.accessibilityLabel = "filteredLatestSearchTableView"
-        
-        searchResultTableContainer.snp.makeConstraints { make in
-            make.trailing.equalToSuperview()
-            make.height.greaterThanOrEqualTo(1)
-        }
-        
-        searchResultTableContainer.accessibilityLabel = "searchResultTableContainer"
-        
-        searchResultTableView.snp.makeConstraints { make in
-            make.top.bottom.equalToSuperview()
-            make.trailing.equalToSuperview().offset(-15)
-            make.leading.equalToSuperview().offset(15)
-        }
-        
-        searchResultTableView.accessibilityLabel = "searchResultTableView"
-        
-        latestSearchTableView.setContentHuggingPriority(.defaultLow, for: .vertical)
+//        stackView.snp.makeConstraints { make in
+//            make.top.equalToSuperview().offset(initialStackViewTopOffset)
+//            make.leading.trailing.bottom.equalToSuperview()
+//        }
+//
+//        searchLabelContainer.snp.makeConstraints { make in
+//            make.trailing.equalToSuperview()
+//        }
+//
+//        searchLabel.snp.makeConstraints { make in
+//            make.trailing.top.bottom.equalToSuperview()
+//            make.leading.equalToSuperview().offset(15)
+//        }
+//
+//        stackView.setCustomSpacing(5, after: searchLabel)
+//
+//        searchBarContainer.snp.makeConstraints { make in
+//            make.trailing.equalToSuperview()
+//        }
+//
+//        searchBar.snp.makeConstraints { make in
+//            make.top.bottom.equalToSuperview()
+//            make.leading.equalToSuperview().offset(5)
+//            make.trailing.equalToSuperview().offset(-15)
+//        }
+//
+//        stackView.setCustomSpacing(50, after: searchBarContainer)
+//
+//        latestSearchLabelContainer.snp.makeConstraints { make in
+//            make.trailing.equalToSuperview()
+//        }
+//
+//        latestSearchLabel.snp.makeConstraints { make in
+//            make.trailing.top.bottom.equalToSuperview()
+//            make.leading.equalToSuperview().offset(15)
+//        }
+//
+//        stackView.setCustomSpacing(3, after: latestSearchLabel)
+//
+//        latestSearchTableViewContainer.snp.makeConstraints { make in
+//            make.trailing.equalToSuperview()
+//        }
+//
+//        latestSearchTableViewContainer.accessibilityLabel = "tableViewContainer"
+//
+//        latestSearchTableView.snp.makeConstraints { make in
+//            make.edges.equalToSuperview()
+//        }
+//
+//        latestSearchTableView.accessibilityLabel = "latestSearchTableView"
+//
+//        filteredLatestSearchTableView.snp.makeConstraints { make in
+//            make.edges.equalToSuperview()
+//        }
+//
+//        filteredLatestSearchTableView.accessibilityLabel = "filteredLatestSearchTableView"
+//
+//        searchResultTableContainer.snp.makeConstraints { make in
+//            make.trailing.equalToSuperview()
+//            make.height.greaterThanOrEqualTo(1)
+//        }
+//
+//        searchResultTableContainer.accessibilityLabel = "searchResultTableContainer"
+//
+//        searchResultTableView.snp.makeConstraints { make in
+//            make.top.bottom.equalToSuperview()
+//            make.trailing.equalToSuperview().offset(-15)
+//            make.leading.equalToSuperview().offset(15)
+//        }
+//
+//        searchResultTableView.accessibilityLabel = "searchResultTableView"
+//
+//        latestSearchTableView.setContentHuggingPriority(.defaultLow, for: .vertical)
     }
     
     override func viewDidLoad() {
@@ -417,7 +428,7 @@ class SearchViewController: UIViewController, ReactorKit.StoryboardView {
             case .searchBarFocused, .inputContinuing, .showingResult:
                 let statusbarHeight = SearchConstants.statusBarHeight(rootView: self.rootView) ?? 0
                 self.stackView.snp.updateConstraints { make in
-                    make.top.equalToSuperview().offset(0)
+                    make.top.equalToSuperview().offset(statusbarHeight)
                 }
                 
                 self.searchBarContainer.backgroundColor = UIColor.searchGray(alpha: 0.05)
