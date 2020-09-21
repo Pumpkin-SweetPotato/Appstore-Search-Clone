@@ -372,8 +372,8 @@
 				CFBDD101251291B0007E167F /* SearchResultTableViewCell.swift */,
 				CFBDD103251291ED007E167F /* SearchResultTableCellReator.swift */,
 				CF3A99F92513C79000D9CFAB /* LatestSearchedKeywordCell.swift */,
-				02BB79C3251881050039E693 /* SearchKeyword.swift */,
 				02BB79BF251880650039E693 /* LatestSearchedKeywordCellReactor.swift */,
+				02BB79C3251881050039E693 /* SearchKeyword.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";

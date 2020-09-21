@@ -9,7 +9,7 @@
 import UIKit
 
 extension String {
-    func highlightKeyword(keyword: String, size: CGFloat) -> NSMutableAttributedString {
+    func highlightKeyword(keyword: String, font: UIFont, color: UIColor) -> NSMutableAttributedString {
         let attributedString: NSMutableAttributedString = NSMutableAttributedString(string: self)
         let pattern = keyword.lowercased()
         let range: NSRange = NSMakeRange(0, self.count)
@@ -17,7 +17,12 @@ extension String {
         
         regex?.enumerateMatches(in: self.lowercased(), options: NSRegularExpression.MatchingOptions(), range: range) { (textCheckingResult, matchingFlags, stop) -> Void in
             let subRange = textCheckingResult?.range
-            attributedString.addAttribute(NSAttributedString.Key.font, value: UIFont.systemFont(ofSize: size), range: subRange!)
+            let attributes: [NSAttributedString.Key: Any] = [
+                NSAttributedString.Key.font: font,
+                NSAttributedString.Key.foregroundColor: color
+            ]
+            
+            attributedString.addAttributes(attributes, range: subRange!)
         }
         return attributedString
     }

@@ -42,6 +42,7 @@ final class SearchViewReactor: Reactor {
         case setIsHiddenSearchResultTableView(Bool)
         
         case setNeedReload(Bool)
+        case setIsNeedReloadFilteredKeywordTableView(Bool)
     }
     
     struct State {
@@ -60,6 +61,7 @@ final class SearchViewReactor: Reactor {
         var isHiddenSearchResultTabbleView: Bool = true
         
         var isNeedReload: Bool = false
+        var isNeedReloadFilteredKeywordTableView: Bool = false
     }
     
     var initialState: State
@@ -82,12 +84,18 @@ final class SearchViewReactor: Reactor {
             if keyword.isEmpty {
                 return .concat([.just(.setSearchViewMode(.initial)), .just(.setSearchKeyword(keyword))])
             } else {
-                let filteredSearchedKeywords = SearchUserDefaults.latestSearchKeywords.filter { $0.contains(keyword) }
+                var uniqueKeywords: Set<String> = Set<String>()
+                SearchUserDefaults.latestSearchKeywords
+                    .filter { $0.contains(keyword) }
+                    .forEach { uniqueKeywords.insert($0) }
                 
+                let setNeedReloadFilteredTableView = Observable<Mutation>.concat(.just(.setIsNeedReloadFilteredKeywordTableView(true)), .just(.setIsNeedReloadFilteredKeywordTableView(false)))
+            
                 return .concat([
                     .just(.setSearchViewMode(.inputContinuing)),
                     .just(.setSearchKeyword(keyword)),
-                    .just(.setFilteredSearchResults(filteredSearchedKeywords))
+                    .just(.setFilteredSearchResults(Array(uniqueKeywords))),
+                    setNeedReloadFilteredTableView
                 ])
             }
         case .searchBegin:
@@ -196,6 +204,8 @@ final class SearchViewReactor: Reactor {
             state.isHiddenSearchResultTabbleView = set
         case .setNeedReload(let set):
             state.isNeedReload = set
+        case .setIsNeedReloadFilteredKeywordTableView(let set):
+            state.isNeedReloadFilteredKeywordTableView = set
         }
         
         return state

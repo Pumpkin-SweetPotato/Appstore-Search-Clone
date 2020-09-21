@@ -12,6 +12,15 @@ import ReactorKit
 class LatestSearchedKeywordCell: UITableViewCell, ReactorKit.View {
     static let reuseIdentifier: String = String(describing: LatestSearchedKeywordCell.self)
     
+    let horizontalStackView: UIStackView = {
+        let horizontalStackView: UIStackView = UIStackView()
+        horizontalStackView.axis = .horizontal
+        horizontalStackView.alignment = .center
+        horizontalStackView.distribution = .fill
+        
+        return horizontalStackView
+    }()
+    
     let searchIconImageView: UIImageView = {
        let searchIconImageView = UIImageView()
         searchIconImageView.image = UIImage(systemName: "magnifyingglass")
@@ -22,8 +31,8 @@ class LatestSearchedKeywordCell: UITableViewCell, ReactorKit.View {
     
     let keywordLabel: UILabel = {
         let keywordLabel = UILabel()
-        keywordLabel.font = UIFont.systemFont(ofSize: 13, weight: .light)
-        
+        keywordLabel.font = UIFont.systemFont(ofSize: 18, weight: .light)
+        keywordLabel.textColor = .systemBlue
         
         return keywordLabel
     }()
@@ -38,20 +47,29 @@ class LatestSearchedKeywordCell: UITableViewCell, ReactorKit.View {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 //        separatorInset = UIEdgeInsets(top: 0, left: -15, bottom: 0, right: 0)
+        contentView.addSubview(horizontalStackView)
+        horizontalStackView.addArrangedSubview(searchIconImageView)
+        horizontalStackView.addArrangedSubview(keywordLabel)
         
-        contentView.addSubview(searchIconImageView)
-        contentView.addSubview(keywordLabel)
-        
-        searchIconImageView.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(15)
-            make.centerY.equalToSuperview()
+        horizontalStackView.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(SearchConstants.defaultLeading)
+            make.top.bottom.equalToSuperview()
+            make.trailing.equalToSuperview().offset(-SearchConstants.defaultTrailing)
         }
         
-        keywordLabel.snp.makeConstraints { make in
-            make.leading.equalTo(searchIconImageView.snp.trailing).offset(5)
-            make.trailing.lessThanOrEqualToSuperview()
-            make.centerY.equalToSuperview()
-        }
+        horizontalStackView.setCustomSpacing(15, after: searchIconImageView)
+        searchIconImageView.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        
+//        searchIconImageView.snp.makeConstraints { make in
+//            make.leading.equalToSuperview().offset(15)
+//            make.centerY.equalToSuperview()
+//        }
+        
+//        keywordLabel.snp.makeConstraints { make in
+//            make.leading.equalTo(searchIconImageView.snp.trailing).offset(5)
+//            make.trailing.lessThanOrEqualToSuperview()
+//            make.centerY.equalToSuperview()
+//        }
         
    }
    

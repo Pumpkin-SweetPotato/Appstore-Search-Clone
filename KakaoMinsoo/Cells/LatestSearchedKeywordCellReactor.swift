@@ -18,6 +18,7 @@ final class LatestSearchedKeywordCellReactor: Reactor {
         var attributedSearchKeyword: NSMutableAttributedString?
         var searchKeyword: String?
         var isHiddenGlassIcon: Bool = false
+        var labelColor: UIColor = UIColor.systemBlue
     }
     
     var initialState: State
@@ -32,9 +33,10 @@ final class LatestSearchedKeywordCellReactor: Reactor {
             )
         case .highlighted(let keyword, let latestSearchedKeyword):
             initialState = State(
-                attributedSearchKeyword: latestSearchedKeyword.highlightKeyword(keyword: keyword, size: 13),
+                attributedSearchKeyword: latestSearchedKeyword.highlightKeyword(keyword: keyword, font: UIFont.systemFont(ofSize: 19, weight: .medium), color: UIColor.black),
                 searchKeyword: nil,
-                isHiddenGlassIcon: false
+                isHiddenGlassIcon: false,
+                labelColor: UIColor.lightGray
             )
         }
         
