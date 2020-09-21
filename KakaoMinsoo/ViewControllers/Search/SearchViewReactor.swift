@@ -89,12 +89,14 @@ final class SearchViewReactor: Reactor {
                     .filter { $0.contains(keyword) }
                     .forEach { uniqueKeywords.insert($0) }
                 
-                let setNeedReloadFilteredTableView = Observable<Mutation>.concat(.just(.setIsNeedReloadFilteredKeywordTableView(true)), .just(.setIsNeedReloadFilteredKeywordTableView(false)))
+                let setNeedReloadFilteredTableView = Observable<Mutation>.concat(
+                    .just(.setIsNeedReloadFilteredKeywordTableView(true)), .just(.setIsNeedReloadFilteredKeywordTableView(false))
+                )
             
                 return .concat([
                     .just(.setSearchViewMode(.inputContinuing)),
                     .just(.setSearchKeyword(keyword)),
-                    .just(.setFilteredSearchResults(Array(uniqueKeywords))),
+                    .just(.setFilteredSearchResults(Array(uniqueKeywords).sorted())),
                     setNeedReloadFilteredTableView
                 ])
             }

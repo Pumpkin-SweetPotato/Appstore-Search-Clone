@@ -265,6 +265,7 @@ class SearchViewController: UIViewController, ReactorKit.StoryboardView {
         
         reactor.state.map { $0.isNeedReloadFilteredKeywordTableView }
             .distinctUntilChanged()
+            .filter { $0 }
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
                 self?.filteredLatestSearchTableView.reloadData()
@@ -322,6 +323,7 @@ class SearchViewController: UIViewController, ReactorKit.StoryboardView {
                 self.tableViewContainer.isHidden = false
                 self.latestSearchTableView.isHidden = true
                 self.filteredLatestSearchTableView.isHidden = false
+//                self.searchResultTableView.isHidden = truezk
                 
                 // searchbar
                 

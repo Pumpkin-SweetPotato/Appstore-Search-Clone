@@ -85,16 +85,25 @@ class LatestSearchedKeywordCell: UITableViewCell, ReactorKit.View {
     
     func bind(reactor: LatestSearchedKeywordCellReactor) {
         reactor.state.map { $0.searchKeyword }
+            .compactMap { $0 }
             .bind(to: keywordLabel.rx.text)
             .disposed(by: disposeBag)
         
         reactor.state.map { $0.attributedSearchKeyword }
+            .compactMap { $0 }
             .bind(to: keywordLabel.rx.attributedText)
             .disposed(by: disposeBag)
         
         reactor.state.map { $0.isHiddenGlassIcon }
             .bind(to: searchIconImageView.rx.isHidden)
             .disposed(by: disposeBag)
+        
+        reactor.state.map { $0.labelColor }
+            .distinctUntilChanged()
+            .subscribe(onNext: { [weak self] color in
+                self?.keywordLabel.textColor = color
+            }).disposed(by: disposeBag)
+        
     }
 
 }
