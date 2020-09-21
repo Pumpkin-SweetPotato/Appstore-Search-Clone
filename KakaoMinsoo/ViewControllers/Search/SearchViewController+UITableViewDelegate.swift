@@ -12,7 +12,7 @@ extension SearchViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         switch tableView {
-        case latestSearchTableView:
+        case latestSearchTableView, filteredLatestSearchTableView:
             return 30
         case searchResultTableView:
             return 300
@@ -23,7 +23,7 @@ extension SearchViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch tableView {
-        case latestSearchTableView:
+        case latestSearchTableView, filteredLatestSearchTableView:
             return 35
         case searchResultTableView:
             return  UITableView.automaticDimension
@@ -39,6 +39,8 @@ extension SearchViewController: UITableViewDataSource {
         switch tableView {
         case latestSearchTableView:
             return reactor?.currentState.latestSearchedKeywords.count ?? 0
+        case filteredLatestSearchTableView:
+            return reactor?.currentState.filteredLatestSearchedKeywords.count ?? 0
         case searchResultTableView:
             return reactor?.currentState.searchResults.count ?? 0
         default:
@@ -57,9 +59,18 @@ extension SearchViewController: UITableViewDataSource {
         case latestSearchTableView:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: LatestSearchedKeywordCell.reuseIdentifier, for: indexPath) as? LatestSearchedKeywordCell else { fatalError("couldnt instantiate latest search keyword table view cell") }
             
-            guard let keyword = reactor?.currentState.latestSearchedKeywords else { fatalError("Coudlnt reireve latest search keyword")}
+            guard let keyword = reactor?.currentState.latestSearchedKeywords[indexPath.row] else { fatalError("Coudlnt reireve latest search keyword")}
             
-            cell.keywordLabel.text = keyword[indexPath.row]
+            cell.reactor = LatestSearchedKeywordCellReactor(keyword: .normal(keyword))
+            
+            return cell
+        case filteredLatestSearchTableView:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: LatestSearchedKeywordCell.reuseIdentifier, for: indexPath) as? LatestSearchedKeywordCell else { fatalError("couldnt instantiate latest search keyword table view cell") }
+            
+            guard let latestKeyword = reactor?.currentState.filteredLatestSearchedKeywords[indexPath.row],
+                  let currentKeyword = reactor?.currentState.searchKeyword else { fatalError("Coudlnt reireve latest search keyword")}
+            
+            cell.reactor = LatestSearchedKeywordCellReactor(keyword: .highlighted(latestKeyword, currentKeyword))
             
             return cell
         case searchResultTableView:

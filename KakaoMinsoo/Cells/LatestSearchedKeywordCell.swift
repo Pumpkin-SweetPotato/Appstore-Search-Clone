@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import ReactorKit
 
-class LatestSearchedKeywordCell: UITableViewCell {
+class LatestSearchedKeywordCell: UITableViewCell, ReactorKit.View {
     static let reuseIdentifier: String = String(describing: LatestSearchedKeywordCell.self)
     
     let searchIconImageView: UIImageView = {
@@ -26,6 +27,8 @@ class LatestSearchedKeywordCell: UITableViewCell {
         
         return keywordLabel
     }()
+    
+    var disposeBag: DisposeBag = DisposeBag()
     
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -61,5 +64,19 @@ class LatestSearchedKeywordCell: UITableViewCell {
 
        // Configure the view for the selected state
    }
+    
+    func bind(reactor: LatestSearchedKeywordCellReactor) {
+        reactor.state.map { $0.searchKeyword }
+            .bind(to: keywordLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        reactor.state.map { $0.attributedSearchKeyword }
+            .bind(to: keywordLabel.rx.attributedText)
+            .disposed(by: disposeBag)
+        
+        reactor.state.map { $0.isHiddenGlassIcon }
+            .bind(to: searchIconImageView.rx.isHidden)
+            .disposed(by: disposeBag)
+    }
 
 }

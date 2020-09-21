@@ -11,9 +11,8 @@ import ReactorKit
 
 final class SearchViewReactor: Reactor {
     enum SearchViewMode {
-        case watingInput
+        case initial
         case searchBarFocused
-        case beginEditing
         case inputContinuing
         case showingResult
     }
@@ -24,6 +23,7 @@ final class SearchViewReactor: Reactor {
         case searchBegin
         case searchCancel
         case latestSearchKeywordSelected(IndexPath)
+        case filteredLatestSearchKeywordSelected(IndexPath)
         case searchResultSelected(IndexPath)
     }
     
@@ -31,6 +31,7 @@ final class SearchViewReactor: Reactor {
         case setSearchKeyword(String)
         case setLatestSearchedKeywords([String])
         case setSearchResults([SearchResult])
+        case setFilteredSearchResults([String])
         case setSelectedSearchKeyword(String?)
         case setSearchViewMode(SearchViewMode)
         case setSearchDetailViewController(SearchDetailViewController?)
@@ -46,9 +47,10 @@ final class SearchViewReactor: Reactor {
     struct State {
         var searchKeyword: String
         var latestSearchedKeywords: [String]
+        var filteredLatestSearchedKeywords: [String]
         var searchResults: [SearchResult]
         var selectedSearchKeyword: String?
-        var searchViewMode: SearchViewMode = .watingInput
+        var searchViewMode: SearchViewMode = .initial
         var searchDetailViewController: SearchDetailViewController?
         
         var isHiddenSearchLabel: Bool = false
@@ -67,6 +69,7 @@ final class SearchViewReactor: Reactor {
         self.apiClient = apiClient
         initialState = State(searchKeyword: "",
                              latestSearchedKeywords: SearchUserDefaults.latestSearchKeywords,
+                             filteredLatestSearchedKeywords: [],
                              searchResults: [])
     }
     
@@ -77,9 +80,15 @@ final class SearchViewReactor: Reactor {
             
         case .searchBarTextDidChanged(let keyword):
             if keyword.isEmpty {
-                return .concat([.just(.setSearchViewMode(.watingInput)), .just(.setSearchKeyword(keyword))])
+                return .concat([.just(.setSearchViewMode(.initial)), .just(.setSearchKeyword(keyword))])
             } else {
-                return .concat([.just(.setSearchViewMode(.inputContinuing)), .just(.setSearchKeyword(keyword))])
+                let filteredSearchedKeywords = SearchUserDefaults.latestSearchKeywords.filter { $0.contains(keyword) }
+                
+                return .concat([
+                    .just(.setSearchViewMode(.inputContinuing)),
+                    .just(.setSearchKeyword(keyword)),
+                    .just(.setFilteredSearchResults(filteredSearchedKeywords))
+                ])
             }
         case .searchBegin:
             let currentKeyword = currentState.searchKeyword
@@ -99,12 +108,30 @@ final class SearchViewReactor: Reactor {
             return .concat(setLatestSearchKeyword, requsetSearchResults, setSearchViewMode, setNeedReload)
             
         case .searchCancel:
-            let setSearchViewMode = Observable<Mutation>.just(.setSearchViewMode(.watingInput))
+            let setSearchViewMode = Observable<Mutation>.just(.setSearchViewMode(.initial))
             let setSearchResults = Observable<Mutation>.just(.setSearchResults([]))
             return .concat(.just(.setSearchKeyword("")), setSearchResults, setSearchViewMode)
             
         case .latestSearchKeywordSelected(let indexPath):
             let keyword = currentState.latestSearchedKeywords[indexPath.row]
+//            SearchUserDefaults.latestSearchKeywords.append(keyword)
+            addLatestSearchKeyword(keyword)
+            
+            let setLatestSearchKeyword = Observable<Mutation>.just(.setLatestSearchedKeywords(SearchUserDefaults.latestSearchKeywords))
+            
+            let setSelectedKeyword: Observable<Mutation> = .concat(.just(.setSelectedSearchKeyword(keyword)), .just(.setSelectedSearchKeyword(nil)))
+            
+            let requsetSearchResults = makeRequest(keyword: keyword)
+                .map { $0.results }
+                .flatMap { Observable<Mutation>.just(.setSearchResults($0)) }
+            
+            let setViewMode: Observable<Mutation> = .just(.setSearchViewMode(.showingResult))
+            
+            let setNeedReload: Observable<Mutation> = .concat(.just(.setNeedReload(true)), .just(.setNeedReload(false)))
+            
+            return .concat([setLatestSearchKeyword, setSelectedKeyword, requsetSearchResults, setViewMode, setNeedReload])
+        case .filteredLatestSearchKeywordSelected(let indexPath):
+            let keyword = currentState.filteredLatestSearchedKeywords[indexPath.row]
 //            SearchUserDefaults.latestSearchKeywords.append(keyword)
             addLatestSearchKeyword(keyword)
             
@@ -147,6 +174,8 @@ final class SearchViewReactor: Reactor {
             state.searchKeyword = keyword
         case .setLatestSearchedKeywords(let keywords):
             state.latestSearchedKeywords = keywords
+        case .setFilteredSearchResults(let keywords):
+            state.filteredLatestSearchedKeywords = keywords
         case .setSearchResults(let results):
             state.searchResults = results
         case .setSelectedSearchKeyword(let keyword):

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		02BB79B125187B550039E693 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BB79B025187B550039E693 /* UIViewControllerExtension.swift */; };
+		02BB79C0251880650039E693 /* LatestSearchedKeywordCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BB79BF251880650039E693 /* LatestSearchedKeywordCellReactor.swift */; };
+		02BB79C4251881050039E693 /* SearchKeyword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BB79C3251881050039E693 /* SearchKeyword.swift */; };
+		02BB79C8251881C30039E693 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BB79C7251881C30039E693 /* StringExtension.swift */; };
 		167A07E385866EFA7C9A12F9 /* Pods_KakaoMinsooTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCDF4AEA5CBC7EA822E78CAD /* Pods_KakaoMinsooTests.framework */; };
 		CF1EFE6A2514E1290047485D /* SearchResultUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1EFE692514E1290047485D /* SearchResultUtils.swift */; };
 		CF1EFE6D2514E7C90047485D /* AppCommonInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1EFE6C2514E7C90047485D /* AppCommonInformationView.swift */; };
@@ -76,6 +80,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		02BB79B025187B550039E693 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
+		02BB79BF251880650039E693 /* LatestSearchedKeywordCellReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestSearchedKeywordCellReactor.swift; sourceTree = "<group>"; };
+		02BB79C3251881050039E693 /* SearchKeyword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchKeyword.swift; sourceTree = "<group>"; };
+		02BB79C7251881C30039E693 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		11AAC797F3781DAF5AA69E23 /* Pods-KakaoMinsooTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KakaoMinsooTests.release.xcconfig"; path = "Target Support Files/Pods-KakaoMinsooTests/Pods-KakaoMinsooTests.release.xcconfig"; sourceTree = "<group>"; };
 		45F3E8F8F1389471BDE92025 /* Pods-KakaoMinsooTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KakaoMinsooTests.debug.xcconfig"; path = "Target Support Files/Pods-KakaoMinsooTests/Pods-KakaoMinsooTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5CB171B0D1BE0280560049BE /* Pods-KakaoMinsoo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KakaoMinsoo.debug.xcconfig"; path = "Target Support Files/Pods-KakaoMinsoo/Pods-KakaoMinsoo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -241,6 +249,8 @@
 			isa = PBXGroup;
 			children = (
 				CF3A99F52513B78500D9CFAB /* ImageViewExtension.swift */,
+				02BB79C7251881C30039E693 /* StringExtension.swift */,
+				02BB79B025187B550039E693 /* UIViewControllerExtension.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -360,8 +370,10 @@
 			isa = PBXGroup;
 			children = (
 				CFBDD101251291B0007E167F /* SearchResultTableViewCell.swift */,
-				CF3A99F92513C79000D9CFAB /* LatestSearchedKeywordCell.swift */,
 				CFBDD103251291ED007E167F /* SearchResultTableCellReator.swift */,
+				CF3A99F92513C79000D9CFAB /* LatestSearchedKeywordCell.swift */,
+				02BB79C3251881050039E693 /* SearchKeyword.swift */,
+				02BB79BF251880650039E693 /* LatestSearchedKeywordCellReactor.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -577,6 +589,7 @@
 				CF83CA21251741F60049BDAD /* AppInformation.swift in Sources */,
 				CF1EFE6F2514E7E30047485D /* Separator.swift in Sources */,
 				CF1EFE6D2514E7C90047485D /* AppCommonInformationView.swift in Sources */,
+				02BB79C0251880650039E693 /* LatestSearchedKeywordCellReactor.swift in Sources */,
 				CFA8A955251616060052841E /* SearchDetailViewProtocol.swift in Sources */,
 				CFBDD0E1251255CA007E167F /* SearchResponse.swift in Sources */,
 				CF3A99F325139FEF00D9CFAB /* ImageDownloadHandler.swift in Sources */,
@@ -588,10 +601,12 @@
 				CF7782E225170F2B00887152 /* InformationViewReactor.swift in Sources */,
 				CF83CA312517A16A0049BDAD /* ExpandableCell.swift in Sources */,
 				CFA8A9532515FE020052841E /* AppDescriptionViewReactor.swift in Sources */,
+				02BB79C4251881050039E693 /* SearchKeyword.swift in Sources */,
 				CFBDD0B62512347F007E167F /* SearchViewController.swift in Sources */,
 				CFBDD104251291ED007E167F /* SearchResultTableCellReator.swift in Sources */,
 				CF83CA2B2517451D0049BDAD /* DetailInformationTableViewCell.swift in Sources */,
 				CFBDD0D62512372B007E167F /* APIConstants.swift in Sources */,
+				02BB79B125187B550039E693 /* UIViewControllerExtension.swift in Sources */,
 				CF3A99EE2513992800D9CFAB /* SearchDetailViewReactor.swift in Sources */,
 				CFC8D36A2516555400C18101 /* WhatNewViewReactor.swift in Sources */,
 				CFA8A95925161FDC0052841E /* RatingReviewViewReactor.swift in Sources */,
@@ -604,6 +619,7 @@
 				CF83CA1B251731D40049BDAD /* InformationTableViewCellReactor.swift in Sources */,
 				CFBDD0D4251234BE007E167F /* APIClient.swift in Sources */,
 				CF83CA27251744A70049BDAD /* AgeInformationTableViewCell.swift in Sources */,
+				02BB79C8251881C30039E693 /* StringExtension.swift in Sources */,
 				CFC8D36F25167CD800C18101 /* DeviceType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
