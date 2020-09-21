@@ -55,7 +55,7 @@ class SearchViewController: UIViewController, ReactorKit.StoryboardView {
         return latestSearchLabel
     }()
     
-    let tableViewContainer = UIView()
+    let latestSearchTableViewContainer = UIView()
     
     let latestSearchTableView: UITableView = {
         let latestSearchTableView: UITableView = UITableView()
@@ -95,9 +95,9 @@ class SearchViewController: UIViewController, ReactorKit.StoryboardView {
         searchBarContainer.addSubview(searchBar)
         stackView.addArrangedSubview(latestSearchLabelContainer)
         latestSearchLabelContainer.addSubview(latestSearchLabel)
-        stackView.addArrangedSubview(tableViewContainer)
-        tableViewContainer.addSubview(latestSearchTableView)
-        tableViewContainer.addSubview(filteredLatestSearchTableView)
+        stackView.addArrangedSubview(latestSearchTableViewContainer)
+        latestSearchTableViewContainer.addSubview(latestSearchTableView)
+        latestSearchTableViewContainer.addSubview(filteredLatestSearchTableView)
         stackView.addArrangedSubview(searchResultTableContainer)
         searchResultTableContainer.addSubview(searchResultTableView)
     }
@@ -142,28 +142,38 @@ class SearchViewController: UIViewController, ReactorKit.StoryboardView {
         
         stackView.setCustomSpacing(3, after: latestSearchLabel)
         
-        tableViewContainer.snp.makeConstraints { make in
+        latestSearchTableViewContainer.snp.makeConstraints { make in
             make.trailing.equalToSuperview()
         }
+        
+        latestSearchTableViewContainer.accessibilityLabel = "tableViewContainer"
         
         latestSearchTableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
         
+        latestSearchTableView.accessibilityLabel = "latestSearchTableView"
+        
         filteredLatestSearchTableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+        
+        filteredLatestSearchTableView.accessibilityLabel = "filteredLatestSearchTableView"
         
         searchResultTableContainer.snp.makeConstraints { make in
             make.trailing.equalToSuperview()
             make.height.greaterThanOrEqualTo(1)
         }
         
+        searchResultTableContainer.accessibilityLabel = "searchResultTableContainer"
+        
         searchResultTableView.snp.makeConstraints { make in
             make.top.bottom.equalToSuperview()
             make.trailing.equalToSuperview().offset(-15)
             make.leading.equalToSuperview().offset(15)
         }
+        
+        searchResultTableView.accessibilityLabel = "searchResultTableView"
         
         latestSearchTableView.setContentHuggingPriority(.defaultLow, for: .vertical)
     }
@@ -195,8 +205,7 @@ class SearchViewController: UIViewController, ReactorKit.StoryboardView {
 
     func bind(reactor: SearchViewReactor) {
         setDelegates()
-        bindSearchBar(reactor: reactor)
-        bindTableView(reactor: reactor)
+        
         
         reactor.state.map { $0.searchViewMode }
             .distinctUntilChanged()
@@ -210,6 +219,9 @@ class SearchViewController: UIViewController, ReactorKit.StoryboardView {
             .subscribe(onNext: { [weak self] in
                 self?.navigationController?.pushViewController($0, animated: true)
             }).disposed(by: disposeBag)
+        
+        bindSearchBar(reactor: reactor)
+        bindTableView(reactor: reactor)
     }
     
     func bindSearchBar(reactor: SearchViewReactor) {
@@ -299,10 +311,11 @@ class SearchViewController: UIViewController, ReactorKit.StoryboardView {
                 self.searchLabelContainer.isHidden = false
                 
                 // tableview
-                self.tableViewContainer.isHidden = false
                 self.latestSearchTableView.isHidden = false
                 self.filteredLatestSearchTableView.isHidden = true
+                self.latestSearchTableViewContainer.isHidden = false
                 self.searchResultTableContainer.isHidden = true
+//                self.tableViewContainer.isHidden = false
                 
                 // searchbar
                 self.searchBar.searchBarStyle = .minimal
@@ -320,10 +333,11 @@ class SearchViewController: UIViewController, ReactorKit.StoryboardView {
                 self.searchLabelContainer.isHidden = true
                 
                 // tableview
-                self.tableViewContainer.isHidden = false
                 self.latestSearchTableView.isHidden = true
                 self.filteredLatestSearchTableView.isHidden = false
-//                self.searchResultTableView.isHidden = truezk
+                self.latestSearchTableViewContainer.isHidden = false
+                self.searchResultTableContainer.isHidden = true
+//                self.tableViewContainer.isHidden = false
                 
                 // searchbar
                 
@@ -335,11 +349,13 @@ class SearchViewController: UIViewController, ReactorKit.StoryboardView {
                 self.stackView.setCustomSpacing(0, after: self.searchBarContainer)
                 
                 // tableview
-                self.latestSearchLabelContainer.isHidden = true
-                self.tableViewContainer.isHidden = true
+//                self.tableViewContainer.isHidden = true
+//                self.filteredLatestSearchTableView.isHidden = true
+//                self.latestSearchTableView.isHidden = true
+                self.latestSearchTableViewContainer.isHidden = true
                 self.searchResultTableContainer.isHidden = false
-                // searchbar
                 
+                // searchbar
                 self.searchBar.showsCancelButton = true
             }
         
