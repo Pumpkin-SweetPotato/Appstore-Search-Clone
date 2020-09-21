@@ -118,6 +118,8 @@ class LatestSearchedKeywordCell: UITableViewCell, ReactorKit.View {
                     self?.horizontalStackView.snp.makeConstraints { make in
                         make.leading.equalToSuperview().offset(15)
                     }
+                } else {
+                    self?.akeywordLabel.textColor = .black
                 }
             }).disposed(by: disposeBag)
         
