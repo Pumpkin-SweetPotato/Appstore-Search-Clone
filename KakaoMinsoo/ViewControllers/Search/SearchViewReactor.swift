@@ -12,6 +12,7 @@ import ReactorKit
 final class SearchViewReactor: Reactor {
     enum SearchViewMode {
         case initial
+        case emptyString
         case searchBarFocused
         case inputContinuing
         case showingResult
@@ -96,7 +97,7 @@ final class SearchViewReactor: Reactor {
             
         case .searchBarTextDidChanged(let keyword):
             if keyword.isEmpty {
-                return .concat([.just(.setSearchViewMode(.initial)), .just(.setSearchKeyword(keyword))])
+                return .concat([.just(.setSearchViewMode(.emptyString)), .just(.setSearchKeyword(keyword))])
             } else {
                 var uniqueKeywords: Set<String> = Set<String>()
                 SearchUserDefaults.latestSearchKeywords

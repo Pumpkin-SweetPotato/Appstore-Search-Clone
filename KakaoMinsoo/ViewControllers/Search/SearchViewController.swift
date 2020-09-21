@@ -353,6 +353,11 @@ class SearchViewController: UIViewController, ReactorKit.StoryboardView {
                 
                 // searchbar
                 self.searchBar.setShowsCancelButton(false, animated: true)
+            case .emptyString:
+                self.latestSearchLabelContainer.isHidden = false
+                
+                self.latestSearchTableView.isHidden = false
+                self.filteredLatestSearchTableView.isHidden = true
             case .searchBarFocused:
                 // labels
                 
@@ -393,8 +398,6 @@ class SearchViewController: UIViewController, ReactorKit.StoryboardView {
         
             UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut, animations: {
                 self.stackView.layoutIfNeeded()
-                print("ad", self.reactor?.currentState.addedIndexPaths.count)
-                print("ssr", self.reactor?.currentState.slicedSearchResults.count)
             })
         }
     }
@@ -422,6 +425,8 @@ class SearchViewController: UIViewController, ReactorKit.StoryboardView {
                 self.searchBar.snp.updateConstraints { make in
                     make.top.equalToSuperview().offset(statusbarHeight)
                 }
+        default:
+            break;
         }
     }
 }
