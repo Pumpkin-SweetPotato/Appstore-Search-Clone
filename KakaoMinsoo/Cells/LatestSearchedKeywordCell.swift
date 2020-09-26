@@ -119,7 +119,7 @@ class LatestSearchedKeywordCell: UITableViewCell, ReactorKit.View {
                         make.leading.equalToSuperview().offset(15)
                     }
                 } else {
-                    self?.akeywordLabel.textColor = .black
+                    self?.keywordLabel.textColor = .black
                 }
             }).disposed(by: disposeBag)
         

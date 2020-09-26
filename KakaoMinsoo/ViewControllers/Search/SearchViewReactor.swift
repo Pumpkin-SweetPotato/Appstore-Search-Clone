@@ -6,7 +6,7 @@
 //  Copyright © 2020 Minsoo. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import ReactorKit
 
 final class SearchViewReactor: Reactor {
