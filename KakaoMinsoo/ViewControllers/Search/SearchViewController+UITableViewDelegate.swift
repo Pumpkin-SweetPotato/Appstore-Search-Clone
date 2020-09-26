@@ -26,7 +26,7 @@ extension SearchViewController: UITableViewDelegate {
         case latestSearchTableView, filteredLatestSearchTableView:
             return 35
         case searchResultTableView:
-            return DeviceType.iPhoneX || DeviceType.iPhoneXRMax ? 350 : 300 
+            return DeviceType.iPhoneX || DeviceType.iPhoneXRMax ? 340 : 315
         default:
             return 0
         }

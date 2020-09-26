@@ -15,7 +15,8 @@ class ThumbnailImageView: UIView {
     let horizonStackView: UIStackView = {
         let horizonStackView = UIStackView()
         horizonStackView.axis = .horizontal
-        horizonStackView.distribution = .equalSpacing
+        horizonStackView.distribution = .fillEqually
+        horizonStackView.spacing = 7
         horizonStackView.alignment = .top
         
         return horizonStackView
@@ -92,7 +93,7 @@ class ThumbnailImageView: UIView {
         
         horizonStackView.arrangedSubviews.forEach {
             $0.snp.makeConstraints { make in
-                make.width.equalToSuperview().multipliedBy(0.317)
+//                make.width.equalToSuperview().multipliedBy(0.317)
                 make.bottom.equalToSuperview()
             }
         }

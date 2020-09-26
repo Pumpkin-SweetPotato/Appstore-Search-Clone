@@ -176,7 +176,7 @@ class SearchViewController: UIViewController, ReactorKit.StoryboardView {
     }
     
     func bindViewConstraint(reactor: SearchViewReactor) {
-        reactor.state.map { $0.stackViewTopConstraint }
+        reactor.state.map { $0.searchBarCustomSpacing }
             .distinctUntilChanged()
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] offset in
