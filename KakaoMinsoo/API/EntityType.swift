@@ -12,156 +12,84 @@ protocol SearchEntity {
     var entityName: String { get }
 }
 
-enum MovieEntity: SearchEntity {
+enum MovieEntity: String, SearchEntity {
     case movieArtist, movie
     
     var entityName: String {
-        switch self {
-        case .movieArtist:
-            return "movieArtist"
-        case .movie:
-            return "movie"
-        }
+        rawValue
     }
 }
 
-enum PodCastEntity: SearchEntity {
+enum PodCastEntity: String, SearchEntity {
     case podcastAuthor, podcast
     
     var entityName: String {
-        switch self {
-        case .podcast:
-            return "podcast"
-        case .podcastAuthor:
-            return "podcastAuthor"
-        }
+        rawValue
     }
 }
 
-enum MusicEntity: SearchEntity {
+enum MusicEntity: String, SearchEntity {
     case musicArtist, musicTrack, album, musicVideo, mix, song
     
     var entityName: String {
-        switch self {
-        case .musicTrack:
-            return "musicTrack"
-        case .musicArtist:
-            return "musicArtist"
-        case .album:
-            return "album"
-        case .musicVideo:
-            return "musicVideo"
-        case .mix:
-            return "mix"
-        case .song:
-            return "song"
-        }
+        rawValue
     }
 }
 
-enum MusicVideoEntity: SearchEntity {
+enum MusicVideoEntity: String, SearchEntity {
     
     case musicArtist, musicVideo
     
     var entityName: String {
-        switch self {
-        case .musicVideo:
-            return "musicVideo"
-        case .musicArtist:
-            return "musicArtist"
-        }
+        rawValue
     }
 }
 
-enum AudioBookEntity: SearchEntity {
+enum AudioBookEntity: String, SearchEntity {
     case audiobookAuthor, audiobook
     
     var entityName: String {
-        switch self {
-        case .audiobookAuthor:
-            return "audiobookAuthor"
-        case .audiobook:
-            return "audiobook"
-        }
+        rawValue
     }
 }
 
-enum ShortFilmEntity: SearchEntity {
+enum ShortFilmEntity: String, SearchEntity {
     case shortFilmArtist, shortFilm
     
     var entityName: String {
-        switch self {
-        case .shortFilm:
-            return "shorFilem"
-        case .shortFilmArtist:
-            return "shortFilmArtist"
-        }
+        rawValue
     }
 }
 
-enum TvShowEntity: SearchEntity {
+enum TvShowEntity: String, SearchEntity {
     case tvEpisode, tvSeason
     
     var entityName: String {
-        switch self {
-        case .tvSeason:
-            return "tvSeason"
-        case .tvEpisode:
-            return "tvEpisode"
-        }
+        rawValue
     }
 }
 
-enum SoftwareEntity: SearchEntity {
+enum SoftwareEntity: String, SearchEntity {
     case software, iPadSoftware, macSoftware
     
     var entityName: String {
-        switch self {
-        case .software:
-            return "software"
-        case .iPadSoftware:
-            return "iPadSoftware"
-        case .macSoftware:
-            return "makSoftware"
-        }
+        rawValue
     }
 }
 
-enum EbookEntity: SearchEntity {
+enum EbookEntity: String, SearchEntity {
     case ebook
     
     var entityName: String {
-        switch self {
-        case .ebook:
-            return "ebook"
-        }
+        rawValue
     }
 }
 
-enum AllEntity: SearchEntity {
+enum AllEntity: String, SearchEntity {
     case movie, album, allArtist, podcast, musicVideo, mix, audiobook, tvSeason, allTrack
     
     var entityName: String {
-        switch self {
-        case .movie:
-            return "movie"
-        case .album:
-            return "album"
-        case .allArtist:
-            return "allArtist"
-        case .podcast:
-            return "podcase"
-        case .musicVideo:
-            return "musicVideo"
-        case .mix:
-            return "mix"
-        case .audiobook:
-            return "audiobook"
-        case .tvSeason:
-            return "tvSeason"
-        case .allTrack:
-            return "allTrack"
-        }
+        rawValue
     }
 }
 

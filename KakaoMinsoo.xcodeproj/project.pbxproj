@@ -46,7 +46,7 @@
 		CFBDD0D62512372B007E167F /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBDD0D52512372B007E167F /* APIConstants.swift */; };
 		CFBDD0D925123F81007E167F /* EntityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBDD0D825123F81007E167F /* EntityType.swift */; };
 		CFBDD0DB25123F92007E167F /* AttributeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBDD0DA25123F92007E167F /* AttributeType.swift */; };
-		CFBDD0DD2512415E007E167F /* SearchLanguagge.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBDD0DC2512415E007E167F /* SearchLanguagge.swift */; };
+		CFBDD0DD2512415E007E167F /* SearchLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBDD0DC2512415E007E167F /* SearchLanguage.swift */; };
 		CFBDD0DF25124210007E167F /* ExplitType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBDD0DE25124210007E167F /* ExplitType.swift */; };
 		CFBDD0E1251255CA007E167F /* SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBDD0E0251255CA007E167F /* SearchResponse.swift */; };
 		CFBDD0E325125892007E167F /* SearchResultStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBDD0E225125892007E167F /* SearchResultStub.swift */; };
@@ -126,7 +126,7 @@
 		CFBDD0D52512372B007E167F /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		CFBDD0D825123F81007E167F /* EntityType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityType.swift; sourceTree = "<group>"; };
 		CFBDD0DA25123F92007E167F /* AttributeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributeType.swift; sourceTree = "<group>"; };
-		CFBDD0DC2512415E007E167F /* SearchLanguagge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLanguagge.swift; sourceTree = "<group>"; };
+		CFBDD0DC2512415E007E167F /* SearchLanguage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLanguage.swift; sourceTree = "<group>"; };
 		CFBDD0DE25124210007E167F /* ExplitType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplitType.swift; sourceTree = "<group>"; };
 		CFBDD0E0251255CA007E167F /* SearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResponse.swift; sourceTree = "<group>"; };
 		CFBDD0E225125892007E167F /* SearchResultStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultStub.swift; sourceTree = "<group>"; };
@@ -319,7 +319,7 @@
 				CFBDD0D3251234BE007E167F /* APIClient.swift */,
 				CFBDD0D825123F81007E167F /* EntityType.swift */,
 				CFBDD0DA25123F92007E167F /* AttributeType.swift */,
-				CFBDD0DC2512415E007E167F /* SearchLanguagge.swift */,
+				CFBDD0DC2512415E007E167F /* SearchLanguage.swift */,
 				CFBDD0DE25124210007E167F /* ExplitType.swift */,
 				CFBDD0D52512372B007E167F /* APIConstants.swift */,
 				CFBDD0F825128393007E167F /* SearchUserDefaults.swift */,
@@ -507,7 +507,7 @@
 				CFBDD0F525127C5D007E167F /* SearchViewController+UITableViewDelegate.swift in Sources */,
 				CF1EFE712515C3890047485D /* AppScreenshotCell.swift in Sources */,
 				CFBDD102251291B0007E167F /* SearchResultTableViewCell.swift in Sources */,
-				CFBDD0DD2512415E007E167F /* SearchLanguagge.swift in Sources */,
+				CFBDD0DD2512415E007E167F /* SearchLanguage.swift in Sources */,
 				CF1EFE6A2514E1290047485D /* SearchResultUtils.swift in Sources */,
 				CF83CA1725172E2D0049BDAD /* DefaultInformationTableViewCell.swift in Sources */,
 				CF83CA21251741F60049BDAD /* AppInformation.swift in Sources */,
