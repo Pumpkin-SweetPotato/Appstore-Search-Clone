@@ -43,19 +43,6 @@ final class SearchResultTableCellReator: Reactor {
         
         let userRatingString: String = searchResult.formattedRatingCount
         
-//        let userRatingFloat: Float = {
-//
-//            let ratingString = searchResult.contentAdvisoryRating
-//
-//            let lowerBound = ratingString.index(ratingString.startIndex, offsetBy: 0)
-//            let upperBound = ratingString.index(ratingString.startIndex, offsetBy: 1)
-//            let rating = String(ratingString[lowerBound..<upperBound])
-//            let userRatingFloat: Float = Float(rating) ?? 0
-//
-//
-//            return userRatingFloat
-//        }()
-        
         initialState = State(appIconImage: nil,
                              appNameString: searchResult.trackName,
                              subtitleString: searchResult.primaryGenreName,
@@ -77,15 +64,10 @@ final class SearchResultTableCellReator: Reactor {
             
             let setThumbnailImages: [Observable<Mutation>] = {
                 var _setThumbnailImages: [Observable<Mutation>] = []
-                let urls = self.searchResult.screenshotUrls
+                let urls = self.searchResult.screenshotUrls.prefix(3)
                 
                 for index in 0 ..< urls.count {
-                    if index > 3 {
-                        break;
-                    }
-                    
                     _setThumbnailImages.append(self.requestThumbnailImage(index: index, urlString: urls[index]))
-                    
                 }
                 
                 return _setThumbnailImages
@@ -106,8 +88,6 @@ final class SearchResultTableCellReator: Reactor {
             state.middleThumbnailImage = image
         case .setRightThumbnailImage(let image):
             state.rightThumbnailImage = image
-//        case .setThumbnailImages(let images):
-//            state.thumbnailImages = images
         }
         return state
     }

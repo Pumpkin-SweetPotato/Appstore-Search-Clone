@@ -211,9 +211,6 @@ class SearchResultTableViewCell: UITableViewCell, ReactorKit.View {
             make.bottom.equalTo(iconImageView).offset(-5)
         }
         
-//        resultInfoVerticalStackView.setCustomSpacing(4, after: titleLabel)
-//        resultInfoVerticalStackView.setCustomSpacing(4, after: genreLabel)
-        
         ratingContainerView.snp.makeConstraints { make in
             make.trailing.equalToSuperview()
         }
@@ -333,8 +330,6 @@ class SearchResultTableViewCell: UITableViewCell, ReactorKit.View {
             }).disposed(by: disposeBag)
             
             
-//            .distinctUntilChanged()
-        
         reactor.state.map { $0.leftThumbnailImage }
             .distinctUntilChanged()
             .bind(to: thumbnailImageView.leftThumbnailImageView.rx.fadeImage(), thumbnailImageView.singleThumbnailImageView.rx.fadeImage())

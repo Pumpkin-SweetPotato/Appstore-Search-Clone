@@ -119,18 +119,28 @@ enum APIRouter {
 
 class APIClient {
     let session: URLSession = URLSession.shared
+    var searchRequest: URLSessionDataTask?
+    
     typealias APISearchResult = (Data?, URLResponse?, Error?)
     typealias APICompletionHandler = ((Data?, URLResponse?, Error?) -> Void)
     
     func makeRequest(apiRouter: APIRouter, completionHandler: @escaping APICompletionHandler) -> URLSessionDataTask? {
 
         guard let url = apiRouter.asURL else { return nil }
-        return session.dataTask(with: url, completionHandler: completionHandler)
+        let request = session.dataTask(with: url, completionHandler: completionHandler)
+        
+        if searchRequest != nil {
+            searchRequest?.cancel()
+            searchRequest = nil
+        }
+        
+        searchRequest = request
+        
+        return request
     }
     
     func reqeust(apiRouter: APIRouter, completionHandler: @escaping APICompletionHandler) {
         let request = makeRequest(apiRouter: apiRouter, completionHandler: completionHandler)
-        
         
         request?.resume()
     }
@@ -166,6 +176,8 @@ extension APIClient {
             if request == nil {
                 observer.onError(NSError(domain: "couldn't make a request", code: 998, userInfo: nil))
             }
+            
+            self.searchRequest = request
             
             request?.resume()
             
