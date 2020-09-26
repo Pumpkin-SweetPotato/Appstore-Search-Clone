@@ -41,7 +41,7 @@
 		CFBDD0B62512347F007E167F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBDD0B52512347F007E167F /* SearchViewController.swift */; };
 		CFBDD0BB25123481007E167F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFBDD0BA25123481007E167F /* Assets.xcassets */; };
 		CFBDD0BE25123481007E167F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFBDD0BC25123481007E167F /* LaunchScreen.storyboard */; };
-		CFBDD0C925123481007E167F /* KakaoMinsooTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBDD0C825123481007E167F /* KakaoMinsooTests.swift */; };
+		CFBDD0C925123481007E167F /* AppstoreSearchCloneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBDD0C825123481007E167F /* AppstoreSearchCloneTests.swift */; };
 		CFBDD0D4251234BE007E167F /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBDD0D3251234BE007E167F /* APIClient.swift */; };
 		CFBDD0D62512372B007E167F /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBDD0D52512372B007E167F /* APIConstants.swift */; };
 		CFBDD0D925123F81007E167F /* EntityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBDD0D825123F81007E167F /* EntityType.swift */; };
@@ -112,15 +112,15 @@
 		CFA8A95825161FDC0052841E /* RatingReviewViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingReviewViewReactor.swift; sourceTree = "<group>"; };
 		CFA8A95A25162AA10052841E /* RatingBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingBar.swift; sourceTree = "<group>"; };
 		CFA8A95C25162B8F0052841E /* ReviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCollectionViewCell.swift; sourceTree = "<group>"; };
-		CFBDD0AE2512347F007E167F /* KakaoMinsoo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KakaoMinsoo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CFBDD0AE2512347F007E167F /* AppstoreSearchClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppstoreSearchClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFBDD0B12512347F007E167F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CFBDD0B32512347F007E167F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		CFBDD0B52512347F007E167F /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		CFBDD0BA25123481007E167F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CFBDD0BD25123481007E167F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CFBDD0BF25123481007E167F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CFBDD0C425123481007E167F /* KakaoMinsooTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KakaoMinsooTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		CFBDD0C825123481007E167F /* KakaoMinsooTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoMinsooTests.swift; sourceTree = "<group>"; };
+		CFBDD0C425123481007E167F /* AppstoreSearchCloneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppstoreSearchCloneTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CFBDD0C825123481007E167F /* AppstoreSearchCloneTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppstoreSearchCloneTests.swift; sourceTree = "<group>"; };
 		CFBDD0CA25123481007E167F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CFBDD0D3251234BE007E167F /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		CFBDD0D52512372B007E167F /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
@@ -267,8 +267,8 @@
 		CFBDD0A52512347F007E167F = {
 			isa = PBXGroup;
 			children = (
-				CFBDD0B02512347F007E167F /* KakaoMinsoo */,
-				CFBDD0C725123481007E167F /* KakaoMinsooTests */,
+				CFBDD0B02512347F007E167F /* AppstoreSearchClone */,
+				CFBDD0C725123481007E167F /* AppstoreSearchCloneTests */,
 				CFBDD0AF2512347F007E167F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -276,13 +276,13 @@
 		CFBDD0AF2512347F007E167F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CFBDD0AE2512347F007E167F /* KakaoMinsoo.app */,
-				CFBDD0C425123481007E167F /* KakaoMinsooTests.xctest */,
+				CFBDD0AE2512347F007E167F /* AppstoreSearchClone.app */,
+				CFBDD0C425123481007E167F /* AppstoreSearchCloneTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		CFBDD0B02512347F007E167F /* KakaoMinsoo */ = {
+		CFBDD0B02512347F007E167F /* AppstoreSearchClone */ = {
 			isa = PBXGroup;
 			children = (
 				CFBDD0B12512347F007E167F /* AppDelegate.swift */,
@@ -299,18 +299,18 @@
 				CF3A99F42513B77500D9CFAB /* extensions */,
 				CF3A99EF25139FC600D9CFAB /* ImageRequest */,
 			);
-			path = KakaoMinsoo;
+			path = AppstoreSearchClone;
 			sourceTree = "<group>";
 		};
-		CFBDD0C725123481007E167F /* KakaoMinsooTests */ = {
+		CFBDD0C725123481007E167F /* AppstoreSearchCloneTests */ = {
 			isa = PBXGroup;
 			children = (
-				CFBDD0C825123481007E167F /* KakaoMinsooTests.swift */,
+				CFBDD0C825123481007E167F /* AppstoreSearchCloneTests.swift */,
 				CFBDD0FA251284D8007E167F /* PropertyWrapperTest.swift */,
 				CFBDD0E225125892007E167F /* SearchResultStub.swift */,
 				CFBDD0CA25123481007E167F /* Info.plist */,
 			);
-			path = KakaoMinsooTests;
+			path = AppstoreSearchCloneTests;
 			sourceTree = "<group>";
 		};
 		CFBDD0D725123F62007E167F /* API */ = {
@@ -383,9 +383,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		CFBDD0AD2512347F007E167F /* KakaoMinsoo */ = {
+		CFBDD0AD2512347F007E167F /* AppstoreSearchClone */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CFBDD0CD25123481007E167F /* Build configuration list for PBXNativeTarget "KakaoMinsoo" */;
+			buildConfigurationList = CFBDD0CD25123481007E167F /* Build configuration list for PBXNativeTarget "AppstoreSearchClone" */;
 			buildPhases = (
 				CFBDD0AA2512347F007E167F /* Sources */,
 				CFBDD0AB2512347F007E167F /* Frameworks */,
@@ -395,7 +395,7 @@
 			);
 			dependencies = (
 			);
-			name = KakaoMinsoo;
+			name = AppstoreSearchClone;
 			packageProductDependencies = (
 				CFF3F815251F674000B2C448 /* SnapKit */,
 				CFF3F81A251F678800B2C448 /* Cosmos */,
@@ -404,12 +404,12 @@
 				CFF3F83D251F6EE800B2C448 /* ReactorKit */,
 			);
 			productName = KakaoMinsoo;
-			productReference = CFBDD0AE2512347F007E167F /* KakaoMinsoo.app */;
+			productReference = CFBDD0AE2512347F007E167F /* AppstoreSearchClone.app */;
 			productType = "com.apple.product-type.application";
 		};
-		CFBDD0C325123481007E167F /* KakaoMinsooTests */ = {
+		CFBDD0C325123481007E167F /* AppstoreSearchCloneTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CFBDD0D025123481007E167F /* Build configuration list for PBXNativeTarget "KakaoMinsooTests" */;
+			buildConfigurationList = CFBDD0D025123481007E167F /* Build configuration list for PBXNativeTarget "AppstoreSearchCloneTests" */;
 			buildPhases = (
 				CFBDD0C025123481007E167F /* Sources */,
 				CFBDD0C125123481007E167F /* Frameworks */,
@@ -420,9 +420,9 @@
 			dependencies = (
 				CFBDD0C625123481007E167F /* PBXTargetDependency */,
 			);
-			name = KakaoMinsooTests;
+			name = AppstoreSearchCloneTests;
 			productName = KakaoMinsooTests;
-			productReference = CFBDD0C425123481007E167F /* KakaoMinsooTests.xctest */;
+			productReference = CFBDD0C425123481007E167F /* AppstoreSearchCloneTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -444,7 +444,7 @@
 					};
 				};
 			};
-			buildConfigurationList = CFBDD0A92512347F007E167F /* Build configuration list for PBXProject "KakaoMinsoo" */;
+			buildConfigurationList = CFBDD0A92512347F007E167F /* Build configuration list for PBXProject "AppstoreSearchClone" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -463,8 +463,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				CFBDD0AD2512347F007E167F /* KakaoMinsoo */,
-				CFBDD0C325123481007E167F /* KakaoMinsooTests */,
+				CFBDD0AD2512347F007E167F /* AppstoreSearchClone */,
+				CFBDD0C325123481007E167F /* AppstoreSearchCloneTests */,
 			);
 		};
 /* End PBXProject section */
@@ -555,7 +555,7 @@
 				CFBDD0FD2512861A007E167F /* SearchUserDefaults.swift in Sources */,
 				CFBDD0FB251284D8007E167F /* PropertyWrapperTest.swift in Sources */,
 				CFBDD0E325125892007E167F /* SearchResultStub.swift in Sources */,
-				CFBDD0C925123481007E167F /* KakaoMinsooTests.swift in Sources */,
+				CFBDD0C925123481007E167F /* AppstoreSearchCloneTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -564,7 +564,7 @@
 /* Begin PBXTargetDependency section */
 		CFBDD0C625123481007E167F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = CFBDD0AD2512347F007E167F /* KakaoMinsoo */;
+			target = CFBDD0AD2512347F007E167F /* AppstoreSearchClone */;
 			targetProxy = CFBDD0C525123481007E167F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -704,12 +704,12 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6Y9F62XV9B;
-				INFOPLIST_FILE = KakaoMinsoo/Info.plist;
+				INFOPLIST_FILE = AppstoreSearchClone/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = minsoo.KakaoMinsoo;
+				PRODUCT_BUNDLE_IDENTIFIER = minsoo.AppstoreSearchClone;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -724,12 +724,12 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6Y9F62XV9B;
-				INFOPLIST_FILE = KakaoMinsoo/Info.plist;
+				INFOPLIST_FILE = AppstoreSearchClone/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = minsoo.KakaoMinsoo;
+				PRODUCT_BUNDLE_IDENTIFIER = minsoo.AppstoreSearchClone;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -744,7 +744,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6Y9F62XV9B;
-				INFOPLIST_FILE = KakaoMinsooTests/Info.plist;
+				INFOPLIST_FILE = AppstoreSearchCloneTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -755,7 +755,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KakaoMinsoo.app/KakaoMinsoo";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AppstoreSearchClone.app/AppstoreSearchClone";
 			};
 			name = Debug;
 		};
@@ -766,7 +766,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6Y9F62XV9B;
-				INFOPLIST_FILE = KakaoMinsooTests/Info.plist;
+				INFOPLIST_FILE = AppstoreSearchCloneTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -777,14 +777,14 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KakaoMinsoo.app/KakaoMinsoo";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AppstoreSearchClone.app/AppstoreSearchClone";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		CFBDD0A92512347F007E167F /* Build configuration list for PBXProject "KakaoMinsoo" */ = {
+		CFBDD0A92512347F007E167F /* Build configuration list for PBXProject "AppstoreSearchClone" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CFBDD0CB25123481007E167F /* Debug */,
@@ -793,7 +793,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CFBDD0CD25123481007E167F /* Build configuration list for PBXNativeTarget "KakaoMinsoo" */ = {
+		CFBDD0CD25123481007E167F /* Build configuration list for PBXNativeTarget "AppstoreSearchClone" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CFBDD0CE25123481007E167F /* Debug */,
@@ -802,7 +802,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CFBDD0D025123481007E167F /* Build configuration list for PBXNativeTarget "KakaoMinsooTests" */ = {
+		CFBDD0D025123481007E167F /* Build configuration list for PBXNativeTarget "AppstoreSearchCloneTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CFBDD0D125123481007E167F /* Debug */,

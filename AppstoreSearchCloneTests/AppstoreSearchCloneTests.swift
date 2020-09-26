@@ -1,15 +1,15 @@
 //
 //  KakaoMinsooTests.swift
-//  KakaoMinsooTests
+//  Appstore-search-clone-Tests
 //
 //  Created by ZES2017MBP on 2020/09/16.
 //  Copyright © 2020 Minsoo. All rights reserved.
 //
 
 import XCTest
-@testable import KakaoMinsoo
+@testable import AppstoreSearchClone
 
-class KakaoMinsooTests: XCTestCase {
+class AppstoreTests: XCTestCase {
     
     func testAPIRouterParameter() throws {
         let searchRequestParameter: SearchRequestParameter =
@@ -65,7 +65,7 @@ class KakaoMinsooTests: XCTestCase {
         request?.resume()
         
         
-        wait(for: [dataReceivedExpectation], timeout: 1.5)
+        wait(for: [dataReceivedExpectation], timeout: 2)
     }
     
     func testJSONConvert() throws {
@@ -113,7 +113,7 @@ class KakaoMinsooTests: XCTestCase {
         request?.resume()
         
         
-        wait(for: [jsonConvertSucceed], timeout: 1)
+        wait(for: [jsonConvertSucceed], timeout: 2)
     }
 
 }

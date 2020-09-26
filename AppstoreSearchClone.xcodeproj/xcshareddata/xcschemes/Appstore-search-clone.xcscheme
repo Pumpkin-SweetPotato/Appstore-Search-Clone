@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "CFBDD0AD2512347F007E167F"
-               BuildableName = "KakaoMinsoo.app"
-               BlueprintName = "KakaoMinsoo"
-               ReferencedContainer = "container:KakaoMinsoo.xcodeproj">
+               BuildableName = "AppstoreSearchClone.app"
+               BlueprintName = "AppstoreSearchClone"
+               ReferencedContainer = "container:AppstoreSearchClone.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "CFBDD0C325123481007E167F"
-               BuildableName = "KakaoMinsooTests.xctest"
-               BlueprintName = "KakaoMinsooTests"
-               ReferencedContainer = "container:KakaoMinsoo.xcodeproj">
+               BuildableName = "AppstoreSearchCloneTests.xctest"
+               BlueprintName = "AppstoreSearchCloneTests"
+               ReferencedContainer = "container:AppstoreSearchClone.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CFBDD0AD2512347F007E167F"
-            BuildableName = "KakaoMinsoo.app"
-            BlueprintName = "KakaoMinsoo"
-            ReferencedContainer = "container:KakaoMinsoo.xcodeproj">
+            BuildableName = "AppstoreSearchClone.app"
+            BlueprintName = "AppstoreSearchClone"
+            ReferencedContainer = "container:AppstoreSearchClone.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CFBDD0AD2512347F007E167F"
-            BuildableName = "KakaoMinsoo.app"
-            BlueprintName = "KakaoMinsoo"
-            ReferencedContainer = "container:KakaoMinsoo.xcodeproj">
+            BuildableName = "AppstoreSearchClone.app"
+            BlueprintName = "AppstoreSearchClone"
+            ReferencedContainer = "container:AppstoreSearchClone.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
