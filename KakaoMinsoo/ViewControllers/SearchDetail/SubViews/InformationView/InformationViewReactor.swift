@@ -36,7 +36,7 @@ final class InformationViewReactor: Reactor {
         }
         
         let supportDeviceString: String = {
-            if !searchResult.supportedDevices.filter { $0.contains(UIDevice.current.localizedModel) }.isEmpty {
+            if !searchResult.supportedDevices.filter( { $0.contains(UIDevice.current.localizedModel) } ).isEmpty {
                 return "Works on this \(UIDevice.current.localizedModel)"
             } else {
                 return ""
@@ -103,10 +103,8 @@ final class InformationViewReactor: Reactor {
             
             return .empty()
         }
-        return .empty()
     }
     
     func reduce(state: State, mutation: Mutation) -> State {
-        return state
     }
 }

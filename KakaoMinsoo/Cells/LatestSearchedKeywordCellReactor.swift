@@ -43,11 +43,9 @@ final class LatestSearchedKeywordCellReactor: Reactor {
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
-        return .empty()
     }
     
     func reduce(state: State, mutation: Mutation) -> State {
-        return state
     }
 }
 

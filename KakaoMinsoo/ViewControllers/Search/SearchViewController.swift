@@ -26,177 +26,16 @@ class SearchViewController: UIViewController, ReactorKit.StoryboardView {
     @IBOutlet weak var filteredLatestSearchTableView: UITableView!
     @IBOutlet weak var searchResultTableContainer: UIView!
     @IBOutlet weak var searchResultTableView: UITableView!
-//    let searchLabelContainer = UIView()
-//
-//    let searchLabel: UILabel = {
-//        let searchLabel = UILabel()
-//        searchLabel.text = "검색"
-//        searchLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-//
-//        return searchLabel
-//    }()
-//
-//    let stackView: UIStackView = {
-//        let stackView: UIStackView = UIStackView()
-//        stackView.alignment = .leading
-//        stackView.axis = .vertical
-//        stackView.distribution = .fill
-//
-//        return stackView
-//    }()
-    
-//    let searchBarContainer = UIView()
-    
-//    let searchBar: UISearchBar = {
-//        let searchBar = UISearchBar()
-//        searchBar.searchBarStyle = .minimal
-//        searchBar.placeholder = "App Store"
-//        searchBar.setImage(UIImage(systemName: "magnifyingglass"), for: .search, state: .normal)
-//
-//        return searchBar
-//    }()
-    
-//    let latestSearchLabelContainer = UIView()
-    
-//    let latestSearchLabel: UILabel = {
-//        let latestSearchLabel = UILabel()
-//        latestSearchLabel.text = "최근 검색어"
-//        latestSearchLabel.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
-//
-//        return latestSearchLabel
-//    }()
-    
-//    let latestSearchTableViewContainer = UIView()
-    
-//    let latestSearchTableView: UITableView = {
-//        let latestSearchTableView: UITableView = UITableView()
-//        latestSearchTableView.register(LatestSearchedKeywordCell.self,
-//                                       forCellReuseIdentifier: LatestSearchedKeywordCell.reuseIdentifier)
-//
-//        return latestSearchTableView
-//    }()
-    
-//    let filteredLatestSearchTableView: UITableView = {
-//        let filteredLatestSearchTableView: UITableView = UITableView()
-//        filteredLatestSearchTableView.register(LatestSearchedKeywordCell.self,
-//                                       forCellReuseIdentifier: LatestSearchedKeywordCell.reuseIdentifier)
-//
-//        return filteredLatestSearchTableView
-//    }()
-    
-//    let searchResultTableContainer = UIView()
-    
-//    let searchResultTableView: UITableView = {
-//        let searchResultTableView: UITableView = UITableView()
-//        searchResultTableView.register(SearchResultTableViewCell.self,
-//                                       forCellReuseIdentifier: SearchResultTableViewCell.reuseIdentifier)
-//
-//        return searchResultTableView
-//    }()
     
     let initialStackViewTopOffset: CGFloat = 60
     
     var disposeBag: DisposeBag = DisposeBag()
-
-    fileprivate func addViews() {
-//        rootView.addSubview(stackView)
-//        stackView.addArrangedSubview(searchLabelContainer)
-//        searchLabelContainer.addSubview(searchLabel)
-//        stackView.addArrangedSubview(searchBarContainer)
-//        searchBarContainer.addSubview(searchBar)
-//        stackView.addArrangedSubview(latestSearchLabelContainer)
-//        latestSearchLabelContainer.addSubview(latestSearchLabel)
-//        stackView.addArrangedSubview(latestSearchTableViewContainer)
-//        latestSearchTableViewContainer.addSubview(latestSearchTableView)
-//        latestSearchTableViewContainer.addSubview(filteredLatestSearchTableView)
-//        stackView.addArrangedSubview(searchResultTableContainer)
-//        searchResultTableContainer.addSubview(searchResultTableView)
-    }
-    
-    fileprivate func setConstraints() {
-//        stackView.snp.makeConstraints { make in
-//            make.top.equalToSuperview().offset(initialStackViewTopOffset)
-//            make.leading.trailing.bottom.equalToSuperview()
-//        }
-//
-//        searchLabelContainer.snp.makeConstraints { make in
-//            make.trailing.equalToSuperview()
-//        }
-//
-//        searchLabel.snp.makeConstraints { make in
-//            make.trailing.top.bottom.equalToSuperview()
-//            make.leading.equalToSuperview().offset(15)
-//        }
-//
-//        stackView.setCustomSpacing(5, after: searchLabel)
-//
-//        searchBarContainer.snp.makeConstraints { make in
-//            make.trailing.equalToSuperview()
-//        }
-//
-//        searchBar.snp.makeConstraints { make in
-//            make.top.bottom.equalToSuperview()
-//            make.leading.equalToSuperview().offset(5)
-//            make.trailing.equalToSuperview().offset(-15)
-//        }
-//
-//        stackView.setCustomSpacing(50, after: searchBarContainer)
-//
-//        latestSearchLabelContainer.snp.makeConstraints { make in
-//            make.trailing.equalToSuperview()
-//        }
-//
-//        latestSearchLabel.snp.makeConstraints { make in
-//            make.trailing.top.bottom.equalToSuperview()
-//            make.leading.equalToSuperview().offset(15)
-//        }
-//
-//        stackView.setCustomSpacing(3, after: latestSearchLabel)
-//
-//        latestSearchTableViewContainer.snp.makeConstraints { make in
-//            make.trailing.equalToSuperview()
-//        }
-//
-//        latestSearchTableViewContainer.accessibilityLabel = "tableViewContainer"
-//
-//        latestSearchTableView.snp.makeConstraints { make in
-//            make.edges.equalToSuperview()
-//        }
-//
-//        latestSearchTableView.accessibilityLabel = "latestSearchTableView"
-//
-//        filteredLatestSearchTableView.snp.makeConstraints { make in
-//            make.edges.equalToSuperview()
-//        }
-//
-//        filteredLatestSearchTableView.accessibilityLabel = "filteredLatestSearchTableView"
-//
-//        searchResultTableContainer.snp.makeConstraints { make in
-//            make.trailing.equalToSuperview()
-//            make.height.greaterThanOrEqualTo(1)
-//        }
-//
-//        searchResultTableContainer.accessibilityLabel = "searchResultTableContainer"
-//
-//        searchResultTableView.snp.makeConstraints { make in
-//            make.top.bottom.equalToSuperview()
-//            make.trailing.equalToSuperview().offset(-15)
-//            make.leading.equalToSuperview().offset(15)
-//        }
-//
-//        searchResultTableView.accessibilityLabel = "searchResultTableView"
-//
-//        latestSearchTableView.setContentHuggingPriority(.defaultLow, for: .vertical)
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationController?.isNavigationBarHidden = true
         searchResultTableView.separatorStyle = .none
-        
-        addViews()
-        setConstraints()
         setReactor()
     }
     
@@ -217,11 +56,11 @@ class SearchViewController: UIViewController, ReactorKit.StoryboardView {
     func bind(reactor: SearchViewReactor) {
         setDelegates()
         
-        
         reactor.state.map { $0.searchViewMode }
             .distinctUntilChanged()
+            .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] mode in
-                self?.changeViewMode(mode)
+                self?.setStatusBarPosition(mode)
             }).disposed(by: disposeBag)
         
         reactor.state.map { $0.searchDetailViewController }
@@ -233,6 +72,8 @@ class SearchViewController: UIViewController, ReactorKit.StoryboardView {
         
         bindSearchBar(reactor: reactor)
         bindTableView(reactor: reactor)
+        bindHiddenesses(reactor: reactor)
+        bindViewConstraint(reactor: reactor)
     }
     
     func bindSearchBar(reactor: SearchViewReactor) {
@@ -267,8 +108,6 @@ class SearchViewController: UIViewController, ReactorKit.StoryboardView {
     }
     
     func bindTableView(reactor: SearchViewReactor) {
-        //
-        
         latestSearchTableView.rx.itemSelected
             .map { Reactor.Action.latestSearchKeywordSelected($0) }
             .bind(to: reactor.action)
@@ -281,7 +120,6 @@ class SearchViewController: UIViewController, ReactorKit.StoryboardView {
             .subscribe(onNext: { [weak self] _ in
                 self?.latestSearchTableView.reloadData()
             }).disposed(by: disposeBag)
-        //
         
         filteredLatestSearchTableView.rx.itemSelected
             .map { Reactor.Action.filteredLatestSearchKeywordSelected($0) }
@@ -295,8 +133,6 @@ class SearchViewController: UIViewController, ReactorKit.StoryboardView {
             .subscribe(onNext: { [weak self] _ in
                 self?.filteredLatestSearchTableView.reloadData()
             }).disposed(by: disposeBag)
-        
-        //
         
         searchResultTableView.rx.itemSelected
             .do(onNext: { [weak self] in self?.searchResultTableView.deselectRow(at: $0, animated: false) })
@@ -329,88 +165,77 @@ class SearchViewController: UIViewController, ReactorKit.StoryboardView {
             .filter { !$0.isEmpty }
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] indexPaths in
-                
-//                self?.searchResultTableView.beginUpdates()
                 self?.searchResultTableView.performBatchUpdates({
                     self?.searchResultTableView.insertRows(at: indexPaths, with: .fade)
                 }, completion: { _ in
                     self?.searchResultTableView.setNeedsLayout()
                     self?.searchResultTableView.layoutIfNeeded()
                 })
-                
-//                self?.searchResultTableView.endUpdates()
-                
             }).disposed(by: disposeBag)
         
     }
     
-    func changeViewMode(_ mode: SearchViewMode) {
-        DispatchQueue.main.async {
-            self.setStatusBarPosition(mode)
-            
-            switch mode {
-            case .initial:
-                self.stackView.setCustomSpacing(50, after: self.searchBarContainer)
-                
-                // label
-                self.latestSearchLabelContainer.isHidden = false
-                self.searchLabelContainer.isHidden = false
-                
-                // tableview
-                self.latestSearchTableView.isHidden = false
-                self.filteredLatestSearchTableView.isHidden = true
-                self.latestSearchTableViewContainer.isHidden = false
-                self.searchResultTableContainer.isHidden = true
-                
-                // searchbar
-                self.searchBar.setShowsCancelButton(false, animated: true)
-            case .emptyString:
-                self.latestSearchLabelContainer.isHidden = false
-                
-                self.latestSearchTableView.isHidden = false
-                self.filteredLatestSearchTableView.isHidden = true
-            case .searchBarFocused:
-                // labels
-                
-                // searchbar
-                self.searchLabelContainer.isHidden = true
-                self.searchBar.showsCancelButton = true
-            case .inputContinuing:
-                // labels
-                self.latestSearchLabelContainer.isHidden = true
-                self.searchLabelContainer.isHidden = true
-                
-                // tableview
-                self.latestSearchTableView.isHidden = true
-                self.filteredLatestSearchTableView.isHidden = false
-                self.latestSearchTableViewContainer.isHidden = false
-                self.searchResultTableContainer.isHidden = true
-                
-                // searchbar
-                
-                self.searchBar.setShowsCancelButton(true, animated: true)
-            case .showingResult:
-                // labels
-                self.latestSearchLabelContainer.isHidden = true
-                self.searchLabelContainer.isHidden = true
-                
-                
-                self.stackView.setCustomSpacing(0, after: self.searchBarContainer)
-                
-                // tableview
-                self.latestSearchTableViewContainer.isHidden = true
-                self.searchResultTableContainer.isHidden = false
-                
-                // searchbar
-            
-                self.searchBar.setShowsCancelButton(true, animated: true)
-            }
+    func bindViewConstraint(reactor: SearchViewReactor) {
+        reactor.state.map { $0.stackViewTopConstraint }
+            .distinctUntilChanged()
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] offset in
+                guard let searchBarContainer = self?.searchBarContainer else { return }
+                self?.stackView.setCustomSpacing(offset, after: searchBarContainer)
+            }).disposed(by: disposeBag)
+    }
+    
+    func bindHiddenesses(reactor: SearchViewReactor) {
+        reactor.state.map { $0.isHiddenLatestSearchLabelContainer }
+            .distinctUntilChanged()
+            .bind(to: latestSearchLabelContainer.rx.isHidden)
+            .disposed(by: disposeBag)
         
+        reactor.state.map { $0.isHiddenSearchLabelContainer }
+            .distinctUntilChanged()
+            .bind(to: searchLabelContainer.rx.isHidden)
+            .disposed(by: disposeBag)
         
-            UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut, animations: {
-                self.stackView.layoutIfNeeded()
-            })
-        }
+        reactor.state.map { $0.isHiddenLatestSearchTableView }
+            .distinctUntilChanged()
+            .bind(to: latestSearchTableView.rx.isHidden)
+            .disposed(by: disposeBag)
+        
+        reactor.state.map { $0.isHiddenFilteredLatestSearchTableView }
+            .distinctUntilChanged()
+            .bind(to: filteredLatestSearchTableView.rx.isHidden)
+            .disposed(by: disposeBag)
+        
+        reactor.state.map { $0.isHiddenLatestSearchLabelContainer }
+            .distinctUntilChanged()
+            .bind(to: latestSearchLabelContainer.rx.isHidden)
+            .disposed(by: disposeBag)
+        
+        reactor.state.map { $0.isHiddenSearchTableViewContainer }
+            .distinctUntilChanged()
+            .bind(to: searchResultTableContainer.rx.isHidden)
+            .disposed(by: disposeBag)
+        
+        reactor.state.map { $0.isShowCancelButtonOnSearchBar }
+            .distinctUntilChanged()
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] isShows in
+                self?.searchBar.setShowsCancelButton(isShows, animated: true)
+                
+                if isShows, let cancelButton = self?.searchBar.value(forKey: "cancelButton") as? UIButton {
+                    cancelButton.isEnabled = true
+                }
+            }).disposed(by: disposeBag)
+        
+        reactor.state.map { $0.isNeedsLayout }
+            .distinctUntilChanged()
+            .filter { $0 }
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] _ in
+                UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut, animations: {
+                    self?.stackView.layoutIfNeeded()
+                })
+            }).disposed(by: disposeBag)
     }
     
     func setStatusBarPosition(_ mode: SearchViewMode) {

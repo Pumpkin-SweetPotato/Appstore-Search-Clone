@@ -156,8 +156,6 @@ final class InformationTableViewCellReactor: Reactor {
                 return .empty()
             case .privacyPolicy:
                 return .empty()
-            default:
-                return .empty()
             }
         }
     }

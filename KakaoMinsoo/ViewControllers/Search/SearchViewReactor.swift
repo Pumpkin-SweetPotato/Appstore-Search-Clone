@@ -42,11 +42,21 @@ final class SearchViewReactor: Reactor {
         case setSelectedSearchKeyword(String?)
         case setSearchViewMode(SearchViewMode)
         case setSearchDetailViewController(SearchDetailViewController?)
-        case setIsHiddenSearchLabel(Bool)
-        case setIsShowCancelButtonOnSearchBar(Bool)
-        case setIsHiddenLatestSeachLabel(Bool)
+        
+        case setIsHiddenLatestSeachLabelContainer(Bool)
+        case setIsHiddenSearchLabelContainer(Bool)
+        
         case setIsHiddenLatestSearchTableView(Bool)
-        case setIsHiddenSearchResultTableView(Bool)
+        case setIsHiddenFilteredLatestSearchTableView(Bool)
+        case setIsHiddenLatestSearchTableViewContainer(Bool)
+        
+        case setIsHiddenSearchTableViewContainer(Bool)
+        
+        case setIsShowCancelButtonOnSearchBar(Bool)
+        
+        case setStackViewTopConstraint(CGFloat)
+        
+        case setIsNeedsLayout(Bool)
         
         case setNeedReload(Bool)
         case setAddedIndexPaths([IndexPath])
@@ -66,11 +76,20 @@ final class SearchViewReactor: Reactor {
         var searchViewMode: SearchViewMode = .initial
         var searchDetailViewController: SearchDetailViewController?
         
-        var isHiddenSearchLabel: Bool = false
-        var isShowCancelButtonOnSearchBar: Bool = true
-        var isHiddenLatestSearchLabel: Bool = false
+        var stackViewTopConstraint: CGFloat = 50
+        
+        var isHiddenLatestSearchLabelContainer: Bool = false
+        var isHiddenSearchLabelContainer: Bool = false
+        
         var isHiddenLatestSearchTableView: Bool = false
-        var isHiddenSearchResultTabbleView: Bool = true
+        var isHiddenFilteredLatestSearchTableView: Bool = true
+        var isHiddenLatestSearchTableViewContainer: Bool = false
+        
+        var isHiddenSearchTableViewContainer: Bool = true
+        
+        var isShowCancelButtonOnSearchBar: Bool = false
+        
+        var isNeedsLayout: Bool = false
         
         var addedIndexPaths: [IndexPath] = []
         var isNeedReload: Bool = false
@@ -93,11 +112,12 @@ final class SearchViewReactor: Reactor {
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .searchBarSelected:
-            return .just(.setSearchViewMode(.searchBarFocused))
+            return setViewStates(.searchBarFocused)
             
         case .searchBarTextDidChanged(let keyword):
             if keyword.isEmpty {
-                return .concat([.just(.setSearchViewMode(.emptyString)), .just(.setSearchKeyword(keyword))])
+                return .concat([setViewStates(.emptyString),
+                                .just(.setSearchKeyword(keyword))])
             } else {
                 var uniqueKeywords: Set<String> = Set<String>()
                 SearchUserDefaults.latestSearchKeywords
@@ -109,7 +129,8 @@ final class SearchViewReactor: Reactor {
                 )
             
                 return .concat([
-                    .just(.setSearchViewMode(.inputContinuing)),
+                    setViewStates(.inputContinuing),
+//                    .just(.setSearchViewMode(.inputContinuing)),
                     .just(.setSearchKeyword(keyword)),
                     .just(.setFilteredSearchResults(Array(uniqueKeywords).sorted(by: { $0.count > $1.count }))),
                     setNeedReloadFilteredTableView
@@ -134,17 +155,24 @@ final class SearchViewReactor: Reactor {
                     }
                 }
                 
-            let setSearchViewMode = Observable<Mutation>.just(.setSearchViewMode(.showingResult))
+//            let setSearchViewMode = Observable<Mutation>.just(.setSearchViewMode(.showingResult))
             
             let setNeedReload: Observable<Mutation> = .concat(.just(.setNeedReload(true)), .just(.setNeedReload(false)))
                 
             let setSliceIndex: Observable<Mutation> = .just(.setSliceIndex(1))
-            return .concat(setLatestSearchKeyword, requsetSearchResults, setSliceIndex, setSearchViewMode, setNeedReload)
+            return .concat(
+                setLatestSearchKeyword,
+                requsetSearchResults,
+                setSliceIndex,
+                setViewStates(.showingResult),
+//                setSearchViewMode,
+                setNeedReload
+            )
             
         case .searchCancel:
-            let setSearchViewMode = Observable<Mutation>.just(.setSearchViewMode(.initial))
+//            let setSearchViewMode = Observable<Mutation>.just(.setSearchViewMode(.initial))
             let setSearchResults = Observable<Mutation>.just(.setSearchResults([]))
-            return .concat(.just(.setSearchKeyword("")), setSearchResults, setSearchViewMode)
+            return .concat(.just(.setSearchKeyword("")), setSearchResults, setViewStates(.initial))
             
         case .latestSearchKeywordSelected(let indexPath):
             let keyword = currentState.latestSearchedKeywords[indexPath.row]
@@ -169,13 +197,21 @@ final class SearchViewReactor: Reactor {
                     }
                 }
             
-            let setViewMode: Observable<Mutation> = .just(.setSearchViewMode(.showingResult))
+//            let setViewMode: Observable<Mutation> = .just(.setSearchViewMode(.showingResult))
             
             let setNeedReload: Observable<Mutation> = .concat(.just(.setNeedReload(true)), .just(.setNeedReload(false)))
             
             let setSliceIndex: Observable<Mutation> = .just(.setSliceIndex(1))
             
-            return .concat([setLatestSearchKeyword, setKeyword, setSelectedKeyword, requsetSearchResults, setSliceIndex, setViewMode, setNeedReload])
+            return .concat([
+                    setLatestSearchKeyword,
+                    setKeyword,
+                    setSelectedKeyword,
+                    requsetSearchResults,
+                    setSliceIndex,
+                    setViewStates(.showingResult),
+                    setNeedReload
+            ])
         case .filteredLatestSearchKeywordSelected(let indexPath):
             let keyword = currentState.filteredLatestSearchedKeywords[indexPath.row]
 //            SearchUserDefaults.latestSearchKeywords.append(keyword)
@@ -199,13 +235,21 @@ final class SearchViewReactor: Reactor {
                     }
                 }
             
-            let setViewMode: Observable<Mutation> = .just(.setSearchViewMode(.showingResult))
+//            let setViewMode: Observable<Mutation> = .just(.setSearchViewMode(.showingResult))
             
             let setNeedReload: Observable<Mutation> = .concat(.just(.setNeedReload(true)), .just(.setNeedReload(false)))
             
             let setSliceIndex: Observable<Mutation> = .just(.setSliceIndex(1))
             
-            return .concat([setLatestSearchKeyword, setKeyword, setSelectedKeyword, setSliceIndex, requsetSearchResults, setViewMode, setNeedReload])
+            return .concat([
+                    setLatestSearchKeyword,
+                    setKeyword,
+                    setSelectedKeyword,
+                    setSliceIndex,
+                    requsetSearchResults,
+                    setViewStates(.showingResult),
+                    setNeedReload
+            ])
         case .searchResultSelected(let indexPath):
             guard currentState.searchResults.count > indexPath.row else { return .empty() }
             let result = currentState.searchResults[indexPath.row]
@@ -220,6 +264,7 @@ final class SearchViewReactor: Reactor {
             
             let unsetViewController: Observable<Mutation> =
                 .just(.setSearchDetailViewController(nil))
+            
             return .concat(setViewController, unsetViewController)
         case .loadMore:
             guard currentState.sliceIndex * sliceCount < currentState.searchResults.count else { return .empty() }
@@ -271,22 +316,30 @@ final class SearchViewReactor: Reactor {
             state.searchViewMode = mode
         case .setSearchDetailViewController(let viewController):
             state.searchDetailViewController = viewController
-        case .setIsHiddenSearchLabel(let set):
-            state.isHiddenSearchLabel = set
-        case .setIsShowCancelButtonOnSearchBar(let set):
-            state.isShowCancelButtonOnSearchBar = set
-        case .setIsHiddenLatestSeachLabel(let set):
-            state.isHiddenLatestSearchLabel = set
-        case .setIsHiddenLatestSearchTableView(let set):
-            state.isHiddenLatestSearchTableView = set
-        case .setIsHiddenSearchResultTableView(let set):
-            state.isHiddenSearchResultTabbleView = set
         case .setNeedReload(let set):
             state.isNeedReload = set
         case .setAddedIndexPaths(let indexPaths):
             state.addedIndexPaths = indexPaths
         case .setIsNeedReloadFilteredKeywordTableView(let set):
             state.isNeedReloadFilteredKeywordTableView = set
+        case .setIsHiddenLatestSeachLabelContainer(let set):
+            state.isHiddenLatestSearchLabelContainer = set
+        case .setIsHiddenSearchLabelContainer(let set):
+            state.isHiddenSearchLabelContainer = set
+        case .setIsHiddenLatestSearchTableView(let set):
+            state.isHiddenLatestSearchTableView = set
+        case .setIsHiddenFilteredLatestSearchTableView(let set):
+            state.isHiddenFilteredLatestSearchTableView = set
+        case .setIsHiddenLatestSearchTableViewContainer(let set):
+            state.isHiddenLatestSearchTableViewContainer = set
+        case .setIsHiddenSearchTableViewContainer(let set):
+            state.isHiddenSearchTableViewContainer = set
+        case .setIsShowCancelButtonOnSearchBar(let set):
+            state.isShowCancelButtonOnSearchBar = set
+        case .setStackViewTopConstraint(let offset):
+            state.stackViewTopConstraint = offset
+        case .setIsNeedsLayout(let set):
+            state.isNeedsLayout = set
         }
         
         return state
@@ -312,42 +365,59 @@ final class SearchViewReactor: Reactor {
         return requsetSearchResults
     }
     
-    func setViewsHidden(mode: SearchViewMode) -> Observable<Mutation> {
-        var mutations: [Observable<Mutation>] = []
+    func setViewStates(_ mode: SearchViewMode) -> Observable<Mutation> {
+        var setViewStates: [Observable<Mutation>] = []
         
-//        switch mode {
-//        case .watingInput:
-//            mutations.append(.just(.setIsHiddenSearchLabel(false)))
-//            mutations.append(.just(.setIsHiddenLatestSeachLabel(false)))
-//            mutations.append(.just(.setIsHiddenLatestSearchTableView(false)))
-//            mutations.append(.just(.setIsHiddenSearchResultTableView(true)))
-//            mutations.append(.just(.setIsShowCancelButtonOnSearchBar(false)))
-//        case .beginEditing:
-////            let statusbarHeight = SearchConstants.statusBarHeight(rootView: self.rootView) ?? 0
-////            self.stackView.snp.updateConstraints { make in
-////                make.top.equalToSuperview().offset(statusbarHeight)
-////            }
-//            mutations.append(.just(.setIsHiddenSearchLabel(true)))
-//            mutations.append(.just(.setIsShowCancelButtonOnSearchBar(true)))
-//        case .inputContinuing:
-////            let statusbarHeight = SearchConstants.statusBarHeight(rootView: self.rootView) ?? 0
-////            self.stackView.snp.updateConstraints { make in
-////                make.top.equalToSuperview().offset(statusbarHeight)
-////            }
-//
-//            mutations.append(.just(.setIsHiddenSearchLabel(true)))
-//            mutations.append(.just(.setIsHiddenLatestSeachLabel(true)))
-//            mutations.append(.just(.setIsShowCancelButtonOnSearchBar(true)))
-//        case .showingResult:
-////            self.stackView.setCustomSpacing(0, after: self.searchBar)
-//            mutations.append(.just(.setIsHiddenSearchLabel(true)))
-//            mutations.append(.just(.setIsHiddenLatestSeachLabel(true)))
-//            mutations.append(.just(.setIsHiddenLatestSearchTableView(true)))
-//            mutations.append(.just(.setIsHiddenSearchResultTableView(false)))
-//            mutations.append(.just(.setIsShowCancelButtonOnSearchBar(true)))
-//        }
-//
-        return .concat(mutations)
+        switch mode {
+        case .initial:
+            setViewStates.append(.just(.setStackViewTopConstraint(50)))
+        
+            setViewStates.append(.just(.setIsHiddenLatestSeachLabelContainer(false)))
+            setViewStates.append(.just(.setIsHiddenSearchLabelContainer(false)))
+            
+            setViewStates.append(.just(.setIsHiddenLatestSearchTableView(false)))
+            setViewStates.append(.just(.setIsHiddenFilteredLatestSearchTableView(true)))
+            setViewStates.append(.just(.setIsHiddenLatestSearchTableViewContainer(false)))
+            setViewStates.append(.just(.setIsHiddenSearchTableViewContainer(true)))
+            
+            setViewStates.append(.just(.setIsShowCancelButtonOnSearchBar(false)))
+        case .emptyString:
+            setViewStates.append(.just(.setIsHiddenLatestSeachLabelContainer(false)))
+            setViewStates.append(.just(.setIsHiddenLatestSearchTableView(false)))
+            setViewStates.append(.just(.setIsHiddenFilteredLatestSearchTableView(true)))
+        case .searchBarFocused:
+            setViewStates.append(.just(.setIsHiddenSearchLabelContainer(true)))
+            setViewStates.append(.just(.setIsShowCancelButtonOnSearchBar(true)))
+        case .inputContinuing:
+            
+            setViewStates.append(.just(.setIsHiddenLatestSeachLabelContainer(true)))
+            setViewStates.append(.just(.setIsHiddenSearchLabelContainer(true)))
+            
+            
+            setViewStates.append(.just(.setIsHiddenLatestSearchTableView(true)))
+            setViewStates.append(.just(.setIsHiddenFilteredLatestSearchTableView(false)))
+            setViewStates.append(.just(.setIsHiddenLatestSearchTableViewContainer(false)))
+            setViewStates.append(.just(.setIsHiddenSearchTableViewContainer(true)))
+            
+            
+            setViewStates.append(.just(.setIsShowCancelButtonOnSearchBar(true)))
+        case .showingResult:
+            setViewStates.append(.just(.setStackViewTopConstraint(0)))
+            setViewStates.append(.just(.setIsHiddenLatestSeachLabelContainer(true)))
+            setViewStates.append(.just(.setIsHiddenSearchLabelContainer(true)))
+            
+            setViewStates.append(.just(.setIsHiddenLatestSearchTableViewContainer(true)))
+            setViewStates.append(.just(.setIsHiddenSearchLabelContainer(true)))
+            setViewStates.append(.just(.setIsHiddenSearchTableViewContainer(false)))
+            
+            setViewStates.append(.just(.setIsShowCancelButtonOnSearchBar(true)))
+        }
+        
+        let setNeedsLayout: Observable<Mutation> = .concat(.just(.setIsNeedsLayout(true)), .just(.setIsNeedsLayout(false)))
+        
+        setViewStates.append(setNeedsLayout)
+        
+        return .concat(setViewStates)
     }
     
     func addLatestSearchKeyword(_ keyword: String) {
